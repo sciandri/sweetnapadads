@@ -1,10 +1,10 @@
 # Session 0001 — Phase 0 foundation
 
 - Date: 2026-07-30
-- Status: complete locally — GitHub publication blocked
+- Status: complete and published
 - Branch: `main`
 - Starting commit: none
-- Ending commit: initial Phase 0 checkpoint (see Git history)
+- Ending commit: initial Phase 0 publication checkpoint (see Git history)
 
 ## Goal
 
@@ -33,6 +33,8 @@ been inspected and its known reconciliation issues identified.
 - [x] Record the supplied logo as the canonical and only current brand asset.
 - [x] Run the complete closeout quality gate and npm security audit.
 - [x] Finalize the canonical pickup state for the next session.
+- [x] Connect `origin`, reconcile the GitHub placeholder commit, and publish
+      `main`.
 
 ## Decisions
 
@@ -55,14 +57,11 @@ been inspected and its known reconciliation issues identified.
 
 ## Risks or blockers
 
-- GitHub has no configured remote, and both saved GitHub CLI account tokens are
-  invalid; the local checkpoint cannot be pushed until the intended account
-  and repository URL are confirmed.
 - Supabase and production hosting are not configured.
 - Historical import discrepancies require commissioner decisions.
 
 ## Exact handoff
 
-Re-authenticate the intended GitHub account, configure the confirmed
-repository URL as `origin`, and push `main`. Then begin Phase 1 with Supabase
-local configuration and the first schema migration.
+Begin Phase 1 with Supabase local configuration and the first schema migration.
+Before implementation, confirm the clean `main` branch still tracks
+`origin/main`.

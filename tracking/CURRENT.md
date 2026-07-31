@@ -2,10 +2,10 @@
 
 - Last updated: 2026-07-30
 - Session: 0001
-- Session status: complete locally — GitHub publication blocked
+- Session status: complete and published
 - Branch: `main`
 - Phase: Phase 0 — Foundation
-- Checkpoint: Initial foundation checkpoint committed locally
+- Checkpoint: Initial foundation checkpoint published to GitHub
 
 ## Current outcome
 
@@ -19,18 +19,16 @@ The responsive interface has been verified from phone through desktop widths.
 
 - [x] Finish the Phase 0 visual and repository verification pass.
 - [x] Confirm the final working-tree contents.
-- [x] Run the local “update and track” closeout.
-- [ ] Publish the initial checkpoint after GitHub authentication and `origin`
-      are configured.
+- [x] Run the “update and track” closeout.
+- [x] Publish the initial checkpoint to GitHub.
 
 ## Next actions
 
-1. Re-authenticate GitHub CLI and configure the intended repository as
-   `origin`.
-2. Push `main` and set its upstream.
-3. Begin Phase 1 with Supabase local configuration and the first schema
+1. Begin Phase 1 with Supabase local configuration and the first schema
    migration.
-4. Implement profiles, league memberships, roles, seasons, settings, and RLS.
+2. Implement profiles, league memberships, roles, seasons, settings, and RLS.
+3. Integrate the supplied logo into the interface when the branded application
+   shell is implemented.
 
 ## Decisions in force
 
@@ -43,8 +41,6 @@ The responsive interface has been verified from phone through desktop widths.
 
 ## Known risks and blockers
 
-- GitHub publication is blocked: no remote is configured, and the saved
-  credentials for `IgniteIQ-Ryan` and `sciandri` are both invalid.
 - The 2025 workbook contains documented reconciliation discrepancies; see
   `docs/MIGRATION_2025.md`.
 - Supabase projects and environment values are not configured.
@@ -66,11 +62,10 @@ The responsive interface has been verified from phone through desktop widths.
 
 ## Latest commit intent
 
-`chore: establish project foundation and session tracking`
+`docs: record initial GitHub publication`
 
 ## Pickup instruction
 
 Read `tracking/CHECKLIST.md`, then continue with the first incomplete item
-under **Next actions** above. Authenticate the intended GitHub account and
-confirm the repository URL before adding `origin`; do not create or select a
-repository by inference.
+under **Next actions** above. Confirm `git status` is clean and `main` is
+tracking `origin/main` before beginning Phase 1.

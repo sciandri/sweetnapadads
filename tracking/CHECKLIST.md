@@ -15,10 +15,10 @@ sequencing live in `docs/IMPLEMENTATION_PLAN.md`.
 - [x] Add canonical session tracking and validation.
 - [x] Resolve npm security audit findings.
 - [x] Complete responsive visual verification.
-- [x] Verify GitHub remote and upstream (none configured).
+- [x] Verify the initial GitHub remote state (none configured at the time).
 - [x] Run the local “update and track” closeout and create the initial commit.
-- [ ] Configure the GitHub `origin` and branch upstream.
-- [ ] Push the initial checkpoint to GitHub.
+- [x] Configure the GitHub `origin` and branch upstream.
+- [x] Push the initial checkpoint to GitHub.
 
 ## Phase 1 — Platform
 
