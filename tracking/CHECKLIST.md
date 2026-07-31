@@ -39,15 +39,17 @@ sequencing live in `docs/IMPLEMENTATION_PLAN.md`.
 - [x] Test finance invariants and correction workflows.
 - [x] Build 2025 staging import and mapping.
 - [x] Resolve workbook discrepancies with commissioner decisions.
+- [x] Rehearse the complete canonical 2025 import locally and idempotently.
 - [ ] Commit a reconciled 2025 historical import.
 
 ## Phase 3 — Competition
 
-- [ ] Implement ESPN client and redacted fixtures.
+- [x] Implement the server-only ESPN standings client and redacted fixtures.
 - [x] Implement season-team mappings and the sync-run lifecycle.
 - [x] Persist immutable raw ESPN payload evidence.
 - [x] Persist official-order standings snapshots atomically and idempotently.
 - [x] Add commissioner-only league context over standings, results, and awards.
+- [x] Normalize ESPN's official order into the atomic snapshot RPC.
 - [ ] Normalize matchups and weekly results idempotently.
 - [ ] Complete ESPN-backed matchup normalization and weekly-award derivation.
 - [ ] Generate rule-backed financial obligations.

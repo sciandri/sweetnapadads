@@ -60,3 +60,17 @@ system instructions prohibit recalculating ESPN standings or inventing facts.
 The ingestion transaction suite additionally verifies service-role isolation,
 complete team mapping, contiguous official ranks, exact retry behavior,
 changed-evidence rejection, constraint enforcement, and all-or-nothing writes.
+
+The canonical 2025 rehearsal adds a source-level contract over all 533 workbook
+rows and their row hashes. Its local-only runner exercises the real Auth/RLS
+approval path, commits the exact 117 KB approved preview, checks every stored
+record count and reconciliation field, and then proves both RPC and operational
+reruns are idempotent.
+
+ESPN adapter coverage distinguishes completed-season final rank from
+active-season playoff seed, rejects unavailable preseason ranks, requires an
+exact season-team mapping, rounds scores deterministically, minimizes
+member-readable source evidence, hashes raw responses deterministically, and
+checks the atomic ingestion arguments. A synthetic twelve-team case verifies
+that league size is derived from season mappings rather than a ten-team
+application constant.

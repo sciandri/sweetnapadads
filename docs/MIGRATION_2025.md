@@ -130,3 +130,32 @@ commit boundary. It:
 Any validation failure rolls back every domain and provenance write and leaves
 the batch approved. The canonical 2025 artifact still requires a staged 2025
 league/season with all ten team mappings before this RPC can be invoked.
+
+## Local canonical rehearsal
+
+`data/import/2025/workbook-rows.json` preserves all 533 rows inside the eight
+manifest ranges, including headers, blank layout rows, cached values, and exact
+formulas. Every row has its own SHA-256 digest, and the extraction remains tied
+to the immutable workbook checksum.
+
+The local-only operational rehearsal is:
+
+```bash
+npm run db:reset
+npm run import:2025:rehearse
+```
+
+The runner refuses any non-local Supabase URL. It creates a canonical local
+2025 season, stages all source rows, ten team mappings, eighteen approved
+`Type + How` mappings, and seven resolved findings, then authenticates as the
+synthetic commissioner and invokes `commit_historical_import`. It verifies the
+stored record counts and full reconciliation before making an exact retry.
+
+The verified rehearsal produced 80 matchups, 160 weekly results, 14 weekly
+awards, 49 obligations, 43 payments, 43 allocations, and one external cash
+event. The result reconciled to a `$40` net team balance and `$240` realized
+league cash balance. A second full runner invocation without a reset returned
+`already_committed` and created no duplicates.
+
+This rehearsal does not authorize or write production league history. Hosted
+staging remains a separate, explicit release decision.

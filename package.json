@@ -13,6 +13,7 @@
     "db:test": "supabase test db",
     "start": "next start",
     "lint": "eslint .",
+    "import:2025:rehearse": "node scripts/rehearse-2025-import.mjs",
     "tracking:check": "node scripts/check-tracking.mjs",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",

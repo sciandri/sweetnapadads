@@ -92,6 +92,11 @@ cannot be used to sign in. Create login-capable local identities through the
 Auth admin API or local Studio when exercising the authentication flow. Fixed
 UUIDs make application fixtures and database tests reproducible.
 
+`npm run import:2025:rehearse` temporarily assigns a random runtime password to
+that synthetic commissioner after a local reset so the actual authenticated
+approval and commit RPCs can be exercised. The password is never printed or
+stored. The runner refuses hosted Supabase URLs and is safe to rerun.
+
 When a hosted development project exists, link it deliberately and preview
 pending migrations before applying them:
 

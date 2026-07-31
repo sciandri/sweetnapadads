@@ -1,11 +1,11 @@
 # Current project state
 
 - Last updated: 2026-07-31
-- Session: 0004
-- Session status: complete — published and deployed
+- Session: 0005
+- Session status: active
 - Branch: `main`
-- Phase: Phase 2 — League and finance
-- Checkpoint: ESPN-backed commissioner message composer foundation deployed
+- Phase: Phase 3 — Competition
+- Checkpoint: ESPN standings adapter and canonical import rehearsal verified
 
 ## Current outcome
 
@@ -69,6 +69,21 @@ the model would see, edit final copy, and copy it into the league's existing
 group-text thread. There is intentionally no SMS delivery or phone-number
 storage. Live OpenAI generation is visibly disabled until a server-only API key
 is configured and its Route Handler is reviewed.
+The canonical 2025 workbook is now preserved as 533 row-level source records
+with cached values, formulas, and per-row hashes. A local-only operational
+runner stages the 2025 season, ten teams, eighteen financial label mappings,
+and all seven approved issues, then exercises the real commissioner approval
+and domain commit boundaries. It produced and reconciled 80 matchups, 160
+results, 14 awards, 49 obligations, 43 payments, 43 allocations, and one
+external cash event. Both the RPC retry and a second full runner invocation
+returned `already_committed` without duplicates. Production history was not
+modified.
+The server-only ESPN adapter now validates the observed 2025 and 2026 response
+shape, preserves ESPN's completed-season final rank or active-season playoff
+seed, rejects unavailable preseason order, requires exact season-team mappings
+of any configured size, minimizes member-readable source evidence, hashes the
+raw response, and submits one atomic ingestion call. Redacted fixtures include
+an explicit twelve-team season contract.
 
 ## In progress
 
@@ -124,18 +139,24 @@ is configured and its Route Handler is reviewed.
       `20260731140000` on hosted Supabase.
 - [x] Deploy and verify Vercel production
       `dpl_2vcpKeionBYH1ob7s9zfBcKyey8u` and the custom domain.
+- [x] Preserve all 533 canonical workbook rows and formulas as hashed evidence.
+- [x] Rehearse the canonical 2025 stage, approval, commit, reconciliation, and
+      exact retry against local Supabase.
+- [x] Validate the live private-league standings response shape for 2025 and
+      2026 without logging private values.
+- [x] Add the server-only ESPN client, strict standings normalizer, redacted
+      fixtures, dynamic team-count coverage, and atomic ingestion adapter.
 
 ## Next actions
 
 1. Configure a server-only OpenAI API key, then implement and test the reviewed
    message-draft Route Handler that returns three editable options.
-2. Implement the ESPN fetch and normalization adapter against the verified
-   atomic ingestion function when private-league credentials are available.
-3. Stage a canonical 2025 league, season, raw source, and all ten team mappings.
-4. Invoke the verified domain commit with the approved normalized preview and
-   audit its stored record counts and reconciliation.
-5. Configure production SMTP before inviting real members.
-6. Create and smoke-test the first real invited member only after SMTP is
+2. Add a protected ESPN synchronization Route Handler and season-team mapping
+   administration before enabling scheduled or production synchronization.
+3. Decide when the locally rehearsed canonical 2025 history should be staged
+   and committed to hosted Supabase; do not infer production authorization.
+4. Configure production SMTP before inviting real members.
+5. Create and smoke-test the first real invited member only after SMTP is
    configured.
 
 ## Decisions in force
@@ -145,6 +166,8 @@ is configured and its Route Handler is reviewed.
 - Financial state is event-based: obligations and payments are separate.
 - Money is represented as safe integer cents.
 - Rules are season-scoped data rather than application constants.
+- Team count is season-scoped; 2025 remains ten teams and future seasons may
+  expand to twelve without changing application constants.
 - ESPN's official reported standings order is canonical and is never locally
   recalculated.
 - AI league messages are commissioner-reviewed copy for the existing group
@@ -154,9 +177,9 @@ is configured and its Route Handler is reviewed.
 ## Known risks and blockers
 
 - The 2025 workbook discrepancies are resolved in the approved decision queue.
-  The normalized preview is reconciled and its commit mechanism is verified,
-  but a canonical 2025 league/season and ten team mappings must be staged
-  before the domain transaction can run; see `docs/MIGRATION_2025.md`.
+  The exact preview has now been staged, committed, reconciled, and retried
+  locally. Production history remains intentionally absent pending a separate
+  explicit decision; see `docs/MIGRATION_2025.md`.
 - The hosted `sweetnapadads` project exists at
   `https://cleyfpzxckjtmsoesgby.supabase.co`. Codex MCP and CLI access are
   authenticated and the CLI is linked. All twelve migration versions through
@@ -176,8 +199,9 @@ is configured and its Route Handler is reviewed.
 - The repository is linked locally to Vercel project
   `prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w` in the `sciandri` scope. Production
   deployment `dpl_2vcpKeionBYH1ob7s9zfBcKyey8u` is Ready.
-- ESPN private-league credentials have not been provided and must never be
-  committed.
+- ESPN private-league credentials are configured only in git-ignored local
+  environment state and validated for both the 2025 and 2026 ten-team league.
+  They are not configured in Vercel and must never be committed or logged.
 - An OpenAI API key has not been provided. The composer UI and prompt boundary
   are implemented, but live generation remains disabled until the key is
   configured server-side and the Route Handler is added and tested.
@@ -189,10 +213,13 @@ is configured and its Route Handler is reviewed.
 - `npm audit`: clean
 - `npm run lint`: passing
 - `npm run typecheck`: passing
-- `npm test`: 28 tests passing
+- `npm test`: 37 tests passing
 - `npm run db:reset`: passing
 - `npm run db:lint`: passing with no warnings
 - `npm run db:test`: 255 database tests passing
+- `npm run import:2025:rehearse`: passing twice; second run idempotent
+- ESPN credential check: authenticated HTTP 200 for 2025 and 2026; league ID
+  and ten-team response verified without logging credential values
 - `npm run build`: passing
 - Invite-only Auth browser smoke test: passing through local email, callback,
   verified claims, membership RLS, and dashboard
@@ -210,12 +237,11 @@ is configured and its Route Handler is reviewed.
 
 ## Latest commit intent
 
-`docs: record ESPN composer production release`
+`feat: add ESPN standings adapter and rehearse 2025 import`
 
 ## Pickup instruction
 
-Start session 0005 from clean, synchronized `main`. Configure the server-only
-OpenAI key and add the authenticated message-draft Route Handler. If
-credentials remain unavailable, continue with the ESPN fetch/normalization
-adapter or stage the canonical 2025 import context without weakening either
-credential boundary.
+Continue session 0005 with live OpenAI generation when its server-only key is
+available, or add the protected ESPN synchronization Route Handler and
+season-team mapping administration. Production 2025 history still requires an
+explicit release decision.

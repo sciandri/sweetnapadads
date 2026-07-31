@@ -100,6 +100,24 @@ type NormalizedPreview = {
   };
 };
 
+type WorkbookRows = {
+  source: { sha256: string };
+  extraction: {
+    row_count: number;
+    sheet_count: number;
+    includes_headers: boolean;
+    includes_blank_rows_within_manifest_ranges: boolean;
+  };
+  rows: Array<{
+    source_sheet: string;
+    source_row_number: number;
+    source_range: string;
+    raw_values: unknown[];
+    raw_formulas: Array<string | null> | null;
+    row_sha256: string;
+  }>;
+};
+
 const projectPath = (...segments: string[]) =>
   path.join(process.cwd(), ...segments);
 
@@ -239,6 +257,63 @@ describe("2025 workbook manifest", () => {
         requires_separate_commit_action: true,
         blocking_issues: [],
       }),
+    );
+  });
+
+  it("preserves every manifest-range row and formula as staged source evidence", async () => {
+    const [manifest, workbookRows] = await Promise.all([
+      readImportJson<WorkbookManifest>("workbook-manifest.json"),
+      readImportJson<WorkbookRows>("workbook-rows.json"),
+    ]);
+
+    expect(workbookRows.source.sha256).toBe(manifest.source.sha256);
+    expect(workbookRows.extraction).toEqual({
+      row_count: 533,
+      sheet_count: 8,
+      includes_headers: true,
+      includes_blank_rows_within_manifest_ranges: true,
+    });
+
+    const sheetCounts = Object.fromEntries(
+      manifest.inventory.map(({ sheet, source_range }) => {
+        const [start, end] = source_range.split(":");
+        const startRow = Number(start.match(/\d+$/)?.[0]);
+        const endRow = Number(end.match(/\d+$/)?.[0]);
+        return [sheet, endRow - startRow + 1];
+      }),
+    );
+    expect(
+      workbookRows.rows.reduce<Record<string, number>>((counts, row) => {
+        counts[row.source_sheet] = (counts[row.source_sheet] ?? 0) + 1;
+        return counts;
+      }, {}),
+    ).toEqual(sheetCounts);
+
+    for (const row of workbookRows.rows) {
+      const rowEvidence = {
+        source_sheet: row.source_sheet,
+        source_row_number: row.source_row_number,
+        source_range: row.source_range,
+        raw_values: row.raw_values,
+        raw_formulas: row.raw_formulas,
+      };
+      expect(createHash("sha256").update(JSON.stringify(rowEvidence)).digest("hex"))
+        .toBe(row.row_sha256);
+    }
+
+    const malformedDate = workbookRows.rows.find(
+      (row) =>
+        row.source_sheet === "League Ledger" && row.source_row_number === 2,
+    );
+    const brokenFormula = workbookRows.rows.find(
+      (row) =>
+        row.source_sheet === "Team Balance" && row.source_row_number === 2,
+    );
+
+    expect(malformedDate?.raw_values[2]).toBe(374603);
+    expect(brokenFormula?.raw_values[19]).toBe("#NAME?");
+    expect(brokenFormula?.raw_formulas?.[19]).toContain(
+      "__xludf.DUMMYFUNCTION",
     );
   });
 

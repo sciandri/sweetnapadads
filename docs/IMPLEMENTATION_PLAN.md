@@ -23,6 +23,7 @@
 - [x] Obligation, payment, allocation, and adjustment events
 - [x] Balance views and reconciliation invariants
 - [x] 2025 staging import with issue review
+- [x] Local canonical 2025 staging, commit, reconciliation, and retry rehearsal
 
 ## Phase 3 — Competition
 

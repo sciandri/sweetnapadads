@@ -12,6 +12,14 @@
 7. Generate finance obligations from configured rules.
 8. Record activity events and final run status.
 
+The server-only adapter in `lib/integrations/espn/` reads the private-league
+credentials from environment state and requests ESPN's settings, teams, and
+standings views. It hashes the exact raw response text before persistence. For
+a completed season, the adapter uses ESPN's positive `rankCalculatedFinal`;
+for an active season, it uses the positive `playoffSeed`. A preseason response
+whose rank fields are still zero is rejected as `standings_unavailable`
+instead of assigning a local order.
+
 Successful standings writes cross the database through
 `record_espn_standings_snapshot`. The service-role-only function validates that
 the normalized entries exactly cover active mapped season teams, that ranks
@@ -47,6 +55,11 @@ ESPN's reported rank, record, points, streak, playoff position, and source team
 identifier exactly as received. It never reorders teams from locally computed
 records.
 
+Team count is season data, not an application constant. The canonical 2025
+history retains ten teams, while a later season may map twelve or another
+configured count. Synchronization requires the ESPN response to exactly cover
+that season's active mapped teams before a snapshot can become current.
+
 Every normalized standings snapshot references its immutable raw ESPN payload
 and records the successful sync run and capture time. Reads use the latest
 successful snapshot and expose its `captured_at` value so stale data is visible
@@ -56,3 +69,8 @@ remains authoritative until a newer successful sync replaces it.
 The commissioner message generator receives only normalized, authorized facts
 from that latest snapshot. The model never receives ESPN cookies or raw private
 payloads and cannot query ESPN directly.
+
+Member-readable normalized source evidence is deliberately minimal: ESPN team
+ID, the official rank fields, points, and overall record. Team names and owner
+identifiers remain only in the commissioner-restricted raw payload rather than
+being copied into a member-readable standings entry.

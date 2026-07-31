@@ -56,11 +56,14 @@ that bounded fact package plus commissioner notes and return editable drafts.
 No raw ESPN payload, financial data, phone number, or SMS delivery capability
 crosses the generation boundary.
 
-The future ESPN fetcher is intentionally separated from database persistence.
+The ESPN fetcher is intentionally separated from database persistence.
 After it fetches and validates a response server-side, it submits the raw
 evidence and normalized official-order entries to one service-role-only
 database function. That function is the atomic boundary: partial snapshots
 cannot become current, and an exact retry resolves to the original snapshot.
+The adapter in `lib/integrations/espn/` now provides the server-only client,
+strict pure normalizer, and service-role ingestion call. Its recorded fixtures
+are redacted and contain no private team names, owner identifiers, or cookies.
 
 Approved historical previews cross a single PostgreSQL transaction boundary.
 The database resolves season-team identifiers, validates reciprocal results,
