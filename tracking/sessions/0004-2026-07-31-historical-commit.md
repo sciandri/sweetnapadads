@@ -1,10 +1,10 @@
 # Session 0004 — Historical domain commit
 
 - Date: 2026-07-31
-- Status: active
+- Status: complete — published and deployed
 - Branch: `main`
 - Starting commit: `e85da01`
-- Ending commit: pending
+- Ending source commit: `8bdeeef`
 
 ## Goal
 
@@ -47,6 +47,14 @@ block local historical-import implementation.
       changed-evidence rejection, and rollback of partial writes.
 - [x] Document the copy-only group-thread workflow and the absence of SMS
       delivery or phone storage.
+- [x] Run the complete application, database, build, and tracking release
+      gates.
+- [x] Commit and push source checkpoint `8bdeeef` to GitHub `main`.
+- [x] Dry-run, apply, and verify migrations `20260731100000` through
+      `20260731140000` on hosted Supabase.
+- [x] Deploy production as `dpl_2vcpKeionBYH1ob7s9zfBcKyey8u`.
+- [x] Verify GitHub authentication, hosted migration history, deployment
+      aliases, homepage, login, and protected composer redirect.
 - [ ] Stage the canonical 2025 season and team mappings, then invoke the
       verified commit with the approved preview.
 - [ ] Configure the server-only OpenAI key and enable live generation through
@@ -76,6 +84,11 @@ block local historical-import implementation.
 - `npm run db:reset`: passing
 - `npm run db:lint`: passing with no warnings
 - `npm run db:test`: 255 tests passing
+- GitHub `main`: source checkpoint `8bdeeef` synchronized
+- Hosted Supabase: all twelve migrations through `20260731140000` match
+- Vercel deployment `dpl_2vcpKeionBYH1ob7s9zfBcKyey8u`: Ready
+- Production home and login: HTTP 200
+- Unauthenticated composer: safe redirect to login
 
 ## Risks or blockers
 
@@ -90,7 +103,8 @@ block local historical-import implementation.
 
 ## Exact handoff
 
-Configure the server-only OpenAI key and implement the authenticated generation
-Route Handler. If credentials remain unavailable, build the ESPN adapter or
-stage the canonical 2025 import context, then invoke the approved preview
-through `commit_historical_import` and verify its reconciliation.
+Start session 0005 from clean, synchronized `main`. Configure the server-only
+OpenAI key and implement the authenticated generation Route Handler. If
+credentials remain unavailable, build the ESPN adapter or stage the canonical
+2025 import context, then invoke the approved preview through
+`commit_historical_import` and verify its reconciliation.

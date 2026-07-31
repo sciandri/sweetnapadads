@@ -2,10 +2,10 @@
 
 - Last updated: 2026-07-31
 - Session: 0004
-- Session status: active
+- Session status: complete — published and deployed
 - Branch: `main`
 - Phase: Phase 2 — League and finance
-- Checkpoint: ESPN-backed commissioner message composer foundation verified
+- Checkpoint: ESPN-backed commissioner message composer foundation deployed
 
 ## Current outcome
 
@@ -16,9 +16,9 @@ authenticated project-scoped Supabase MCP connection for Codex. Leagues,
 seasons, settings, profiles, memberships, and their RLS policies are now
 implemented and tested locally. Request-scoped Supabase browser, server,
 service-role, and session-refresh clients are in place for Next.js 16. All
-seven reviewed migrations are applied to hosted Supabase. Production Auth
+twelve reviewed migrations are applied to hosted Supabase. Production Auth
 uses `https://sweetnapadads.com` with the exact callback allowlist, Vercel has
-the canonical `SITE_URL`, and release closeout commit `bdc4cc2` is live at
+the canonical `SITE_URL`, and source commit `8bdeeef` is live at
 `https://www.sweetnapadads.com`.
 The local seed now defines a deterministic synthetic commissioner, development
 league, 2026 season, and season-scoped rules.
@@ -119,6 +119,11 @@ is configured and its Route Handler is reviewed.
 - [x] Add and test the commissioner-only message context boundary.
 - [x] Add the mobile-responsive commissioner composer and copy workflow.
 - [x] Document that the application does not send SMS or store phone numbers.
+- [x] Publish source checkpoint `8bdeeef` to GitHub `main`.
+- [x] Apply and verify migrations `20260731100000` through
+      `20260731140000` on hosted Supabase.
+- [x] Deploy and verify Vercel production
+      `dpl_2vcpKeionBYH1ob7s9zfBcKyey8u` and the custom domain.
 
 ## Next actions
 
@@ -154,9 +159,8 @@ is configured and its Route Handler is reviewed.
   before the domain transaction can run; see `docs/MIGRATION_2025.md`.
 - The hosted `sweetnapadads` project exists at
   `https://cleyfpzxckjtmsoesgby.supabase.co`. Codex MCP and CLI access are
-  authenticated and the CLI is linked. Hosted history matches the seven
-  published migrations through `20260731090000`; the five new verified local
-  migrations remain pending the next `update and track` release.
+  authenticated and the CLI is linked. All twelve migration versions through
+  `20260731140000` match hosted history.
 - Vercel production has the public Supabase values, canonical `SITE_URL`, and
   a server-only Supabase service-role value. Preview and development
   environments remain intentionally unconfigured to avoid silently sharing
@@ -171,7 +175,7 @@ is configured and its Route Handler is reviewed.
   or local Studio.
 - The repository is linked locally to Vercel project
   `prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w` in the `sciandri` scope. Production
-  deployment `dpl_ENTbaLv63W9QivU7QjFUGKF3XMPY` is Ready.
+  deployment `dpl_2vcpKeionBYH1ob7s9zfBcKyey8u` is Ready.
 - ESPN private-league credentials have not been provided and must never be
   committed.
 - An OpenAI API key has not been provided. The composer UI and prompt boundary
@@ -192,25 +196,26 @@ is configured and its Route Handler is reviewed.
 - `npm run build`: passing
 - Invite-only Auth browser smoke test: passing through local email, callback,
   verified claims, membership RLS, and dashboard
-- Hosted migration history: published versions through `20260731090000` match;
-  local versions `20260731100000` through `20260731140000` are not yet released
+- Hosted migration history: all twelve versions through `20260731140000` match
 - Hosted Auth production config: up to date
-- GitHub `main`: synchronized after release closeout
-- Vercel production `dpl_ENTbaLv63W9QivU7QjFUGKF3XMPY`: Ready
+- GitHub `main`: source checkpoint `8bdeeef` synchronized
+- Vercel production `dpl_2vcpKeionBYH1ob7s9zfBcKyey8u`: Ready
 - `https://sweetnapadads.com`: HTTP 200 after redirect to
   `https://www.sweetnapadads.com/`
 - `https://sweetnapadads.com/login`: HTTP 200 with the invitation-only login
+- Unauthenticated `/dashboard/message-composer`: redirects safely to login
 - Desktop visual pass: passing
 - Responsive visual pass: passing at 320px, 390px, 768px, and 1440px with no
   horizontal overflow
 
 ## Latest commit intent
 
-`feat: add ESPN-backed commissioner message composer`
+`docs: record ESPN composer production release`
 
 ## Pickup instruction
 
-Continue session 0004 by configuring the server-only OpenAI key and adding the
-authenticated message-draft Route Handler. If credentials remain unavailable,
-continue with the ESPN fetch/normalization adapter or stage the canonical 2025
-import context without weakening either credential boundary.
+Start session 0005 from clean, synchronized `main`. Configure the server-only
+OpenAI key and add the authenticated message-draft Route Handler. If
+credentials remain unavailable, continue with the ESPN fetch/normalization
+adapter or stage the canonical 2025 import context without weakening either
+credential boundary.
