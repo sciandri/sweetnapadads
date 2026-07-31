@@ -34,9 +34,10 @@ before implementation. Never silently assume which one is newer.
 - Put newly discovered risks or blockers in `CURRENT.md`.
 - Do not use session tracking as a substitute for tests or subsystem docs.
 
-## “Update and track” closeout ritual
+## “Update and track” publish-and-deploy ritual
 
-The phrase **update and track** authorizes this entire sequence:
+The phrase **update and track** authorizes this entire sequence, including
+production deployment to the linked Supabase and Vercel projects:
 
 1. Run:
 
@@ -59,14 +60,21 @@ The phrase **update and track** authorizes this entire sequence:
    documentation, migrations, fixtures, and tracking files; exclude secrets,
    generated output, and unrelated local files.
 7. Create one meaningful commit describing the checkpoint.
-8. Push the current branch to its configured GitHub upstream.
-9. Confirm the resulting commit SHA and that the working tree is clean.
-10. Set `CURRENT.md` to a clean pickup point for the next session. If the
-    commit changed `CURRENT.md` after step 7, amend or create the necessary
-    final tracking commit and push it so GitHub is canonical.
+8. Push the current branch to its configured GitHub upstream before deploying.
+9. Confirm the linked Supabase project matches `CURRENT.md`, run a migration
+   dry-run, and apply only the reviewed pending migrations.
+10. Confirm the linked Vercel project and required environment configuration,
+    create a production deployment from the committed working tree, and verify
+    the production URL.
+11. Update `CURRENT.md` and the active session log with the GitHub commit,
+    hosted migration state, production deployment, and exact next action.
+12. Commit and push any final tracking-only update so GitHub is canonical.
+13. Confirm the resulting commit SHA, synchronized upstream, clean working
+    tree, applied migration history, and healthy production deployment.
 
-If no GitHub remote or upstream exists, complete every prior step, report the
-exact blocker, and do not pretend the closeout is finished.
+If GitHub, Supabase, or Vercel authentication, targets, environment values, or
+verification are unavailable, complete every safe prior step, record and
+report the exact blocker, and do not pretend the closeout is finished.
 
 ## Rules
 

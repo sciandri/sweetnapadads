@@ -1,0 +1,2 @@
+-- Local-only development seed data will be added after the platform tables and
+-- authentication identities exist. Never place production user data here.

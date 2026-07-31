@@ -29,6 +29,7 @@ GitHub Actions
 - `lib/domain/`: pure business rules
 - `lib/data/`: server-only database access
 - `lib/integrations/`: ESPN and other external adapters
+- `lib/supabase/`: request-scoped browser, server, admin, and Proxy clients
 - `supabase/migrations/`: schema, functions, triggers, and RLS
 - `scripts/`: import and operational tooling
 
@@ -52,6 +53,8 @@ its origin and actor.
 - Member and commissioner roles are season-aware.
 - RLS is enabled on every user-accessible table.
 - Service-role credentials and ESPN cookies are server-only.
+- Supabase SSR sessions use cookies refreshed by the root Next.js Proxy.
+- Identity checks use verified Auth claims; authorization remains in RLS.
 - Protected automation requires a rotating shared secret.
 - Financial corrections append reversing or adjustment entries.
 

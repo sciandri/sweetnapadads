@@ -18,8 +18,18 @@
 npm run lint
 npm run typecheck
 npm test
+npm run db:reset
+npm run db:lint
+npm run db:test
 npm run build
 ```
 
-CI will run the same checks. Financial and authorization changes require tests
-at their owning layer.
+Database tests live in `supabase/tests/database/` and run with pgTAP against
+the local Supabase PostgreSQL container. `db:lint` treats PostgreSQL warnings
+as failures. Financial and authorization changes require tests at their owning
+layer.
+
+Supabase environment parsing is unit-tested without real credentials. Auth
+route tests must use synthetic identities and must cover expired sessions,
+cookie refresh, login failure, and authorization denial before authenticated
+screens ship.

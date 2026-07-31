@@ -5,9 +5,8 @@ competition, finances, history, commissioner operations, and league lore.
 
 ## Status
 
-Phase 0 is in progress. The repository has a production-oriented Next.js
-foundation, the initial visual language, test tooling, and architecture
-documentation. Database and authentication work begins in Phase 1.
+Phase 0 is complete. Phase 1 is in progress with a reproducible local Supabase
+stack and the first tested platform migration.
 
 ## Stack
 
@@ -19,14 +18,28 @@ documentation. Database and authentication work begins in Phase 1.
 
 ## Local development
 
-Requirements: Node.js 24+ and npm 11+.
+Requirements: Node.js 24+, npm 11+, and Docker Desktop for the local database.
 
 ```bash
 npm install
+cp .env.example .env.local
 npm run dev
 ```
 
+Fill in the Supabase publishable key in `.env.local` before using authenticated
+routes. Never place the service-role key in a `NEXT_PUBLIC_` variable.
+
 Open `http://localhost:3000`.
+
+Start the local Supabase services in a separate terminal:
+
+```bash
+npm run db:start
+npm run db:reset
+```
+
+Supabase Studio is available at `http://localhost:54323`. Run
+`npm run db:stop` when the database stack is no longer needed.
 
 ## Quality checks
 
@@ -34,6 +47,8 @@ Open `http://localhost:3000`.
 npm run lint
 npm run typecheck
 npm test
+npm run db:lint
+npm run db:test
 npm run build
 ```
 

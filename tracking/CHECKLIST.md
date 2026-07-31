@@ -22,12 +22,12 @@ sequencing live in `docs/IMPLEMENTATION_PLAN.md`.
 
 ## Phase 1 — Platform
 
-- [ ] Initialize Supabase local development configuration.
-- [ ] Define database roles, enums, and shared functions.
-- [ ] Create leagues, seasons, and season settings.
-- [ ] Create profiles and league memberships.
-- [ ] Implement Supabase Auth server/client helpers.
-- [ ] Implement and test Row Level Security.
+- [x] Initialize Supabase local development configuration.
+- [x] Define database roles, enums, and shared functions.
+- [x] Create leagues, seasons, and season settings.
+- [x] Create profiles and league memberships.
+- [x] Implement Supabase Auth server/client helpers.
+- [x] Implement and test Row Level Security.
 - [ ] Seed a development league and commissioner.
 
 ## Phase 2 — League and finance
