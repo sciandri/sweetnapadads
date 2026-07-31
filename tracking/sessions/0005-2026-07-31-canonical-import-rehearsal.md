@@ -1,10 +1,10 @@
 # Session 0005 — Canonical 2025 import rehearsal
 
 - Date: 2026-07-31
-- Status: active
+- Status: complete — published and deployed
 - Branch: `main`
 - Starting commit: `bc4a7d2`
-- Ending source commit: pending
+- Ending source commit: `74c5f48`
 
 ## Goal
 
@@ -65,6 +65,13 @@ first unblocked canonical task is the local historical-import rehearsal.
 - `npm run db:test`: 255 tests passing.
 - `npm run build`: passing.
 - `npm run tracking:check`: passing with five session logs.
+- GitHub `main`: source checkpoint `74c5f48` synchronized.
+- Hosted Supabase: all twelve migrations synchronized; dry-run empty.
+- Hosted data/schema changes: none.
+- Vercel production: `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4` Ready and aliased
+  to `https://www.sweetnapadads.com`.
+- Production smoke test: homepage and login returned HTTP 200; unauthenticated
+  composer access redirected to login with its safe return path.
 
 ## Risks or blockers
 
@@ -74,7 +81,7 @@ first unblocked canonical task is the local historical-import rehearsal.
 
 ## Exact handoff
 
-Continue with live OpenAI generation when its key is configured, or add the
-protected ESPN synchronization Route Handler and season-team mapping
-administration. Production 2025 history remains a separate explicit release
-decision.
+Start session 0006 from clean, synchronized `main`. Continue with live OpenAI
+generation when its key is configured, or add the protected ESPN
+synchronization Route Handler and season-team mapping administration.
+Production 2025 history remains a separate explicit release decision.

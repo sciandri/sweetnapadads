@@ -2,10 +2,10 @@
 
 - Last updated: 2026-07-31
 - Session: 0005
-- Session status: active
+- Session status: complete — published and deployed
 - Branch: `main`
 - Phase: Phase 3 — Competition
-- Checkpoint: ESPN standings adapter and canonical import rehearsal verified
+- Checkpoint: ESPN adapter and canonical import rehearsal published
 
 ## Current outcome
 
@@ -84,6 +84,10 @@ seed, rejects unavailable preseason order, requires exact season-team mappings
 of any configured size, minimizes member-readable source evidence, hashes the
 raw response, and submits one atomic ingestion call. Redacted fixtures include
 an explicit twelve-team season contract.
+Source checkpoint `74c5f48` is published to GitHub `main`. Hosted Supabase
+remains synchronized through all twelve migrations with an empty migration
+dry-run; no production database data or schema changed. Vercel production
+deployment `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4` is Ready on the custom domain.
 
 ## In progress
 
@@ -146,6 +150,10 @@ an explicit twelve-team season contract.
       2026 without logging private values.
 - [x] Add the server-only ESPN client, strict standings normalizer, redacted
       fixtures, dynamic team-count coverage, and atomic ingestion adapter.
+- [x] Publish source checkpoint `74c5f48` to GitHub `main`.
+- [x] Verify hosted Supabase is current with no pending migrations.
+- [x] Deploy and smoke-test Vercel production
+      `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4` and the custom domain.
 
 ## Next actions
 
@@ -198,7 +206,7 @@ an explicit twelve-team season contract.
   or local Studio.
 - The repository is linked locally to Vercel project
   `prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w` in the `sciandri` scope. Production
-  deployment `dpl_2vcpKeionBYH1ob7s9zfBcKyey8u` is Ready.
+  deployment `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4` is Ready.
 - ESPN private-league credentials are configured only in git-ignored local
   environment state and validated for both the 2025 and 2026 ten-team league.
   They are not configured in Vercel and must never be committed or logged.
@@ -225,8 +233,9 @@ an explicit twelve-team season contract.
   verified claims, membership RLS, and dashboard
 - Hosted migration history: all twelve versions through `20260731140000` match
 - Hosted Auth production config: up to date
-- GitHub `main`: source checkpoint `8bdeeef` synchronized
-- Vercel production `dpl_2vcpKeionBYH1ob7s9zfBcKyey8u`: Ready
+- GitHub `main`: source checkpoint `74c5f48` synchronized
+- Supabase production dry-run: up to date with no pending migrations
+- Vercel production `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4`: Ready
 - `https://sweetnapadads.com`: HTTP 200 after redirect to
   `https://www.sweetnapadads.com/`
 - `https://sweetnapadads.com/login`: HTTP 200 with the invitation-only login
@@ -237,11 +246,11 @@ an explicit twelve-team season contract.
 
 ## Latest commit intent
 
-`feat: add ESPN standings adapter and rehearse 2025 import`
+`docs: record ESPN adapter production release`
 
 ## Pickup instruction
 
-Continue session 0005 with live OpenAI generation when its server-only key is
-available, or add the protected ESPN synchronization Route Handler and
-season-team mapping administration. Production 2025 history still requires an
-explicit release decision.
+Start session 0006 from clean, synchronized `main`. Continue with live OpenAI
+generation when its server-only key is available, or add the protected ESPN
+synchronization Route Handler and season-team mapping administration.
+Production 2025 history still requires an explicit release decision.
