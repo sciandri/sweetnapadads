@@ -1,10 +1,10 @@
 # Session 0002 — Supabase foundation
 
 - Date: 2026-07-30
-- Status: closing — publish and deployment in progress
+- Status: complete — published and deployed
 - Branch: `main`
 - Starting commit: `72bb6ff`
-- Ending commit: pending
+- Ending source commit: `b208574`
 
 ## Goal
 
@@ -50,6 +50,13 @@ verification yet.
 - [x] Run the complete application, database, build, tracking, and security
       closeout gates.
 - [x] Expand “update and track” to include Supabase and Vercel deployment.
+- [x] Configure the public Supabase URL and publishable key for Vercel
+      production without printing or committing their values.
+- [x] Commit and push the verified platform foundation to GitHub.
+- [x] Apply both reviewed migrations to the hosted Supabase project.
+- [x] Verify local and hosted Supabase migration histories match.
+- [x] Deploy Vercel production and verify the custom domain returns the
+      expected application.
 
 ## Decisions
 
@@ -68,15 +75,22 @@ verification yet.
 - `npm test`: 5 passing
 - `npm run build`: passing outside the restricted sandbox
 - `npm audit`: zero known vulnerabilities
+- `npx supabase migration list --linked`: both local and remote migration
+  versions match
+- Vercel deployment `dpl_5L67VVGSmAX9tk1agNe2LtXwzbGU`: Ready
+- `https://sweetnapadads.com`: HTTP 200 after redirect to
+  `https://www.sweetnapadads.com/`
 
-## Risks or blockers
+## Remaining risks
 
-- The two tested migrations remain unapplied on the hosted Supabase database.
-- Vercel is linked and ready, but no deployment has been created from the
-  current uncommitted working tree.
+- Preview and development Vercel environments are intentionally not connected
+  to the production Supabase project.
+- The service-role value is not configured in Vercel because the deployed
+  application does not yet use the admin client.
+- ESPN private-league credentials have not been provided.
 
 ## Exact handoff
 
-Review and checkpoint the tested migrations, then apply them deliberately to
-the hosted Supabase project. Then configure environment values, add synthetic
-development seed data, and build the invite-only login and callback flow.
+Read `tracking/CURRENT.md`, confirm `main` is clean and synchronized, then seed
+a synthetic development league and commissioner identity before building the
+invite-only login and callback flow.
