@@ -14,7 +14,7 @@
     "start": "next start",
     "lint": "eslint .",
     "tracking:check": "node scripts/check-tracking.mjs",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest"
   },

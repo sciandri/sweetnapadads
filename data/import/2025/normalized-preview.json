@@ -1,0 +1,3936 @@
+{
+  "schema_version": 1,
+  "status": "review_only",
+  "committed": false,
+  "generated_on": "2026-07-30",
+  "source": {
+    "filename": "Sweet Looking Napa Dads.xlsx",
+    "sha256": "f641155c4261a66dea0db600a1aea4edb268b65c2d7bcb4408e7ac3e8d1272a6"
+  },
+  "approval": {
+    "decision_queue_status": "approved",
+    "accepted_option_ids": [
+      "champion_configured_720",
+      "date_correct_to_2025_08_16",
+      "derive_last_method",
+      "derive_awards_from_results",
+      "approve_aliases",
+      "keep_both_correct_second_date",
+      "approve_type_subtype_map"
+    ]
+  },
+  "season": {
+    "year": 2025,
+    "currency": "USD",
+    "participant_count": 10,
+    "regular_season_weeks": 14,
+    "postseason_weeks": 2,
+    "rules": {
+      "buy_in_cents": 20000,
+      "draft_party_fee_cents": 10000,
+      "weekly_high_score_payout_cents": 5000,
+      "weekly_low_score_penalty_cents": 2000,
+      "season_high_score_payout_cents": 10000,
+      "champion_payout_cents": 72000,
+      "runner_up_payout_cents": 36000,
+      "third_place_payout_cents": 12000
+    },
+    "source_refs": [
+      "League Payouts!A1:D22"
+    ]
+  },
+  "teams": [
+    {
+      "team_key": "east_side_top_dog",
+      "name": "East Side Top Dog",
+      "owner_email": "sciandri@gmail.com",
+      "horse_name": "East Charger",
+      "bio": "Fast in the straights, tricky in the turns.",
+      "source_ref": "Teams!A2:D2"
+    },
+    {
+      "team_key": "team_tampon",
+      "name": "Team Tampon",
+      "owner_email": "timothyairwin@gmail.com",
+      "horse_name": "Crimson Ride",
+      "bio": "Not the prettiest gallop, but gets the job done.",
+      "source_ref": "Teams!A3:D3"
+    },
+    {
+      "team_key": "benny_beamen",
+      "name": "Benny Beamen",
+      "owner_email": "bminkow@gmail.com",
+      "horse_name": "Benny Express",
+      "bio": "A true crowd favorite with an unpredictable sprint pattern.",
+      "source_ref": "Teams!A4:D4"
+    },
+    {
+      "team_key": "punk_in_drublic",
+      "name": "Punk in Drublic",
+      "owner_email": "justinwaldrop789@gmail.com",
+      "horse_name": "Punk Thunder",
+      "bio": "Has been training in the hills all offseason for this race.",
+      "source_ref": "Teams!A5:D5"
+    },
+    {
+      "team_key": "that_other_vichy_team",
+      "name": "That Other Vichy Team",
+      "owner_email": "kmdickenson@gmail.com",
+      "horse_name": "Wild That",
+      "bio": "Wears a lucky saddle charm before every run.",
+      "source_ref": "Teams!A6:D6"
+    },
+    {
+      "team_key": "napa_kojak",
+      "name": "Napa Kojak",
+      "owner_email": "ron.sciandri@gmail.com",
+      "horse_name": "Napa Express",
+      "bio": "A true crowd favorite with an unpredictable sprint pattern.",
+      "source_ref": "Teams!A7:D7"
+    },
+    {
+      "team_key": "vichy_cheeks",
+      "name": "Vichy Cheeks",
+      "owner_email": "keith@busam.com",
+      "horse_name": "Lightning Vichy",
+      "bio": "Known for explosive starts and a flair for the dramatic finishes.",
+      "source_ref": "Teams!A8:D8"
+    },
+    {
+      "team_key": "los_pollos_hermanos_ii",
+      "name": "Los Pollos Hermanos II",
+      "owner_email": "cgcostas@gmail.com",
+      "horse_name": "Lightning Los",
+      "bio": "Known for explosive starts and a flair for the dramatic finishes.",
+      "source_ref": "Teams!A9:D9"
+    },
+    {
+      "team_key": "that_leche_runs_warm",
+      "name": "That Leche Runs Warm",
+      "owner_email": "stevegaebe@gmail.com",
+      "horse_name": "Team Thunder",
+      "bio": "Fast in the straights, tricky in the turns.",
+      "source_ref": "Teams!A10:D10"
+    },
+    {
+      "team_key": "miv_insurance",
+      "name": "MIV Insurance",
+      "owner_email": "pete22wolf@yahoo.com",
+      "horse_name": "Wild ROOKIE",
+      "bio": "Unmatched stamina and loves a muddy track.",
+      "source_ref": "Teams!A11:D11"
+    }
+  ],
+  "approved_aliases": [
+    {
+      "source_value": "That other Vichy team",
+      "team_key": "that_other_vichy_team",
+      "source_ref": "Bets!A2:D2"
+    },
+    {
+      "source_value": "ESTD",
+      "team_key": "east_side_top_dog",
+      "source_ref": "Bets!A2:D2"
+    },
+    {
+      "source_value": "Napa KoJak",
+      "team_key": "napa_kojak",
+      "source_ref": "Bets!A3:D3"
+    },
+    {
+      "source_value": "Benny Beman",
+      "team_key": "benny_beamen",
+      "source_ref": "Bets!A3:D3"
+    }
+  ],
+  "weekly_results": [
+    {
+      "week": 1,
+      "phase": "regular_season",
+      "team_key": "east_side_top_dog",
+      "score": 80.44,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A3:F3"
+    },
+    {
+      "week": 1,
+      "phase": "regular_season",
+      "team_key": "that_other_vichy_team",
+      "score": 103.41,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A4:F4"
+    },
+    {
+      "week": 1,
+      "phase": "regular_season",
+      "team_key": "napa_kojak",
+      "score": 71.22,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A5:F5"
+    },
+    {
+      "week": 1,
+      "phase": "regular_season",
+      "team_key": "punk_in_drublic",
+      "score": 160.16,
+      "opponent_team_key": "napa_kojak",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A6:F6"
+    },
+    {
+      "week": 1,
+      "phase": "regular_season",
+      "team_key": "benny_beamen",
+      "score": 102.08,
+      "opponent_team_key": "team_tampon",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A7:F7"
+    },
+    {
+      "week": 1,
+      "phase": "regular_season",
+      "team_key": "team_tampon",
+      "score": 114.12,
+      "opponent_team_key": "benny_beamen",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A8:F8"
+    },
+    {
+      "week": 1,
+      "phase": "regular_season",
+      "team_key": "miv_insurance",
+      "score": 82.92,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A9:F9"
+    },
+    {
+      "week": 1,
+      "phase": "regular_season",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 110.18,
+      "opponent_team_key": "miv_insurance",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A10:F10"
+    },
+    {
+      "week": 1,
+      "phase": "regular_season",
+      "team_key": "that_leche_runs_warm",
+      "score": 130.1,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A11:F11"
+    },
+    {
+      "week": 1,
+      "phase": "regular_season",
+      "team_key": "vichy_cheeks",
+      "score": 108.32,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A12:F12"
+    },
+    {
+      "week": 2,
+      "phase": "regular_season",
+      "team_key": "napa_kojak",
+      "score": 132.34,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A14:F14"
+    },
+    {
+      "week": 2,
+      "phase": "regular_season",
+      "team_key": "east_side_top_dog",
+      "score": 104.38,
+      "opponent_team_key": "napa_kojak",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A15:F15"
+    },
+    {
+      "week": 2,
+      "phase": "regular_season",
+      "team_key": "that_other_vichy_team",
+      "score": 117.25,
+      "opponent_team_key": "benny_beamen",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A16:F16"
+    },
+    {
+      "week": 2,
+      "phase": "regular_season",
+      "team_key": "benny_beamen",
+      "score": 115.34,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A17:F17"
+    },
+    {
+      "week": 2,
+      "phase": "regular_season",
+      "team_key": "punk_in_drublic",
+      "score": 89.52,
+      "opponent_team_key": "miv_insurance",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A18:F18"
+    },
+    {
+      "week": 2,
+      "phase": "regular_season",
+      "team_key": "miv_insurance",
+      "score": 90.2,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A19:F19"
+    },
+    {
+      "week": 2,
+      "phase": "regular_season",
+      "team_key": "team_tampon",
+      "score": 115.18,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A20:F20"
+    },
+    {
+      "week": 2,
+      "phase": "regular_season",
+      "team_key": "that_leche_runs_warm",
+      "score": 116.22,
+      "opponent_team_key": "team_tampon",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A21:F21"
+    },
+    {
+      "week": 2,
+      "phase": "regular_season",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 103.6,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A22:F22"
+    },
+    {
+      "week": 2,
+      "phase": "regular_season",
+      "team_key": "vichy_cheeks",
+      "score": 190.06,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A23:F23"
+    },
+    {
+      "week": 3,
+      "phase": "regular_season",
+      "team_key": "east_side_top_dog",
+      "score": 114.7,
+      "opponent_team_key": "benny_beamen",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A25:F25"
+    },
+    {
+      "week": 3,
+      "phase": "regular_season",
+      "team_key": "benny_beamen",
+      "score": 130.54,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A26:F26"
+    },
+    {
+      "week": 3,
+      "phase": "regular_season",
+      "team_key": "miv_insurance",
+      "score": 121.62,
+      "opponent_team_key": "napa_kojak",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A27:F27"
+    },
+    {
+      "week": 3,
+      "phase": "regular_season",
+      "team_key": "napa_kojak",
+      "score": 105.34,
+      "opponent_team_key": "miv_insurance",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A28:F28"
+    },
+    {
+      "week": 3,
+      "phase": "regular_season",
+      "team_key": "that_leche_runs_warm",
+      "score": 98.77,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A29:F29"
+    },
+    {
+      "week": 3,
+      "phase": "regular_season",
+      "team_key": "that_other_vichy_team",
+      "score": 115.02,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A30:F30"
+    },
+    {
+      "week": 3,
+      "phase": "regular_season",
+      "team_key": "vichy_cheeks",
+      "score": 130.08,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A31:F31"
+    },
+    {
+      "week": 3,
+      "phase": "regular_season",
+      "team_key": "punk_in_drublic",
+      "score": 148.92,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A32:F32"
+    },
+    {
+      "week": 3,
+      "phase": "regular_season",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 103.52,
+      "opponent_team_key": "team_tampon",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A33:F33"
+    },
+    {
+      "week": 3,
+      "phase": "regular_season",
+      "team_key": "team_tampon",
+      "score": 78.06,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A34:F34"
+    },
+    {
+      "week": 4,
+      "phase": "regular_season",
+      "team_key": "miv_insurance",
+      "score": 121.82,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A36:F36"
+    },
+    {
+      "week": 4,
+      "phase": "regular_season",
+      "team_key": "east_side_top_dog",
+      "score": 106.12,
+      "opponent_team_key": "miv_insurance",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A37:F37"
+    },
+    {
+      "week": 4,
+      "phase": "regular_season",
+      "team_key": "benny_beamen",
+      "score": 122.9,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A38:F38"
+    },
+    {
+      "week": 4,
+      "phase": "regular_season",
+      "team_key": "that_leche_runs_warm",
+      "score": 115.98,
+      "opponent_team_key": "benny_beamen",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A39:F39"
+    },
+    {
+      "week": 4,
+      "phase": "regular_season",
+      "team_key": "napa_kojak",
+      "score": 91.63,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A40:F40"
+    },
+    {
+      "week": 4,
+      "phase": "regular_season",
+      "team_key": "vichy_cheeks",
+      "score": 136.62,
+      "opponent_team_key": "napa_kojak",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A41:F41"
+    },
+    {
+      "week": 4,
+      "phase": "regular_season",
+      "team_key": "that_other_vichy_team",
+      "score": 109.08,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A42:F42"
+    },
+    {
+      "week": 4,
+      "phase": "regular_season",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 147.16,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A43:F43"
+    },
+    {
+      "week": 4,
+      "phase": "regular_season",
+      "team_key": "punk_in_drublic",
+      "score": 177.96,
+      "opponent_team_key": "team_tampon",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A44:F44"
+    },
+    {
+      "week": 4,
+      "phase": "regular_season",
+      "team_key": "team_tampon",
+      "score": 109.7,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A45:F45"
+    },
+    {
+      "week": 5,
+      "phase": "regular_season",
+      "team_key": "east_side_top_dog",
+      "score": 96.84,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A47:F47"
+    },
+    {
+      "week": 5,
+      "phase": "regular_season",
+      "team_key": "that_leche_runs_warm",
+      "score": 118.74,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A48:F48"
+    },
+    {
+      "week": 5,
+      "phase": "regular_season",
+      "team_key": "vichy_cheeks",
+      "score": 128.12,
+      "opponent_team_key": "miv_insurance",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A49:F49"
+    },
+    {
+      "week": 5,
+      "phase": "regular_season",
+      "team_key": "miv_insurance",
+      "score": 118.24,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A50:F50"
+    },
+    {
+      "week": 5,
+      "phase": "regular_season",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 141.88,
+      "opponent_team_key": "benny_beamen",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A51:F51"
+    },
+    {
+      "week": 5,
+      "phase": "regular_season",
+      "team_key": "benny_beamen",
+      "score": 120.2,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A52:F52"
+    },
+    {
+      "week": 5,
+      "phase": "regular_season",
+      "team_key": "team_tampon",
+      "score": 99.4,
+      "opponent_team_key": "napa_kojak",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A53:F53"
+    },
+    {
+      "week": 5,
+      "phase": "regular_season",
+      "team_key": "napa_kojak",
+      "score": 117.12,
+      "opponent_team_key": "team_tampon",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A54:F54"
+    },
+    {
+      "week": 5,
+      "phase": "regular_season",
+      "team_key": "punk_in_drublic",
+      "score": 141.52,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A55:F55"
+    },
+    {
+      "week": 5,
+      "phase": "regular_season",
+      "team_key": "that_other_vichy_team",
+      "score": 125.38,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A56:F56"
+    },
+    {
+      "week": 6,
+      "phase": "regular_season",
+      "team_key": "vichy_cheeks",
+      "score": 70.44,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A58:F58"
+    },
+    {
+      "week": 6,
+      "phase": "regular_season",
+      "team_key": "east_side_top_dog",
+      "score": 80.86,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A59:F59"
+    },
+    {
+      "week": 6,
+      "phase": "regular_season",
+      "team_key": "that_leche_runs_warm",
+      "score": 103.5,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A60:F60"
+    },
+    {
+      "week": 6,
+      "phase": "regular_season",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 161.04,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A61:F61"
+    },
+    {
+      "week": 6,
+      "phase": "regular_season",
+      "team_key": "miv_insurance",
+      "score": 115.04,
+      "opponent_team_key": "team_tampon",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A62:F62"
+    },
+    {
+      "week": 6,
+      "phase": "regular_season",
+      "team_key": "team_tampon",
+      "score": 115.48,
+      "opponent_team_key": "miv_insurance",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A63:F63"
+    },
+    {
+      "week": 6,
+      "phase": "regular_season",
+      "team_key": "benny_beamen",
+      "score": 101.82,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A64:F64"
+    },
+    {
+      "week": 6,
+      "phase": "regular_season",
+      "team_key": "punk_in_drublic",
+      "score": 164.5,
+      "opponent_team_key": "benny_beamen",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A65:F65"
+    },
+    {
+      "week": 6,
+      "phase": "regular_season",
+      "team_key": "napa_kojak",
+      "score": 146.54,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A66:F66"
+    },
+    {
+      "week": 6,
+      "phase": "regular_season",
+      "team_key": "that_other_vichy_team",
+      "score": 89.98,
+      "opponent_team_key": "napa_kojak",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A67:F67"
+    },
+    {
+      "week": 7,
+      "phase": "regular_season",
+      "team_key": "east_side_top_dog",
+      "score": 74.5,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A69:F69"
+    },
+    {
+      "week": 7,
+      "phase": "regular_season",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 112.52,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A70:F70"
+    },
+    {
+      "week": 7,
+      "phase": "regular_season",
+      "team_key": "team_tampon",
+      "score": 105.74,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A71:F71"
+    },
+    {
+      "week": 7,
+      "phase": "regular_season",
+      "team_key": "vichy_cheeks",
+      "score": 112.94,
+      "opponent_team_key": "team_tampon",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A72:F72"
+    },
+    {
+      "week": 7,
+      "phase": "regular_season",
+      "team_key": "punk_in_drublic",
+      "score": 145.06,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A73:F73"
+    },
+    {
+      "week": 7,
+      "phase": "regular_season",
+      "team_key": "that_leche_runs_warm",
+      "score": 95.88,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A74:F74"
+    },
+    {
+      "week": 7,
+      "phase": "regular_season",
+      "team_key": "that_other_vichy_team",
+      "score": 143.22,
+      "opponent_team_key": "miv_insurance",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A75:F75"
+    },
+    {
+      "week": 7,
+      "phase": "regular_season",
+      "team_key": "miv_insurance",
+      "score": 121.64,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A76:F76"
+    },
+    {
+      "week": 7,
+      "phase": "regular_season",
+      "team_key": "napa_kojak",
+      "score": 128.96,
+      "opponent_team_key": "benny_beamen",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A77:F77"
+    },
+    {
+      "week": 7,
+      "phase": "regular_season",
+      "team_key": "benny_beamen",
+      "score": 145.64,
+      "opponent_team_key": "napa_kojak",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A78:F78"
+    },
+    {
+      "week": 8,
+      "phase": "regular_season",
+      "team_key": "east_side_top_dog",
+      "score": 153.44,
+      "opponent_team_key": "team_tampon",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A80:F80"
+    },
+    {
+      "week": 8,
+      "phase": "regular_season",
+      "team_key": "team_tampon",
+      "score": 114.91,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A81:F81"
+    },
+    {
+      "week": 8,
+      "phase": "regular_season",
+      "team_key": "punk_in_drublic",
+      "score": 120.72,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A82:F82"
+    },
+    {
+      "week": 8,
+      "phase": "regular_season",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 93.88,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A83:F83"
+    },
+    {
+      "week": 8,
+      "phase": "regular_season",
+      "team_key": "that_other_vichy_team",
+      "score": 103.98,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A84:F84"
+    },
+    {
+      "week": 8,
+      "phase": "regular_season",
+      "team_key": "vichy_cheeks",
+      "score": 90.97,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A85:F85"
+    },
+    {
+      "week": 8,
+      "phase": "regular_season",
+      "team_key": "napa_kojak",
+      "score": 116.77,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A86:F86"
+    },
+    {
+      "week": 8,
+      "phase": "regular_season",
+      "team_key": "that_leche_runs_warm",
+      "score": 101.9,
+      "opponent_team_key": "napa_kojak",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A87:F87"
+    },
+    {
+      "week": 8,
+      "phase": "regular_season",
+      "team_key": "benny_beamen",
+      "score": 172.46,
+      "opponent_team_key": "miv_insurance",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A88:F88"
+    },
+    {
+      "week": 8,
+      "phase": "regular_season",
+      "team_key": "miv_insurance",
+      "score": 126.18,
+      "opponent_team_key": "benny_beamen",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A89:F89"
+    },
+    {
+      "week": 9,
+      "phase": "regular_season",
+      "team_key": "punk_in_drublic",
+      "score": 140.2,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A91:F91"
+    },
+    {
+      "week": 9,
+      "phase": "regular_season",
+      "team_key": "east_side_top_dog",
+      "score": 110.25,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A92:F92"
+    },
+    {
+      "week": 9,
+      "phase": "regular_season",
+      "team_key": "that_other_vichy_team",
+      "score": 114.86,
+      "opponent_team_key": "team_tampon",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A93:F93"
+    },
+    {
+      "week": 9,
+      "phase": "regular_season",
+      "team_key": "team_tampon",
+      "score": 104.4,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A94:F94"
+    },
+    {
+      "week": 9,
+      "phase": "regular_season",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 161.2,
+      "opponent_team_key": "napa_kojak",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A95:F95"
+    },
+    {
+      "week": 9,
+      "phase": "regular_season",
+      "team_key": "napa_kojak",
+      "score": 91.4,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A96:F96"
+    },
+    {
+      "week": 9,
+      "phase": "regular_season",
+      "team_key": "vichy_cheeks",
+      "score": 141.84,
+      "opponent_team_key": "benny_beamen",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A97:F97"
+    },
+    {
+      "week": 9,
+      "phase": "regular_season",
+      "team_key": "benny_beamen",
+      "score": 99.92,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A98:F98"
+    },
+    {
+      "week": 9,
+      "phase": "regular_season",
+      "team_key": "that_leche_runs_warm",
+      "score": 141.3,
+      "opponent_team_key": "miv_insurance",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A99:F99"
+    },
+    {
+      "week": 9,
+      "phase": "regular_season",
+      "team_key": "miv_insurance",
+      "score": 110.96,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A100:F100"
+    },
+    {
+      "week": 10,
+      "phase": "regular_season",
+      "team_key": "that_other_vichy_team",
+      "score": 149.84,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A102:F102"
+    },
+    {
+      "week": 10,
+      "phase": "regular_season",
+      "team_key": "east_side_top_dog",
+      "score": 112.2,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A103:F103"
+    },
+    {
+      "week": 10,
+      "phase": "regular_season",
+      "team_key": "punk_in_drublic",
+      "score": 144.64,
+      "opponent_team_key": "napa_kojak",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A104:F104"
+    },
+    {
+      "week": 10,
+      "phase": "regular_season",
+      "team_key": "napa_kojak",
+      "score": 123.27,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A105:F105"
+    },
+    {
+      "week": 10,
+      "phase": "regular_season",
+      "team_key": "benny_beamen",
+      "score": 151.92,
+      "opponent_team_key": "team_tampon",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A106:F106"
+    },
+    {
+      "week": 10,
+      "phase": "regular_season",
+      "team_key": "team_tampon",
+      "score": 111.41,
+      "opponent_team_key": "benny_beamen",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A107:F107"
+    },
+    {
+      "week": 10,
+      "phase": "regular_season",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 108.82,
+      "opponent_team_key": "miv_insurance",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A108:F108"
+    },
+    {
+      "week": 10,
+      "phase": "regular_season",
+      "team_key": "miv_insurance",
+      "score": 100.6,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A109:F109"
+    },
+    {
+      "week": 10,
+      "phase": "regular_season",
+      "team_key": "that_leche_runs_warm",
+      "score": 130.8,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A110:F110"
+    },
+    {
+      "week": 10,
+      "phase": "regular_season",
+      "team_key": "vichy_cheeks",
+      "score": 108.7,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A111:F111"
+    },
+    {
+      "week": 11,
+      "phase": "regular_season",
+      "team_key": "napa_kojak",
+      "score": 97.92,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A113:F113"
+    },
+    {
+      "week": 11,
+      "phase": "regular_season",
+      "team_key": "east_side_top_dog",
+      "score": 82.04,
+      "opponent_team_key": "napa_kojak",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A114:F114"
+    },
+    {
+      "week": 11,
+      "phase": "regular_season",
+      "team_key": "benny_beamen",
+      "score": 133.6,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A115:F115"
+    },
+    {
+      "week": 11,
+      "phase": "regular_season",
+      "team_key": "that_other_vichy_team",
+      "score": 108.87,
+      "opponent_team_key": "benny_beamen",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A116:F116"
+    },
+    {
+      "week": 11,
+      "phase": "regular_season",
+      "team_key": "punk_in_drublic",
+      "score": 165.68,
+      "opponent_team_key": "miv_insurance",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A117:F117"
+    },
+    {
+      "week": 11,
+      "phase": "regular_season",
+      "team_key": "miv_insurance",
+      "score": 106.74,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A118:F118"
+    },
+    {
+      "week": 11,
+      "phase": "regular_season",
+      "team_key": "that_leche_runs_warm",
+      "score": 117.82,
+      "opponent_team_key": "team_tampon",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A119:F119"
+    },
+    {
+      "week": 11,
+      "phase": "regular_season",
+      "team_key": "team_tampon",
+      "score": 116.44,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A120:F120"
+    },
+    {
+      "week": 11,
+      "phase": "regular_season",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 142.22,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A121:F121"
+    },
+    {
+      "week": 11,
+      "phase": "regular_season",
+      "team_key": "vichy_cheeks",
+      "score": 93.5,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A122:F122"
+    },
+    {
+      "week": 12,
+      "phase": "regular_season",
+      "team_key": "east_side_top_dog",
+      "score": 145.18,
+      "opponent_team_key": "benny_beamen",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A124:F124"
+    },
+    {
+      "week": 12,
+      "phase": "regular_season",
+      "team_key": "benny_beamen",
+      "score": 131.21,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A125:F125"
+    },
+    {
+      "week": 12,
+      "phase": "regular_season",
+      "team_key": "miv_insurance",
+      "score": 112.46,
+      "opponent_team_key": "napa_kojak",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A126:F126"
+    },
+    {
+      "week": 12,
+      "phase": "regular_season",
+      "team_key": "napa_kojak",
+      "score": 93.82,
+      "opponent_team_key": "miv_insurance",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A127:F127"
+    },
+    {
+      "week": 12,
+      "phase": "regular_season",
+      "team_key": "that_other_vichy_team",
+      "score": 136.32,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A128:F128"
+    },
+    {
+      "week": 12,
+      "phase": "regular_season",
+      "team_key": "that_leche_runs_warm",
+      "score": 117.11,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A129:F129"
+    },
+    {
+      "week": 12,
+      "phase": "regular_season",
+      "team_key": "punk_in_drublic",
+      "score": 124.22,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A130:F130"
+    },
+    {
+      "week": 12,
+      "phase": "regular_season",
+      "team_key": "vichy_cheeks",
+      "score": 115.82,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A131:F131"
+    },
+    {
+      "week": 12,
+      "phase": "regular_season",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 111.94,
+      "opponent_team_key": "team_tampon",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A132:F132"
+    },
+    {
+      "week": 12,
+      "phase": "regular_season",
+      "team_key": "team_tampon",
+      "score": 109.68,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A133:F133"
+    },
+    {
+      "week": 13,
+      "phase": "regular_season",
+      "team_key": "east_side_top_dog",
+      "score": 106.04,
+      "opponent_team_key": "miv_insurance",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A135:F135"
+    },
+    {
+      "week": 13,
+      "phase": "regular_season",
+      "team_key": "miv_insurance",
+      "score": 169.38,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A136:F136"
+    },
+    {
+      "week": 13,
+      "phase": "regular_season",
+      "team_key": "that_leche_runs_warm",
+      "score": 100.86,
+      "opponent_team_key": "benny_beamen",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A137:F137"
+    },
+    {
+      "week": 13,
+      "phase": "regular_season",
+      "team_key": "benny_beamen",
+      "score": 104.7,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A138:F138"
+    },
+    {
+      "week": 13,
+      "phase": "regular_season",
+      "team_key": "vichy_cheeks",
+      "score": 96.12,
+      "opponent_team_key": "napa_kojak",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A139:F139"
+    },
+    {
+      "week": 13,
+      "phase": "regular_season",
+      "team_key": "napa_kojak",
+      "score": 114.2,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A140:F140"
+    },
+    {
+      "week": 13,
+      "phase": "regular_season",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 98.62,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A141:F141"
+    },
+    {
+      "week": 13,
+      "phase": "regular_season",
+      "team_key": "that_other_vichy_team",
+      "score": 100.24,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A142:F142"
+    },
+    {
+      "week": 13,
+      "phase": "regular_season",
+      "team_key": "team_tampon",
+      "score": 110.74,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A143:F143"
+    },
+    {
+      "week": 13,
+      "phase": "regular_season",
+      "team_key": "punk_in_drublic",
+      "score": 105.82,
+      "opponent_team_key": "team_tampon",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A144:F144"
+    },
+    {
+      "week": 14,
+      "phase": "regular_season",
+      "team_key": "that_leche_runs_warm",
+      "score": 97.99,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A146:F146"
+    },
+    {
+      "week": 14,
+      "phase": "regular_season",
+      "team_key": "east_side_top_dog",
+      "score": 108.43,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A147:F147"
+    },
+    {
+      "week": 14,
+      "phase": "regular_season",
+      "team_key": "miv_insurance",
+      "score": 91.52,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A148:F148"
+    },
+    {
+      "week": 14,
+      "phase": "regular_season",
+      "team_key": "vichy_cheeks",
+      "score": 138.64,
+      "opponent_team_key": "miv_insurance",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A149:F149"
+    },
+    {
+      "week": 14,
+      "phase": "regular_season",
+      "team_key": "benny_beamen",
+      "score": 116.9,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A150:F150"
+    },
+    {
+      "week": 14,
+      "phase": "regular_season",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 103.36,
+      "opponent_team_key": "benny_beamen",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A151:F151"
+    },
+    {
+      "week": 14,
+      "phase": "regular_season",
+      "team_key": "napa_kojak",
+      "score": 152.34,
+      "opponent_team_key": "team_tampon",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A152:F152"
+    },
+    {
+      "week": 14,
+      "phase": "regular_season",
+      "team_key": "team_tampon",
+      "score": 125.75,
+      "opponent_team_key": "napa_kojak",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A153:F153"
+    },
+    {
+      "week": 14,
+      "phase": "regular_season",
+      "team_key": "that_other_vichy_team",
+      "score": 118.36,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A154:F154"
+    },
+    {
+      "week": 14,
+      "phase": "regular_season",
+      "team_key": "punk_in_drublic",
+      "score": 109.44,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A155:F155"
+    },
+    {
+      "week": 15,
+      "phase": "postseason",
+      "team_key": "benny_beamen",
+      "score": 133.5,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "win",
+      "notes": "Playoffs Rd 1",
+      "source_ref": "Weekly Results!A157:F157"
+    },
+    {
+      "week": 15,
+      "phase": "postseason",
+      "team_key": "punk_in_drublic",
+      "score": 111.72,
+      "opponent_team_key": "benny_beamen",
+      "result": "loss",
+      "notes": "Playoffs Rd 1",
+      "source_ref": "Weekly Results!A158:F158"
+    },
+    {
+      "week": 15,
+      "phase": "postseason",
+      "team_key": "that_other_vichy_team",
+      "score": 87.3,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "loss",
+      "notes": "Playoffs Rd 1",
+      "source_ref": "Weekly Results!A159:F159"
+    },
+    {
+      "week": 15,
+      "phase": "postseason",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 128.94,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "win",
+      "notes": "Playoffs Rd 1",
+      "source_ref": "Weekly Results!A160:F160"
+    },
+    {
+      "week": 15,
+      "phase": "postseason",
+      "team_key": "team_tampon",
+      "score": 113.96,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "win",
+      "notes": "Consolation",
+      "source_ref": "Weekly Results!A161:F161"
+    },
+    {
+      "week": 15,
+      "phase": "postseason",
+      "team_key": "east_side_top_dog",
+      "score": 112.74,
+      "opponent_team_key": "team_tampon",
+      "result": "loss",
+      "notes": "Consolation",
+      "source_ref": "Weekly Results!A162:F162"
+    },
+    {
+      "week": 15,
+      "phase": "postseason",
+      "team_key": "vichy_cheeks",
+      "score": 185.42,
+      "opponent_team_key": "napa_kojak",
+      "result": "win",
+      "notes": "Consolation",
+      "source_ref": "Weekly Results!A163:F163"
+    },
+    {
+      "week": 15,
+      "phase": "postseason",
+      "team_key": "napa_kojak",
+      "score": 112.56,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "loss",
+      "notes": "Consolation",
+      "source_ref": "Weekly Results!A164:F164"
+    },
+    {
+      "week": 15,
+      "phase": "postseason",
+      "team_key": "miv_insurance",
+      "score": 77.5,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "loss",
+      "notes": "Consolation",
+      "source_ref": "Weekly Results!A165:F165"
+    },
+    {
+      "week": 15,
+      "phase": "postseason",
+      "team_key": "that_leche_runs_warm",
+      "score": 112.18,
+      "opponent_team_key": "miv_insurance",
+      "result": "win",
+      "notes": "Consolation",
+      "source_ref": "Weekly Results!A166:F166"
+    },
+    {
+      "week": 16,
+      "phase": "postseason",
+      "team_key": "los_pollos_hermanos_ii",
+      "score": 114.7,
+      "opponent_team_key": "benny_beamen",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A168:F168"
+    },
+    {
+      "week": 16,
+      "phase": "postseason",
+      "team_key": "benny_beamen",
+      "score": 109.8,
+      "opponent_team_key": "los_pollos_hermanos_ii",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A169:F169"
+    },
+    {
+      "week": 16,
+      "phase": "postseason",
+      "team_key": "punk_in_drublic",
+      "score": 130,
+      "opponent_team_key": "that_other_vichy_team",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A170:F170"
+    },
+    {
+      "week": 16,
+      "phase": "postseason",
+      "team_key": "that_other_vichy_team",
+      "score": 70.54,
+      "opponent_team_key": "punk_in_drublic",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A171:F171"
+    },
+    {
+      "week": 16,
+      "phase": "postseason",
+      "team_key": "miv_insurance",
+      "score": 137.5,
+      "opponent_team_key": "east_side_top_dog",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A172:F172"
+    },
+    {
+      "week": 16,
+      "phase": "postseason",
+      "team_key": "east_side_top_dog",
+      "score": 84,
+      "opponent_team_key": "miv_insurance",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A173:F173"
+    },
+    {
+      "week": 16,
+      "phase": "postseason",
+      "team_key": "vichy_cheeks",
+      "score": 206.88,
+      "opponent_team_key": "that_leche_runs_warm",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A174:F174"
+    },
+    {
+      "week": 16,
+      "phase": "postseason",
+      "team_key": "that_leche_runs_warm",
+      "score": 135,
+      "opponent_team_key": "vichy_cheeks",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A175:F175"
+    },
+    {
+      "week": 16,
+      "phase": "postseason",
+      "team_key": "team_tampon",
+      "score": 142.43,
+      "opponent_team_key": "napa_kojak",
+      "result": "win",
+      "notes": null,
+      "source_ref": "Weekly Results!A176:F176"
+    },
+    {
+      "week": 16,
+      "phase": "postseason",
+      "team_key": "napa_kojak",
+      "score": 129.4,
+      "opponent_team_key": "team_tampon",
+      "result": "loss",
+      "notes": null,
+      "source_ref": "Weekly Results!A177:F177"
+    }
+  ],
+  "weekly_awards": [
+    {
+      "week": 1,
+      "high_team_key": "punk_in_drublic",
+      "high_score": 160.16,
+      "payout_cents": 5000,
+      "low_team_key": "napa_kojak",
+      "low_score": 71.22,
+      "penalty_cents": 2000,
+      "source_refs": [
+        "Weekly Results!A6:F6",
+        "Weekly Results!A5:F5"
+      ]
+    },
+    {
+      "week": 2,
+      "high_team_key": "vichy_cheeks",
+      "high_score": 190.06,
+      "payout_cents": 5000,
+      "low_team_key": "punk_in_drublic",
+      "low_score": 89.52,
+      "penalty_cents": 2000,
+      "source_refs": [
+        "Weekly Results!A23:F23",
+        "Weekly Results!A18:F18"
+      ]
+    },
+    {
+      "week": 3,
+      "high_team_key": "punk_in_drublic",
+      "high_score": 148.92,
+      "payout_cents": 5000,
+      "low_team_key": "team_tampon",
+      "low_score": 78.06,
+      "penalty_cents": 2000,
+      "source_refs": [
+        "Weekly Results!A32:F32",
+        "Weekly Results!A34:F34"
+      ]
+    },
+    {
+      "week": 4,
+      "high_team_key": "punk_in_drublic",
+      "high_score": 177.96,
+      "payout_cents": 5000,
+      "low_team_key": "napa_kojak",
+      "low_score": 91.63,
+      "penalty_cents": 2000,
+      "source_refs": [
+        "Weekly Results!A44:F44",
+        "Weekly Results!A40:F40"
+      ]
+    },
+    {
+      "week": 5,
+      "high_team_key": "los_pollos_hermanos_ii",
+      "high_score": 141.88,
+      "payout_cents": 5000,
+      "low_team_key": "east_side_top_dog",
+      "low_score": 96.84,
+      "penalty_cents": 2000,
+      "source_refs": [
+        "Weekly Results!A51:F51",
+        "Weekly Results!A47:F47"
+      ]
+    },
+    {
+      "week": 6,
+      "high_team_key": "punk_in_drublic",
+      "high_score": 164.5,
+      "payout_cents": 5000,
+      "low_team_key": "vichy_cheeks",
+      "low_score": 70.44,
+      "penalty_cents": 2000,
+      "source_refs": [
+        "Weekly Results!A65:F65",
+        "Weekly Results!A58:F58"
+      ]
+    },
+    {
+      "week": 7,
+      "high_team_key": "benny_beamen",
+      "high_score": 145.64,
+      "payout_cents": 5000,
+      "low_team_key": "east_side_top_dog",
+      "low_score": 74.5,
+      "penalty_cents": 2000,
+      "source_refs": [
+        "Weekly Results!A78:F78",
+        "Weekly Results!A69:F69"
+      ]
+    },
+    {
+      "week": 8,
+      "high_team_key": "benny_beamen",
+      "high_score": 172.46,
+      "payout_cents": 5000,
+      "low_team_key": "vichy_cheeks",
+      "low_score": 90.97,
+      "penalty_cents": 2000,
+      "source_refs": [
+        "Weekly Results!A88:F88",
+        "Weekly Results!A85:F85"
+      ]
+    },
+    {
+      "week": 9,
+      "high_team_key": "los_pollos_hermanos_ii",
+      "high_score": 161.2,
+      "payout_cents": 5000,
+      "low_team_key": "napa_kojak",
+      "low_score": 91.4,
+      "penalty_cents": 2000,
+      "source_refs": [
+        "Weekly Results!A95:F95",
+        "Weekly Results!A96:F96"
+      ]
+    },
+    {
+      "week": 10,
+      "high_team_key": "benny_beamen",
+      "high_score": 151.92,
+      "payout_cents": 5000,
+      "low_team_key": "miv_insurance",
+      "low_score": 100.6,
+      "penalty_cents": 2000,
+      "source_refs": [
+        "Weekly Results!A106:F106",
+        "Weekly Results!A109:F109"
+      ]
+    },
+    {
+      "week": 11,
+      "high_team_key": "punk_in_drublic",
+      "high_score": 165.68,
+      "payout_cents": 5000,
+      "low_team_key": "east_side_top_dog",
+      "low_score": 82.04,
+      "penalty_cents": 2000,
+      "source_refs": [
+        "Weekly Results!A117:F117",
+        "Weekly Results!A114:F114"
+      ]
+    },
+    {
+      "week": 12,
+      "high_team_key": "east_side_top_dog",
+      "high_score": 145.18,
+      "payout_cents": 5000,
+      "low_team_key": "napa_kojak",
+      "low_score": 93.82,
+      "penalty_cents": 2000,
+      "source_refs": [
+        "Weekly Results!A124:F124",
+        "Weekly Results!A127:F127"
+      ]
+    },
+    {
+      "week": 13,
+      "high_team_key": "miv_insurance",
+      "high_score": 169.38,
+      "payout_cents": 5000,
+      "low_team_key": "vichy_cheeks",
+      "low_score": 96.12,
+      "penalty_cents": 2000,
+      "source_refs": [
+        "Weekly Results!A136:F136",
+        "Weekly Results!A139:F139"
+      ]
+    },
+    {
+      "week": 14,
+      "high_team_key": "napa_kojak",
+      "high_score": 152.34,
+      "payout_cents": 5000,
+      "low_team_key": "miv_insurance",
+      "low_score": 91.52,
+      "penalty_cents": 2000,
+      "source_refs": [
+        "Weekly Results!A152:F152",
+        "Weekly Results!A148:F148"
+      ]
+    }
+  ],
+  "financial_obligations": [
+    {
+      "preview_id": "obligation:buy_in:east_side_top_dog",
+      "source_key": "import:2025:obligation:buy_in:east_side_top_dog",
+      "team_key": "east_side_top_dog",
+      "direction": "team_owes_league",
+      "amount_cents": 20000,
+      "category": "season_buy_in",
+      "description": "2025 season buy-in",
+      "occurred_on": "2025-08-16",
+      "source_type": "import",
+      "source_refs": [
+        "League Payouts!A1:B7",
+        "Teams!A2:D2"
+      ]
+    },
+    {
+      "preview_id": "obligation:buy_in:team_tampon",
+      "source_key": "import:2025:obligation:buy_in:team_tampon",
+      "team_key": "team_tampon",
+      "direction": "team_owes_league",
+      "amount_cents": 20000,
+      "category": "season_buy_in",
+      "description": "2025 season buy-in",
+      "occurred_on": "2025-08-16",
+      "source_type": "import",
+      "source_refs": [
+        "League Payouts!A1:B7",
+        "Teams!A3:D3"
+      ]
+    },
+    {
+      "preview_id": "obligation:buy_in:benny_beamen",
+      "source_key": "import:2025:obligation:buy_in:benny_beamen",
+      "team_key": "benny_beamen",
+      "direction": "team_owes_league",
+      "amount_cents": 20000,
+      "category": "season_buy_in",
+      "description": "2025 season buy-in",
+      "occurred_on": "2025-08-16",
+      "source_type": "import",
+      "source_refs": [
+        "League Payouts!A1:B7",
+        "Teams!A4:D4"
+      ]
+    },
+    {
+      "preview_id": "obligation:buy_in:punk_in_drublic",
+      "source_key": "import:2025:obligation:buy_in:punk_in_drublic",
+      "team_key": "punk_in_drublic",
+      "direction": "team_owes_league",
+      "amount_cents": 20000,
+      "category": "season_buy_in",
+      "description": "2025 season buy-in",
+      "occurred_on": "2025-08-16",
+      "source_type": "import",
+      "source_refs": [
+        "League Payouts!A1:B7",
+        "Teams!A5:D5"
+      ]
+    },
+    {
+      "preview_id": "obligation:buy_in:that_other_vichy_team",
+      "source_key": "import:2025:obligation:buy_in:that_other_vichy_team",
+      "team_key": "that_other_vichy_team",
+      "direction": "team_owes_league",
+      "amount_cents": 20000,
+      "category": "season_buy_in",
+      "description": "2025 season buy-in",
+      "occurred_on": "2025-08-16",
+      "source_type": "import",
+      "source_refs": [
+        "League Payouts!A1:B7",
+        "Teams!A6:D6"
+      ]
+    },
+    {
+      "preview_id": "obligation:buy_in:napa_kojak",
+      "source_key": "import:2025:obligation:buy_in:napa_kojak",
+      "team_key": "napa_kojak",
+      "direction": "team_owes_league",
+      "amount_cents": 20000,
+      "category": "season_buy_in",
+      "description": "2025 season buy-in",
+      "occurred_on": "2025-08-16",
+      "source_type": "import",
+      "source_refs": [
+        "League Payouts!A1:B7",
+        "Teams!A7:D7"
+      ]
+    },
+    {
+      "preview_id": "obligation:buy_in:vichy_cheeks",
+      "source_key": "import:2025:obligation:buy_in:vichy_cheeks",
+      "team_key": "vichy_cheeks",
+      "direction": "team_owes_league",
+      "amount_cents": 20000,
+      "category": "season_buy_in",
+      "description": "2025 season buy-in",
+      "occurred_on": "2025-08-16",
+      "source_type": "import",
+      "source_refs": [
+        "League Payouts!A1:B7",
+        "Teams!A8:D8"
+      ]
+    },
+    {
+      "preview_id": "obligation:buy_in:los_pollos_hermanos_ii",
+      "source_key": "import:2025:obligation:buy_in:los_pollos_hermanos_ii",
+      "team_key": "los_pollos_hermanos_ii",
+      "direction": "team_owes_league",
+      "amount_cents": 20000,
+      "category": "season_buy_in",
+      "description": "2025 season buy-in",
+      "occurred_on": "2025-08-16",
+      "source_type": "import",
+      "source_refs": [
+        "League Payouts!A1:B7",
+        "Teams!A9:D9"
+      ]
+    },
+    {
+      "preview_id": "obligation:buy_in:that_leche_runs_warm",
+      "source_key": "import:2025:obligation:buy_in:that_leche_runs_warm",
+      "team_key": "that_leche_runs_warm",
+      "direction": "team_owes_league",
+      "amount_cents": 20000,
+      "category": "season_buy_in",
+      "description": "2025 season buy-in",
+      "occurred_on": "2025-08-16",
+      "source_type": "import",
+      "source_refs": [
+        "League Payouts!A1:B7",
+        "Teams!A10:D10"
+      ]
+    },
+    {
+      "preview_id": "obligation:buy_in:miv_insurance",
+      "source_key": "import:2025:obligation:buy_in:miv_insurance",
+      "team_key": "miv_insurance",
+      "direction": "team_owes_league",
+      "amount_cents": 20000,
+      "category": "season_buy_in",
+      "description": "2025 season buy-in",
+      "occurred_on": "2025-08-16",
+      "source_type": "import",
+      "source_refs": [
+        "League Payouts!A1:B7",
+        "Teams!A11:D11"
+      ]
+    },
+    {
+      "preview_id": "obligation:draft_party:east_side_top_dog",
+      "source_key": "import:2025:obligation:draft_party:east_side_top_dog",
+      "team_key": "east_side_top_dog",
+      "direction": "team_owes_league",
+      "amount_cents": 10000,
+      "category": "draft_party_fee",
+      "description": "2025 draft-party attendee fee",
+      "occurred_on": "2025-08-16",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A9:F9",
+        "Net Cash!A17:B19"
+      ]
+    },
+    {
+      "preview_id": "obligation:draft_party:benny_beamen",
+      "source_key": "import:2025:obligation:draft_party:benny_beamen",
+      "team_key": "benny_beamen",
+      "direction": "team_owes_league",
+      "amount_cents": 10000,
+      "category": "draft_party_fee",
+      "description": "2025 draft-party attendee fee",
+      "occurred_on": "2025-09-02",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A10:F10",
+        "Net Cash!A17:B19"
+      ]
+    },
+    {
+      "preview_id": "obligation:draft_party:vichy_cheeks",
+      "source_key": "import:2025:obligation:draft_party:vichy_cheeks",
+      "team_key": "vichy_cheeks",
+      "direction": "team_owes_league",
+      "amount_cents": 10000,
+      "category": "draft_party_fee",
+      "description": "2025 draft-party attendee fee",
+      "occurred_on": "2025-09-02",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A12:F12",
+        "Net Cash!A17:B19"
+      ]
+    },
+    {
+      "preview_id": "obligation:draft_party:napa_kojak",
+      "source_key": "import:2025:obligation:draft_party:napa_kojak",
+      "team_key": "napa_kojak",
+      "direction": "team_owes_league",
+      "amount_cents": 10000,
+      "category": "draft_party_fee",
+      "description": "2025 draft-party attendee fee",
+      "occurred_on": "2025-09-02",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A13:F13",
+        "Net Cash!A17:B19"
+      ]
+    },
+    {
+      "preview_id": "obligation:draft_party:punk_in_drublic",
+      "source_key": "import:2025:obligation:draft_party:punk_in_drublic",
+      "team_key": "punk_in_drublic",
+      "direction": "team_owes_league",
+      "amount_cents": 10000,
+      "category": "draft_party_fee",
+      "description": "2025 draft-party attendee fee",
+      "occurred_on": "2025-09-03",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A14:F14",
+        "Net Cash!A17:B19"
+      ]
+    },
+    {
+      "preview_id": "obligation:draft_party:that_other_vichy_team",
+      "source_key": "import:2025:obligation:draft_party:that_other_vichy_team",
+      "team_key": "that_other_vichy_team",
+      "direction": "team_owes_league",
+      "amount_cents": 10000,
+      "category": "draft_party_fee",
+      "description": "2025 draft-party attendee fee",
+      "occurred_on": "2025-12-14",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A66:F66",
+        "Net Cash!A17:B19"
+      ]
+    },
+    {
+      "preview_id": "obligation:draft_party:that_leche_runs_warm",
+      "source_key": "import:2025:obligation:draft_party:that_leche_runs_warm",
+      "team_key": "that_leche_runs_warm",
+      "direction": "team_owes_league",
+      "amount_cents": 10000,
+      "category": "draft_party_fee",
+      "description": "2025 draft-party attendee fee",
+      "occurred_on": "2025-12-10",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A67:F67",
+        "Net Cash!A17:B19"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_low:1",
+      "source_key": "import:2025:obligation:weekly_low:1",
+      "team_key": "napa_kojak",
+      "direction": "team_owes_league",
+      "amount_cents": 2000,
+      "category": "weekly_low_score_penalty",
+      "description": "Week 1 low-score penalty",
+      "occurred_on": "2025-09-08",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A6:F6",
+        "Weekly Results!A5:F5",
+        "League Ledger!A15:F15"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_high:1",
+      "source_key": "import:2025:obligation:weekly_high:1",
+      "team_key": "punk_in_drublic",
+      "direction": "league_owes_team",
+      "amount_cents": 5000,
+      "category": "weekly_high_score",
+      "description": "Week 1 high-score payout",
+      "occurred_on": "2025-09-08",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A6:F6",
+        "Weekly Results!A5:F5",
+        "League Ledger!A16:F16"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_low:2",
+      "source_key": "import:2025:obligation:weekly_low:2",
+      "team_key": "punk_in_drublic",
+      "direction": "team_owes_league",
+      "amount_cents": 2000,
+      "category": "weekly_low_score_penalty",
+      "description": "Week 2 low-score penalty",
+      "occurred_on": "2025-09-16",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A23:F23",
+        "Weekly Results!A18:F18",
+        "League Ledger!A20:F20"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_high:2",
+      "source_key": "import:2025:obligation:weekly_high:2",
+      "team_key": "vichy_cheeks",
+      "direction": "league_owes_team",
+      "amount_cents": 5000,
+      "category": "weekly_high_score",
+      "description": "Week 2 high-score payout",
+      "occurred_on": "2025-09-16",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A23:F23",
+        "Weekly Results!A18:F18",
+        "League Ledger!A19:F19"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_low:3",
+      "source_key": "import:2025:obligation:weekly_low:3",
+      "team_key": "team_tampon",
+      "direction": "team_owes_league",
+      "amount_cents": 2000,
+      "category": "weekly_low_score_penalty",
+      "description": "Week 3 low-score penalty",
+      "occurred_on": "2025-09-22",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A32:F32",
+        "Weekly Results!A34:F34",
+        "League Ledger!A23:F23"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_high:3",
+      "source_key": "import:2025:obligation:weekly_high:3",
+      "team_key": "punk_in_drublic",
+      "direction": "league_owes_team",
+      "amount_cents": 5000,
+      "category": "weekly_high_score",
+      "description": "Week 3 high-score payout",
+      "occurred_on": "2025-09-22",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A32:F32",
+        "Weekly Results!A34:F34",
+        "League Ledger!A24:F24"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_low:4",
+      "source_key": "import:2025:obligation:weekly_low:4",
+      "team_key": "napa_kojak",
+      "direction": "team_owes_league",
+      "amount_cents": 2000,
+      "category": "weekly_low_score_penalty",
+      "description": "Week 4 low-score penalty",
+      "occurred_on": "2025-09-30",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A44:F44",
+        "Weekly Results!A40:F40",
+        "League Ledger!A28:F28"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_high:4",
+      "source_key": "import:2025:obligation:weekly_high:4",
+      "team_key": "punk_in_drublic",
+      "direction": "league_owes_team",
+      "amount_cents": 5000,
+      "category": "weekly_high_score",
+      "description": "Week 4 high-score payout",
+      "occurred_on": "2025-09-30",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A44:F44",
+        "Weekly Results!A40:F40",
+        "League Ledger!A27:F27"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_low:5",
+      "source_key": "import:2025:obligation:weekly_low:5",
+      "team_key": "east_side_top_dog",
+      "direction": "team_owes_league",
+      "amount_cents": 2000,
+      "category": "weekly_low_score_penalty",
+      "description": "Week 5 low-score penalty",
+      "occurred_on": "2025-10-06",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A51:F51",
+        "Weekly Results!A47:F47",
+        "League Ledger!A31:F31"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_high:5",
+      "source_key": "import:2025:obligation:weekly_high:5",
+      "team_key": "los_pollos_hermanos_ii",
+      "direction": "league_owes_team",
+      "amount_cents": 5000,
+      "category": "weekly_high_score",
+      "description": "Week 5 high-score payout",
+      "occurred_on": "2025-10-06",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A51:F51",
+        "Weekly Results!A47:F47",
+        "League Ledger!A33:F33"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_low:6",
+      "source_key": "import:2025:obligation:weekly_low:6",
+      "team_key": "vichy_cheeks",
+      "direction": "team_owes_league",
+      "amount_cents": 2000,
+      "category": "weekly_low_score_penalty",
+      "description": "Week 6 low-score penalty",
+      "occurred_on": "2025-10-13",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A65:F65",
+        "Weekly Results!A58:F58",
+        "League Ledger!A35:F35"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_high:6",
+      "source_key": "import:2025:obligation:weekly_high:6",
+      "team_key": "punk_in_drublic",
+      "direction": "league_owes_team",
+      "amount_cents": 5000,
+      "category": "weekly_high_score",
+      "description": "Week 6 high-score payout",
+      "occurred_on": "2025-10-13",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A65:F65",
+        "Weekly Results!A58:F58",
+        "League Ledger!A34:F34"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_low:7",
+      "source_key": "import:2025:obligation:weekly_low:7",
+      "team_key": "east_side_top_dog",
+      "direction": "team_owes_league",
+      "amount_cents": 2000,
+      "category": "weekly_low_score_penalty",
+      "description": "Week 7 low-score penalty",
+      "occurred_on": "2025-10-21",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A78:F78",
+        "Weekly Results!A69:F69",
+        "League Ledger!A38:F38"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_high:7",
+      "source_key": "import:2025:obligation:weekly_high:7",
+      "team_key": "benny_beamen",
+      "direction": "league_owes_team",
+      "amount_cents": 5000,
+      "category": "weekly_high_score",
+      "description": "Week 7 high-score payout",
+      "occurred_on": "2025-10-21",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A78:F78",
+        "Weekly Results!A69:F69",
+        "League Ledger!A40:F40"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_low:8",
+      "source_key": "import:2025:obligation:weekly_low:8",
+      "team_key": "vichy_cheeks",
+      "direction": "team_owes_league",
+      "amount_cents": 2000,
+      "category": "weekly_low_score_penalty",
+      "description": "Week 8 low-score penalty",
+      "occurred_on": "2025-10-28",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A88:F88",
+        "Weekly Results!A85:F85",
+        "League Ledger!A43:F43"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_high:8",
+      "source_key": "import:2025:obligation:weekly_high:8",
+      "team_key": "benny_beamen",
+      "direction": "league_owes_team",
+      "amount_cents": 5000,
+      "category": "weekly_high_score",
+      "description": "Week 8 high-score payout",
+      "occurred_on": "2025-10-28",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A88:F88",
+        "Weekly Results!A85:F85",
+        "League Ledger!A42:F42"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_low:9",
+      "source_key": "import:2025:obligation:weekly_low:9",
+      "team_key": "napa_kojak",
+      "direction": "team_owes_league",
+      "amount_cents": 2000,
+      "category": "weekly_low_score_penalty",
+      "description": "Week 9 low-score penalty",
+      "occurred_on": "2025-11-06",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A95:F95",
+        "Weekly Results!A96:F96",
+        "League Ledger!A46:F46"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_high:9",
+      "source_key": "import:2025:obligation:weekly_high:9",
+      "team_key": "los_pollos_hermanos_ii",
+      "direction": "league_owes_team",
+      "amount_cents": 5000,
+      "category": "weekly_high_score",
+      "description": "Week 9 high-score payout",
+      "occurred_on": "2025-11-06",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A95:F95",
+        "Weekly Results!A96:F96",
+        "League Ledger!A47:F47"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_low:10",
+      "source_key": "import:2025:obligation:weekly_low:10",
+      "team_key": "miv_insurance",
+      "direction": "team_owes_league",
+      "amount_cents": 2000,
+      "category": "weekly_low_score_penalty",
+      "description": "Week 10 low-score penalty",
+      "occurred_on": "2025-11-10",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A106:F106",
+        "Weekly Results!A109:F109",
+        "League Ledger!A50:F50"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_high:10",
+      "source_key": "import:2025:obligation:weekly_high:10",
+      "team_key": "benny_beamen",
+      "direction": "league_owes_team",
+      "amount_cents": 5000,
+      "category": "weekly_high_score",
+      "description": "Week 10 high-score payout",
+      "occurred_on": "2025-11-10",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A106:F106",
+        "Weekly Results!A109:F109",
+        "League Ledger!A49:F49"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_low:11",
+      "source_key": "import:2025:obligation:weekly_low:11",
+      "team_key": "east_side_top_dog",
+      "direction": "team_owes_league",
+      "amount_cents": 2000,
+      "category": "weekly_low_score_penalty",
+      "description": "Week 11 low-score penalty",
+      "occurred_on": "2025-11-18",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A117:F117",
+        "Weekly Results!A114:F114",
+        "League Ledger!A53:F53"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_high:11",
+      "source_key": "import:2025:obligation:weekly_high:11",
+      "team_key": "punk_in_drublic",
+      "direction": "league_owes_team",
+      "amount_cents": 5000,
+      "category": "weekly_high_score",
+      "description": "Week 11 high-score payout",
+      "occurred_on": "2025-11-18",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A117:F117",
+        "Weekly Results!A114:F114",
+        "League Ledger!A52:F52"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_low:12",
+      "source_key": "import:2025:obligation:weekly_low:12",
+      "team_key": "napa_kojak",
+      "direction": "team_owes_league",
+      "amount_cents": 2000,
+      "category": "weekly_low_score_penalty",
+      "description": "Week 12 low-score penalty",
+      "occurred_on": "2025-11-24",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A124:F124",
+        "Weekly Results!A127:F127",
+        "League Ledger!A58:F58"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_high:12",
+      "source_key": "import:2025:obligation:weekly_high:12",
+      "team_key": "east_side_top_dog",
+      "direction": "league_owes_team",
+      "amount_cents": 5000,
+      "category": "weekly_high_score",
+      "description": "Week 12 high-score payout",
+      "occurred_on": "2025-11-24",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A124:F124",
+        "Weekly Results!A127:F127",
+        "League Ledger!A56:F56"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_low:13",
+      "source_key": "import:2025:obligation:weekly_low:13",
+      "team_key": "vichy_cheeks",
+      "direction": "team_owes_league",
+      "amount_cents": 2000,
+      "category": "weekly_low_score_penalty",
+      "description": "Week 13 low-score penalty",
+      "occurred_on": "2025-12-01",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A136:F136",
+        "Weekly Results!A139:F139",
+        "League Ledger!A59:F59"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_high:13",
+      "source_key": "import:2025:obligation:weekly_high:13",
+      "team_key": "miv_insurance",
+      "direction": "league_owes_team",
+      "amount_cents": 5000,
+      "category": "weekly_high_score",
+      "description": "Week 13 high-score payout",
+      "occurred_on": "2025-12-01",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A136:F136",
+        "Weekly Results!A139:F139",
+        "League Ledger!A60:F60"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_low:14",
+      "source_key": "import:2025:obligation:weekly_low:14",
+      "team_key": "miv_insurance",
+      "direction": "team_owes_league",
+      "amount_cents": 2000,
+      "category": "weekly_low_score_penalty",
+      "description": "Week 14 low-score penalty",
+      "occurred_on": "2025-12-08",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A152:F152",
+        "Weekly Results!A148:F148",
+        "League Ledger!A62:F62"
+      ]
+    },
+    {
+      "preview_id": "obligation:weekly_high:14",
+      "source_key": "import:2025:obligation:weekly_high:14",
+      "team_key": "napa_kojak",
+      "direction": "league_owes_team",
+      "amount_cents": 5000,
+      "category": "weekly_high_score",
+      "description": "Week 14 high-score payout",
+      "occurred_on": "2025-12-08",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A152:F152",
+        "Weekly Results!A148:F148",
+        "League Ledger!A61:F61"
+      ]
+    },
+    {
+      "preview_id": "obligation:season_high",
+      "source_key": "import:2025:obligation:season_high",
+      "team_key": "vichy_cheeks",
+      "direction": "league_owes_team",
+      "amount_cents": 10000,
+      "category": "season_high_score",
+      "description": "Highest single-week score in the regular season",
+      "occurred_on": "2025-12-15",
+      "source_type": "import",
+      "source_refs": [
+        "Weekly Results!A23:F23",
+        "League Ledger!A69:F69",
+        "League Payouts!A5:B10"
+      ]
+    },
+    {
+      "preview_id": "obligation:placement:champion",
+      "source_key": "import:2025:obligation:placement:champion",
+      "team_key": "los_pollos_hermanos_ii",
+      "direction": "league_owes_team",
+      "amount_cents": 72000,
+      "category": "placement_champion",
+      "description": "2025 champion payout",
+      "occurred_on": "2025-12-23",
+      "source_type": "import",
+      "source_refs": [
+        "League Payouts!A14:D14",
+        "League Ledger!A71:F71"
+      ]
+    },
+    {
+      "preview_id": "obligation:placement:runner_up",
+      "source_key": "import:2025:obligation:placement:runner_up",
+      "team_key": "benny_beamen",
+      "direction": "league_owes_team",
+      "amount_cents": 36000,
+      "category": "placement_runner_up",
+      "description": "2025 runner up payout",
+      "occurred_on": "2025-12-23",
+      "source_type": "import",
+      "source_refs": [
+        "League Payouts!A15:D15",
+        "League Ledger!A70:F70"
+      ]
+    },
+    {
+      "preview_id": "obligation:placement:third_place",
+      "source_key": "import:2025:obligation:placement:third_place",
+      "team_key": "punk_in_drublic",
+      "direction": "league_owes_team",
+      "amount_cents": 12000,
+      "category": "placement_third",
+      "description": "2025 third place payout",
+      "occurred_on": "2025-12-23",
+      "source_type": "import",
+      "source_refs": [
+        "League Payouts!A16:D16",
+        "League Ledger!A72:F72"
+      ]
+    }
+  ],
+  "payments": [
+    {
+      "preview_id": "payment:ledger:2",
+      "source_key": "import:2025:payment:ledger:2",
+      "team_key": "east_side_top_dog",
+      "direction": "from_team",
+      "amount_cents": 20000,
+      "paid_on": "2025-08-16",
+      "method": "self",
+      "category": "season_buy_in",
+      "reference": "League Ledger!A2:F2",
+      "note": "Dues: Self",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A2:F2"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:3",
+      "source_key": "import:2025:payment:ledger:3",
+      "team_key": "team_tampon",
+      "direction": "from_team",
+      "amount_cents": 20000,
+      "paid_on": "2025-08-19",
+      "method": "venmo",
+      "category": "season_buy_in",
+      "reference": "League Ledger!A3:F3",
+      "note": "Dues: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A3:F3"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:4",
+      "source_key": "import:2025:payment:ledger:4",
+      "team_key": "punk_in_drublic",
+      "direction": "from_team",
+      "amount_cents": 20000,
+      "paid_on": "2025-08-16",
+      "method": "venmo",
+      "category": "season_buy_in",
+      "reference": "League Ledger!A4:F4",
+      "note": "Dues: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A4:F4"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:5",
+      "source_key": "import:2025:payment:ledger:5",
+      "team_key": "that_other_vichy_team",
+      "direction": "from_team",
+      "amount_cents": 2000,
+      "paid_on": "2025-08-17",
+      "method": "venmo",
+      "category": "season_buy_in",
+      "reference": "League Ledger!A5:F5",
+      "note": "Dues: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A5:F5"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:6",
+      "source_key": "import:2025:payment:ledger:6",
+      "team_key": "napa_kojak",
+      "direction": "from_team",
+      "amount_cents": 20000,
+      "paid_on": "2025-08-16",
+      "method": "venmo",
+      "category": "season_buy_in",
+      "reference": "League Ledger!A6:F6",
+      "note": "Dues: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A6:F6"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:7",
+      "source_key": "import:2025:payment:ledger:7",
+      "team_key": "that_leche_runs_warm",
+      "direction": "from_team",
+      "amount_cents": 20000,
+      "paid_on": "2025-08-16",
+      "method": "venmo",
+      "category": "season_buy_in",
+      "reference": "League Ledger!A7:F7",
+      "note": "Dues: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A7:F7"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:8",
+      "source_key": "import:2025:payment:ledger:8",
+      "team_key": "benny_beamen",
+      "direction": "from_team",
+      "amount_cents": 20000,
+      "paid_on": "2025-08-29",
+      "method": "venmo",
+      "category": "season_buy_in",
+      "reference": "League Ledger!A8:F8",
+      "note": "Dues: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A8:F8"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:9",
+      "source_key": "import:2025:payment:ledger:9",
+      "team_key": "east_side_top_dog",
+      "direction": "from_team",
+      "amount_cents": 10000,
+      "paid_on": "2025-08-16",
+      "method": "self",
+      "category": "draft_party_fee",
+      "reference": "League Ledger!A9:F9",
+      "note": "Draft Party: Self",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A9:F9"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:10",
+      "source_key": "import:2025:payment:ledger:10",
+      "team_key": "benny_beamen",
+      "direction": "from_team",
+      "amount_cents": 10000,
+      "paid_on": "2025-09-02",
+      "method": "venmo",
+      "category": "draft_party_fee",
+      "reference": "League Ledger!A10:F10",
+      "note": "Draft Party: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A10:F10"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:11",
+      "source_key": "import:2025:payment:ledger:11",
+      "team_key": "vichy_cheeks",
+      "direction": "from_team",
+      "amount_cents": 20000,
+      "paid_on": "2025-09-02",
+      "method": "venmo",
+      "category": "season_buy_in",
+      "reference": "League Ledger!A11:F11",
+      "note": "Dues: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A11:F11"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:12",
+      "source_key": "import:2025:payment:ledger:12",
+      "team_key": "vichy_cheeks",
+      "direction": "from_team",
+      "amount_cents": 10000,
+      "paid_on": "2025-09-02",
+      "method": "venmo",
+      "category": "draft_party_fee",
+      "reference": "League Ledger!A12:F12",
+      "note": "Draft Party: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A12:F12"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:13",
+      "source_key": "import:2025:payment:ledger:13",
+      "team_key": "napa_kojak",
+      "direction": "from_team",
+      "amount_cents": 10000,
+      "paid_on": "2025-09-02",
+      "method": "venmo",
+      "category": "draft_party_fee",
+      "reference": "League Ledger!A13:F13",
+      "note": "Draft Party: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A13:F13"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:14",
+      "source_key": "import:2025:payment:ledger:14",
+      "team_key": "punk_in_drublic",
+      "direction": "from_team",
+      "amount_cents": 10000,
+      "paid_on": "2025-09-03",
+      "method": "venmo",
+      "category": "draft_party_fee",
+      "reference": "League Ledger!A14:F14",
+      "note": "Draft Party: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A14:F14"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:17",
+      "source_key": "import:2025:payment:ledger:17",
+      "team_key": "punk_in_drublic",
+      "direction": "to_team",
+      "amount_cents": 5000,
+      "paid_on": "2025-09-08",
+      "method": "venmo",
+      "category": "weekly_high_score",
+      "reference": "League Ledger!A17:F17",
+      "note": "Payout Paid: Venmo/High Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A17:F17"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:18",
+      "source_key": "import:2025:payment:ledger:18",
+      "team_key": "napa_kojak",
+      "direction": "from_team",
+      "amount_cents": 2000,
+      "paid_on": "2025-09-10",
+      "method": "venmo",
+      "category": "weekly_low_score_penalty",
+      "reference": "League Ledger!A18:F18",
+      "note": "Penalty Paid: Venmo/Low Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A18:F18"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:21",
+      "source_key": "import:2025:payment:ledger:21",
+      "team_key": "vichy_cheeks",
+      "direction": "to_team",
+      "amount_cents": 5000,
+      "paid_on": "2025-09-16",
+      "method": "venmo",
+      "category": "weekly_high_score",
+      "reference": "League Ledger!A21:F21",
+      "note": "Payout Paid: Venmo/High Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A21:F21"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:22",
+      "source_key": "import:2025:payment:ledger:22",
+      "team_key": "punk_in_drublic",
+      "direction": "from_team",
+      "amount_cents": 2000,
+      "paid_on": "2025-09-17",
+      "method": "venmo",
+      "category": "weekly_low_score_penalty",
+      "reference": "League Ledger!A22:F22",
+      "note": "Penalty Paid: Venmo/Low Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A22:F22"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:25",
+      "source_key": "import:2025:payment:ledger:25",
+      "team_key": "punk_in_drublic",
+      "direction": "to_team",
+      "amount_cents": 5000,
+      "paid_on": "2025-09-23",
+      "method": "venmo",
+      "category": "weekly_high_score",
+      "reference": "League Ledger!A25:F25",
+      "note": "Payout Paid: Venmo/High Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A25:F25"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:26",
+      "source_key": "import:2025:payment:ledger:26",
+      "team_key": "team_tampon",
+      "direction": "from_team",
+      "amount_cents": 2000,
+      "paid_on": "2025-09-23",
+      "method": "venmo",
+      "category": "weekly_low_score_penalty",
+      "reference": "League Ledger!A26:F26",
+      "note": "Penalty Paid: Venmo/Low Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A26:F26"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:29",
+      "source_key": "import:2025:payment:ledger:29",
+      "team_key": "punk_in_drublic",
+      "direction": "to_team",
+      "amount_cents": 5000,
+      "paid_on": "2025-09-30",
+      "method": "venmo",
+      "category": "weekly_high_score",
+      "reference": "League Ledger!A29:F29",
+      "note": "Payout Paid: Venmo/High Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A29:F29"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:30",
+      "source_key": "import:2025:payment:ledger:30",
+      "team_key": "napa_kojak",
+      "direction": "from_team",
+      "amount_cents": 2000,
+      "paid_on": "2025-09-30",
+      "method": "manual",
+      "category": "weekly_low_score_penalty",
+      "reference": "League Ledger!A30:F30",
+      "note": "Penalty Paid: Low Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A30:F30"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:32",
+      "source_key": "import:2025:payment:ledger:32",
+      "team_key": "east_side_top_dog",
+      "direction": "from_team",
+      "amount_cents": 2000,
+      "paid_on": "2025-10-06",
+      "method": "manual",
+      "category": "weekly_low_score_penalty",
+      "reference": "League Ledger!A32:F32",
+      "note": "Penalty Paid: Low Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A32:F32"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:36",
+      "source_key": "import:2025:payment:ledger:36",
+      "team_key": "punk_in_drublic",
+      "direction": "to_team",
+      "amount_cents": 5000,
+      "paid_on": "2025-10-13",
+      "method": "venmo",
+      "category": "weekly_high_score",
+      "reference": "League Ledger!A36:F36",
+      "note": "Payout Paid: Venmo/High Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A36:F36"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:37",
+      "source_key": "import:2025:payment:ledger:37",
+      "team_key": "vichy_cheeks",
+      "direction": "from_team",
+      "amount_cents": 2000,
+      "paid_on": "2025-10-14",
+      "method": "manual",
+      "category": "weekly_low_score_penalty",
+      "reference": "League Ledger!A37:F37",
+      "note": "Penalty Paid: Low Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A37:F37"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:39",
+      "source_key": "import:2025:payment:ledger:39",
+      "team_key": "east_side_top_dog",
+      "direction": "from_team",
+      "amount_cents": 2000,
+      "paid_on": "2025-10-21",
+      "method": "manual",
+      "category": "weekly_low_score_penalty",
+      "reference": "League Ledger!A39:F39",
+      "note": "Penalty Paid: Low Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A39:F39"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:41",
+      "source_key": "import:2025:payment:ledger:41",
+      "team_key": "benny_beamen",
+      "direction": "to_team",
+      "amount_cents": 5000,
+      "paid_on": "2025-10-21",
+      "method": "manual",
+      "category": "weekly_high_score",
+      "reference": "League Ledger!A41:F41",
+      "note": "Payout Paid: High Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A41:F41"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:44",
+      "source_key": "import:2025:payment:ledger:44",
+      "team_key": "vichy_cheeks",
+      "direction": "from_team",
+      "amount_cents": 2000,
+      "paid_on": "2025-10-28",
+      "method": "venmo",
+      "category": "weekly_low_score_penalty",
+      "reference": "League Ledger!A44:F44",
+      "note": "Penalty Paid: Venmo/Low Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A44:F44"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:45",
+      "source_key": "import:2025:payment:ledger:45",
+      "team_key": "benny_beamen",
+      "direction": "to_team",
+      "amount_cents": 5000,
+      "paid_on": "2025-10-28",
+      "method": "manual",
+      "category": "weekly_high_score",
+      "reference": "League Ledger!A45:F45",
+      "note": "Payout Paid: High Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A45:F45"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:48",
+      "source_key": "import:2025:payment:ledger:48",
+      "team_key": "napa_kojak",
+      "direction": "from_team",
+      "amount_cents": 2000,
+      "paid_on": "2025-11-06",
+      "method": "manual",
+      "category": "weekly_low_score_penalty",
+      "reference": "League Ledger!A48:F48",
+      "note": "Penalty Paid: Low Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A48:F48"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:51",
+      "source_key": "import:2025:payment:ledger:51",
+      "team_key": "benny_beamen",
+      "direction": "to_team",
+      "amount_cents": 5000,
+      "paid_on": "2025-11-10",
+      "method": "manual",
+      "category": "weekly_high_score",
+      "reference": "League Ledger!A51:F51",
+      "note": "Payout Paid: High Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A51:F51"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:54",
+      "source_key": "import:2025:payment:ledger:54",
+      "team_key": "east_side_top_dog",
+      "direction": "from_team",
+      "amount_cents": 2000,
+      "paid_on": "2025-11-18",
+      "method": "manual",
+      "category": "weekly_low_score_penalty",
+      "reference": "League Ledger!A54:F54",
+      "note": "Penalty Paid: Low Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A54:F54"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:55",
+      "source_key": "import:2025:payment:ledger:55",
+      "team_key": "punk_in_drublic",
+      "direction": "to_team",
+      "amount_cents": 5000,
+      "paid_on": "2025-11-18",
+      "method": "venmo",
+      "category": "weekly_high_score",
+      "reference": "League Ledger!A55:F55",
+      "note": "Payout Paid: Venmo/High Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A55:F55"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:57",
+      "source_key": "import:2025:payment:ledger:57",
+      "team_key": "east_side_top_dog",
+      "direction": "to_team",
+      "amount_cents": 5000,
+      "paid_on": "2025-11-24",
+      "method": "manual",
+      "category": "weekly_high_score",
+      "reference": "League Ledger!A57:F57",
+      "note": "Payout Paid: High Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A57:F57"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:63",
+      "source_key": "import:2025:payment:ledger:63",
+      "team_key": "napa_kojak",
+      "direction": "to_team",
+      "amount_cents": 3000,
+      "paid_on": "2025-12-08",
+      "method": "manual",
+      "category": "weekly_high_score",
+      "reference": "League Ledger!A63:F63",
+      "note": "Payout Paid: High Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A63:F63"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:64",
+      "source_key": "import:2025:payment:ledger:64",
+      "team_key": "vichy_cheeks",
+      "direction": "from_team",
+      "amount_cents": 2000,
+      "paid_on": "2025-12-02",
+      "method": "manual",
+      "category": "weekly_low_score_penalty",
+      "reference": "League Ledger!A64:F64",
+      "note": "Penalty Paid: Low Score",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A64:F64"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:65",
+      "source_key": "import:2025:payment:ledger:65",
+      "team_key": "that_other_vichy_team",
+      "direction": "from_team",
+      "amount_cents": 18000,
+      "paid_on": "2025-12-14",
+      "method": "venmo",
+      "category": "season_buy_in",
+      "reference": "League Ledger!A65:F65",
+      "note": "Dues: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A65:F65"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:66",
+      "source_key": "import:2025:payment:ledger:66",
+      "team_key": "that_other_vichy_team",
+      "direction": "from_team",
+      "amount_cents": 10000,
+      "paid_on": "2025-12-14",
+      "method": "venmo",
+      "category": "draft_party_fee",
+      "reference": "League Ledger!A66:F66",
+      "note": "Draft Party: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A66:F66"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:67",
+      "source_key": "import:2025:payment:ledger:67",
+      "team_key": "that_leche_runs_warm",
+      "direction": "from_team",
+      "amount_cents": 10000,
+      "paid_on": "2025-12-10",
+      "method": "venmo",
+      "category": "draft_party_fee",
+      "reference": "League Ledger!A67:F67",
+      "note": "Draft Party: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A67:F67"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:68",
+      "source_key": "import:2025:payment:ledger:68",
+      "team_key": "vichy_cheeks",
+      "direction": "to_team",
+      "amount_cents": 10000,
+      "paid_on": "2025-12-15",
+      "method": "manual",
+      "category": "season_high_score",
+      "reference": "League Ledger!A68:F68",
+      "note": "Payout Paid: High Score YEAR",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A68:F68"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:73",
+      "source_key": "import:2025:payment:ledger:73",
+      "team_key": "benny_beamen",
+      "direction": "to_team",
+      "amount_cents": 36000,
+      "paid_on": "2025-12-23",
+      "method": "manual",
+      "category": "placement_runner_up",
+      "reference": "League Ledger!A73:F73",
+      "note": "Payout Paid: 2nd Place",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A73:F73"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:74",
+      "source_key": "import:2025:payment:ledger:74",
+      "team_key": "los_pollos_hermanos_ii",
+      "direction": "to_team",
+      "amount_cents": 66000,
+      "paid_on": "2025-12-23",
+      "method": "manual",
+      "category": "placement_champion",
+      "reference": "League Ledger!A74:F74",
+      "note": "Payout Paid: CHAMPION",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A74:F74"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:75",
+      "source_key": "import:2025:payment:ledger:75",
+      "team_key": "punk_in_drublic",
+      "direction": "to_team",
+      "amount_cents": 12000,
+      "paid_on": "2025-12-23",
+      "method": "manual",
+      "category": "placement_third",
+      "reference": "League Ledger!A75:F75",
+      "note": "Payout Paid: 3rd Place",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A75:F75"
+      ]
+    },
+    {
+      "preview_id": "payment:ledger:76",
+      "source_key": "import:2025:payment:ledger:76",
+      "team_key": "miv_insurance",
+      "direction": "from_team",
+      "amount_cents": 19000,
+      "paid_on": "2025-12-09",
+      "method": "venmo",
+      "category": "season_buy_in",
+      "reference": "League Ledger!A76:F76",
+      "note": "Dues: Venmo",
+      "source_type": "import",
+      "source_refs": [
+        "League Ledger!A76:F76"
+      ]
+    }
+  ],
+  "payment_allocations": [
+    {
+      "preview_id": "allocation:payment:ledger:2:obligation:buy_in:east_side_top_dog",
+      "source_key": "import:2025:allocation:payment:ledger:2:obligation:buy_in:east_side_top_dog",
+      "payment_preview_id": "payment:ledger:2",
+      "obligation_preview_id": "obligation:buy_in:east_side_top_dog",
+      "team_key": "east_side_top_dog",
+      "amount_cents": 20000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:4:obligation:buy_in:punk_in_drublic",
+      "source_key": "import:2025:allocation:payment:ledger:4:obligation:buy_in:punk_in_drublic",
+      "payment_preview_id": "payment:ledger:4",
+      "obligation_preview_id": "obligation:buy_in:punk_in_drublic",
+      "team_key": "punk_in_drublic",
+      "amount_cents": 20000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:6:obligation:buy_in:napa_kojak",
+      "source_key": "import:2025:allocation:payment:ledger:6:obligation:buy_in:napa_kojak",
+      "payment_preview_id": "payment:ledger:6",
+      "obligation_preview_id": "obligation:buy_in:napa_kojak",
+      "team_key": "napa_kojak",
+      "amount_cents": 20000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:7:obligation:buy_in:that_leche_runs_warm",
+      "source_key": "import:2025:allocation:payment:ledger:7:obligation:buy_in:that_leche_runs_warm",
+      "payment_preview_id": "payment:ledger:7",
+      "obligation_preview_id": "obligation:buy_in:that_leche_runs_warm",
+      "team_key": "that_leche_runs_warm",
+      "amount_cents": 20000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:9:obligation:draft_party:east_side_top_dog",
+      "source_key": "import:2025:allocation:payment:ledger:9:obligation:draft_party:east_side_top_dog",
+      "payment_preview_id": "payment:ledger:9",
+      "obligation_preview_id": "obligation:draft_party:east_side_top_dog",
+      "team_key": "east_side_top_dog",
+      "amount_cents": 10000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:5:obligation:buy_in:that_other_vichy_team",
+      "source_key": "import:2025:allocation:payment:ledger:5:obligation:buy_in:that_other_vichy_team",
+      "payment_preview_id": "payment:ledger:5",
+      "obligation_preview_id": "obligation:buy_in:that_other_vichy_team",
+      "team_key": "that_other_vichy_team",
+      "amount_cents": 2000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:3:obligation:buy_in:team_tampon",
+      "source_key": "import:2025:allocation:payment:ledger:3:obligation:buy_in:team_tampon",
+      "payment_preview_id": "payment:ledger:3",
+      "obligation_preview_id": "obligation:buy_in:team_tampon",
+      "team_key": "team_tampon",
+      "amount_cents": 20000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:8:obligation:buy_in:benny_beamen",
+      "source_key": "import:2025:allocation:payment:ledger:8:obligation:buy_in:benny_beamen",
+      "payment_preview_id": "payment:ledger:8",
+      "obligation_preview_id": "obligation:buy_in:benny_beamen",
+      "team_key": "benny_beamen",
+      "amount_cents": 20000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:10:obligation:draft_party:benny_beamen",
+      "source_key": "import:2025:allocation:payment:ledger:10:obligation:draft_party:benny_beamen",
+      "payment_preview_id": "payment:ledger:10",
+      "obligation_preview_id": "obligation:draft_party:benny_beamen",
+      "team_key": "benny_beamen",
+      "amount_cents": 10000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:11:obligation:buy_in:vichy_cheeks",
+      "source_key": "import:2025:allocation:payment:ledger:11:obligation:buy_in:vichy_cheeks",
+      "payment_preview_id": "payment:ledger:11",
+      "obligation_preview_id": "obligation:buy_in:vichy_cheeks",
+      "team_key": "vichy_cheeks",
+      "amount_cents": 20000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:12:obligation:draft_party:vichy_cheeks",
+      "source_key": "import:2025:allocation:payment:ledger:12:obligation:draft_party:vichy_cheeks",
+      "payment_preview_id": "payment:ledger:12",
+      "obligation_preview_id": "obligation:draft_party:vichy_cheeks",
+      "team_key": "vichy_cheeks",
+      "amount_cents": 10000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:13:obligation:draft_party:napa_kojak",
+      "source_key": "import:2025:allocation:payment:ledger:13:obligation:draft_party:napa_kojak",
+      "payment_preview_id": "payment:ledger:13",
+      "obligation_preview_id": "obligation:draft_party:napa_kojak",
+      "team_key": "napa_kojak",
+      "amount_cents": 10000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:14:obligation:draft_party:punk_in_drublic",
+      "source_key": "import:2025:allocation:payment:ledger:14:obligation:draft_party:punk_in_drublic",
+      "payment_preview_id": "payment:ledger:14",
+      "obligation_preview_id": "obligation:draft_party:punk_in_drublic",
+      "team_key": "punk_in_drublic",
+      "amount_cents": 10000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:17:obligation:weekly_high:1",
+      "source_key": "import:2025:allocation:payment:ledger:17:obligation:weekly_high:1",
+      "payment_preview_id": "payment:ledger:17",
+      "obligation_preview_id": "obligation:weekly_high:1",
+      "team_key": "punk_in_drublic",
+      "amount_cents": 5000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:18:obligation:weekly_low:1",
+      "source_key": "import:2025:allocation:payment:ledger:18:obligation:weekly_low:1",
+      "payment_preview_id": "payment:ledger:18",
+      "obligation_preview_id": "obligation:weekly_low:1",
+      "team_key": "napa_kojak",
+      "amount_cents": 2000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:21:obligation:weekly_high:2",
+      "source_key": "import:2025:allocation:payment:ledger:21:obligation:weekly_high:2",
+      "payment_preview_id": "payment:ledger:21",
+      "obligation_preview_id": "obligation:weekly_high:2",
+      "team_key": "vichy_cheeks",
+      "amount_cents": 5000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:22:obligation:weekly_low:2",
+      "source_key": "import:2025:allocation:payment:ledger:22:obligation:weekly_low:2",
+      "payment_preview_id": "payment:ledger:22",
+      "obligation_preview_id": "obligation:weekly_low:2",
+      "team_key": "punk_in_drublic",
+      "amount_cents": 2000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:25:obligation:weekly_high:3",
+      "source_key": "import:2025:allocation:payment:ledger:25:obligation:weekly_high:3",
+      "payment_preview_id": "payment:ledger:25",
+      "obligation_preview_id": "obligation:weekly_high:3",
+      "team_key": "punk_in_drublic",
+      "amount_cents": 5000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:26:obligation:weekly_low:3",
+      "source_key": "import:2025:allocation:payment:ledger:26:obligation:weekly_low:3",
+      "payment_preview_id": "payment:ledger:26",
+      "obligation_preview_id": "obligation:weekly_low:3",
+      "team_key": "team_tampon",
+      "amount_cents": 2000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:29:obligation:weekly_high:4",
+      "source_key": "import:2025:allocation:payment:ledger:29:obligation:weekly_high:4",
+      "payment_preview_id": "payment:ledger:29",
+      "obligation_preview_id": "obligation:weekly_high:4",
+      "team_key": "punk_in_drublic",
+      "amount_cents": 5000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:30:obligation:weekly_low:4",
+      "source_key": "import:2025:allocation:payment:ledger:30:obligation:weekly_low:4",
+      "payment_preview_id": "payment:ledger:30",
+      "obligation_preview_id": "obligation:weekly_low:4",
+      "team_key": "napa_kojak",
+      "amount_cents": 2000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:32:obligation:weekly_low:5",
+      "source_key": "import:2025:allocation:payment:ledger:32:obligation:weekly_low:5",
+      "payment_preview_id": "payment:ledger:32",
+      "obligation_preview_id": "obligation:weekly_low:5",
+      "team_key": "east_side_top_dog",
+      "amount_cents": 2000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:36:obligation:weekly_high:6",
+      "source_key": "import:2025:allocation:payment:ledger:36:obligation:weekly_high:6",
+      "payment_preview_id": "payment:ledger:36",
+      "obligation_preview_id": "obligation:weekly_high:6",
+      "team_key": "punk_in_drublic",
+      "amount_cents": 5000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:37:obligation:weekly_low:6",
+      "source_key": "import:2025:allocation:payment:ledger:37:obligation:weekly_low:6",
+      "payment_preview_id": "payment:ledger:37",
+      "obligation_preview_id": "obligation:weekly_low:6",
+      "team_key": "vichy_cheeks",
+      "amount_cents": 2000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:39:obligation:weekly_low:7",
+      "source_key": "import:2025:allocation:payment:ledger:39:obligation:weekly_low:7",
+      "payment_preview_id": "payment:ledger:39",
+      "obligation_preview_id": "obligation:weekly_low:7",
+      "team_key": "east_side_top_dog",
+      "amount_cents": 2000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:41:obligation:weekly_high:7",
+      "source_key": "import:2025:allocation:payment:ledger:41:obligation:weekly_high:7",
+      "payment_preview_id": "payment:ledger:41",
+      "obligation_preview_id": "obligation:weekly_high:7",
+      "team_key": "benny_beamen",
+      "amount_cents": 5000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:44:obligation:weekly_low:8",
+      "source_key": "import:2025:allocation:payment:ledger:44:obligation:weekly_low:8",
+      "payment_preview_id": "payment:ledger:44",
+      "obligation_preview_id": "obligation:weekly_low:8",
+      "team_key": "vichy_cheeks",
+      "amount_cents": 2000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:45:obligation:weekly_high:8",
+      "source_key": "import:2025:allocation:payment:ledger:45:obligation:weekly_high:8",
+      "payment_preview_id": "payment:ledger:45",
+      "obligation_preview_id": "obligation:weekly_high:8",
+      "team_key": "benny_beamen",
+      "amount_cents": 5000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:48:obligation:weekly_low:9",
+      "source_key": "import:2025:allocation:payment:ledger:48:obligation:weekly_low:9",
+      "payment_preview_id": "payment:ledger:48",
+      "obligation_preview_id": "obligation:weekly_low:9",
+      "team_key": "napa_kojak",
+      "amount_cents": 2000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:51:obligation:weekly_high:10",
+      "source_key": "import:2025:allocation:payment:ledger:51:obligation:weekly_high:10",
+      "payment_preview_id": "payment:ledger:51",
+      "obligation_preview_id": "obligation:weekly_high:10",
+      "team_key": "benny_beamen",
+      "amount_cents": 5000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:54:obligation:weekly_low:11",
+      "source_key": "import:2025:allocation:payment:ledger:54:obligation:weekly_low:11",
+      "payment_preview_id": "payment:ledger:54",
+      "obligation_preview_id": "obligation:weekly_low:11",
+      "team_key": "east_side_top_dog",
+      "amount_cents": 2000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:55:obligation:weekly_high:11",
+      "source_key": "import:2025:allocation:payment:ledger:55:obligation:weekly_high:11",
+      "payment_preview_id": "payment:ledger:55",
+      "obligation_preview_id": "obligation:weekly_high:11",
+      "team_key": "punk_in_drublic",
+      "amount_cents": 5000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:57:obligation:weekly_high:12",
+      "source_key": "import:2025:allocation:payment:ledger:57:obligation:weekly_high:12",
+      "payment_preview_id": "payment:ledger:57",
+      "obligation_preview_id": "obligation:weekly_high:12",
+      "team_key": "east_side_top_dog",
+      "amount_cents": 5000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:64:obligation:weekly_low:13",
+      "source_key": "import:2025:allocation:payment:ledger:64:obligation:weekly_low:13",
+      "payment_preview_id": "payment:ledger:64",
+      "obligation_preview_id": "obligation:weekly_low:13",
+      "team_key": "vichy_cheeks",
+      "amount_cents": 2000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:63:obligation:weekly_high:14",
+      "source_key": "import:2025:allocation:payment:ledger:63:obligation:weekly_high:14",
+      "payment_preview_id": "payment:ledger:63",
+      "obligation_preview_id": "obligation:weekly_high:14",
+      "team_key": "napa_kojak",
+      "amount_cents": 3000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:76:obligation:buy_in:miv_insurance",
+      "source_key": "import:2025:allocation:payment:ledger:76:obligation:buy_in:miv_insurance",
+      "payment_preview_id": "payment:ledger:76",
+      "obligation_preview_id": "obligation:buy_in:miv_insurance",
+      "team_key": "miv_insurance",
+      "amount_cents": 19000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:67:obligation:draft_party:that_leche_runs_warm",
+      "source_key": "import:2025:allocation:payment:ledger:67:obligation:draft_party:that_leche_runs_warm",
+      "payment_preview_id": "payment:ledger:67",
+      "obligation_preview_id": "obligation:draft_party:that_leche_runs_warm",
+      "team_key": "that_leche_runs_warm",
+      "amount_cents": 10000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:65:obligation:buy_in:that_other_vichy_team",
+      "source_key": "import:2025:allocation:payment:ledger:65:obligation:buy_in:that_other_vichy_team",
+      "payment_preview_id": "payment:ledger:65",
+      "obligation_preview_id": "obligation:buy_in:that_other_vichy_team",
+      "team_key": "that_other_vichy_team",
+      "amount_cents": 18000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:66:obligation:draft_party:that_other_vichy_team",
+      "source_key": "import:2025:allocation:payment:ledger:66:obligation:draft_party:that_other_vichy_team",
+      "payment_preview_id": "payment:ledger:66",
+      "obligation_preview_id": "obligation:draft_party:that_other_vichy_team",
+      "team_key": "that_other_vichy_team",
+      "amount_cents": 10000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:68:obligation:season_high",
+      "source_key": "import:2025:allocation:payment:ledger:68:obligation:season_high",
+      "payment_preview_id": "payment:ledger:68",
+      "obligation_preview_id": "obligation:season_high",
+      "team_key": "vichy_cheeks",
+      "amount_cents": 10000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:73:obligation:placement:runner_up",
+      "source_key": "import:2025:allocation:payment:ledger:73:obligation:placement:runner_up",
+      "payment_preview_id": "payment:ledger:73",
+      "obligation_preview_id": "obligation:placement:runner_up",
+      "team_key": "benny_beamen",
+      "amount_cents": 36000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:74:obligation:placement:champion",
+      "source_key": "import:2025:allocation:payment:ledger:74:obligation:placement:champion",
+      "payment_preview_id": "payment:ledger:74",
+      "obligation_preview_id": "obligation:placement:champion",
+      "team_key": "los_pollos_hermanos_ii",
+      "amount_cents": 66000,
+      "kind": "apply"
+    },
+    {
+      "preview_id": "allocation:payment:ledger:75:obligation:placement:third_place",
+      "source_key": "import:2025:allocation:payment:ledger:75:obligation:placement:third_place",
+      "payment_preview_id": "payment:ledger:75",
+      "obligation_preview_id": "obligation:placement:third_place",
+      "team_key": "punk_in_drublic",
+      "amount_cents": 12000,
+      "kind": "apply"
+    }
+  ],
+  "external_cash_events": [
+    {
+      "preview_id": "external_cash:draft_party_expense",
+      "source_key": "import:2025:external_cash:draft_party_expense",
+      "direction": "cash_out",
+      "amount_cents": 70000,
+      "category": "draft_party_expense",
+      "counterparty": null,
+      "description": "Draft-party expense paid to an external counterparty",
+      "occurred_on": null,
+      "date_status": "unknown_in_source",
+      "source_type": "import",
+      "source_refs": [
+        "Net Cash!A17:B19"
+      ]
+    }
+  ],
+  "superseded_source_evidence": [
+    {
+      "source_ref": "League Ledger!A71:F71",
+      "raw_obligation_cents": 76000,
+      "canonical_obligation_cents": 72000,
+      "reason_option_id": "champion_configured_720"
+    }
+  ],
+  "applied_corrections": [
+    {
+      "source_ref": "League Ledger!C2",
+      "raw_excel_serial": 374603,
+      "normalized_date": "2025-08-16",
+      "option_id": "date_correct_to_2025_08_16"
+    },
+    {
+      "source_ref": "League Ledger!C58",
+      "raw_excel_serial": 45967,
+      "normalized_date": "2025-11-24",
+      "option_id": "keep_both_correct_second_date"
+    }
+  ],
+  "reconciliation": {
+    "team_balances": [
+      {
+        "team_key": "east_side_top_dog",
+        "team_obligations_cents": 36000,
+        "payments_from_team_cents": 36000,
+        "league_obligations_cents": 5000,
+        "payments_to_team_cents": 5000,
+        "balance_cents": 0
+      },
+      {
+        "team_key": "team_tampon",
+        "team_obligations_cents": 22000,
+        "payments_from_team_cents": 22000,
+        "league_obligations_cents": 0,
+        "payments_to_team_cents": 0,
+        "balance_cents": 0
+      },
+      {
+        "team_key": "benny_beamen",
+        "team_obligations_cents": 30000,
+        "payments_from_team_cents": 30000,
+        "league_obligations_cents": 51000,
+        "payments_to_team_cents": 51000,
+        "balance_cents": 0
+      },
+      {
+        "team_key": "punk_in_drublic",
+        "team_obligations_cents": 32000,
+        "payments_from_team_cents": 32000,
+        "league_obligations_cents": 37000,
+        "payments_to_team_cents": 37000,
+        "balance_cents": 0
+      },
+      {
+        "team_key": "that_other_vichy_team",
+        "team_obligations_cents": 30000,
+        "payments_from_team_cents": 30000,
+        "league_obligations_cents": 0,
+        "payments_to_team_cents": 0,
+        "balance_cents": 0
+      },
+      {
+        "team_key": "napa_kojak",
+        "team_obligations_cents": 38000,
+        "payments_from_team_cents": 36000,
+        "league_obligations_cents": 5000,
+        "payments_to_team_cents": 3000,
+        "balance_cents": 0
+      },
+      {
+        "team_key": "vichy_cheeks",
+        "team_obligations_cents": 36000,
+        "payments_from_team_cents": 36000,
+        "league_obligations_cents": 15000,
+        "payments_to_team_cents": 15000,
+        "balance_cents": 0
+      },
+      {
+        "team_key": "los_pollos_hermanos_ii",
+        "team_obligations_cents": 20000,
+        "payments_from_team_cents": 0,
+        "league_obligations_cents": 82000,
+        "payments_to_team_cents": 66000,
+        "balance_cents": 4000
+      },
+      {
+        "team_key": "that_leche_runs_warm",
+        "team_obligations_cents": 30000,
+        "payments_from_team_cents": 30000,
+        "league_obligations_cents": 0,
+        "payments_to_team_cents": 0,
+        "balance_cents": 0
+      },
+      {
+        "team_key": "miv_insurance",
+        "team_obligations_cents": 24000,
+        "payments_from_team_cents": 19000,
+        "league_obligations_cents": 5000,
+        "payments_to_team_cents": 0,
+        "balance_cents": 0
+      }
+    ],
+    "totals": {
+      "team_obligations_cents": 298000,
+      "payments_from_team_cents": 271000,
+      "league_obligations_cents": 200000,
+      "payments_to_team_cents": 177000,
+      "net_team_balance_cents": 4000,
+      "payment_cents": 448000,
+      "allocated_payment_cents": 448000,
+      "unallocated_payment_cents": 0
+    },
+    "cash": {
+      "team_cash_in_cents": 271000,
+      "team_cash_out_cents": 177000,
+      "external_cash_in_cents": 0,
+      "external_cash_out_cents": 70000,
+      "cash_balance_cents": 24000
+    },
+    "checks": {
+      "source_weekly_payout_pool_cents": 70000,
+      "normalized_weekly_payout_pool_cents": 70000,
+      "source_weekly_penalty_total_cents": 28000,
+      "normalized_weekly_penalty_total_cents": 28000,
+      "source_configured_payout_total_cents": 200000,
+      "normalized_payout_obligation_total_cents": 200000,
+      "source_realized_cash_balance_cents": 24000,
+      "normalized_cash_balance_cents": 24000
+    }
+  },
+  "commit_gate": {
+    "ready_for_domain_commit": true,
+    "requires_separate_commit_action": true,
+    "blocking_issues": [],
+    "notes": [
+      "The external draft-party expense amount is known, but its exact payment date and counterparty are absent from the workbook.",
+      "Preview identifiers must be replaced with database UUIDs while preserving stable source keys during commit."
+    ]
+  }
+}

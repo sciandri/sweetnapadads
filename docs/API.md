@@ -5,6 +5,8 @@ mutations, integrations, and automation.
 
 Planned server boundaries:
 
+- `GET /auth/callback`: exchange a PKCE code or verify an email token hash,
+  then redirect only to a validated in-application path
 - `POST /api/sync/espn`: protected scheduled or commissioner sync
 - `POST /api/admin/results`: validated manual-results fallback
 - `POST /api/admin/payments`: record a payment or disbursement

@@ -8,6 +8,10 @@ type ServerSupabaseEnv = {
   serviceRoleKey: string;
 };
 
+type SiteEnv = {
+  siteUrl: string;
+};
+
 function requireValue(value: string | undefined, name: string) {
   if (!value) {
     throw new Error(`Missing required environment variable: ${name}`);
@@ -20,9 +24,15 @@ function requireUrl(value: string | undefined, name: string) {
   const requiredValue = requireValue(value, name);
 
   try {
-    return new URL(requiredValue).toString().replace(/\/$/, "");
+    const url = new URL(requiredValue);
+
+    if (url.protocol !== "http:" && url.protocol !== "https:") {
+      throw new Error();
+    }
+
+    return url.toString().replace(/\/$/, "");
   } catch {
-    throw new Error(`${name} must be a valid URL`);
+    throw new Error(`${name} must be a valid HTTP(S) URL`);
   }
 }
 
@@ -52,6 +62,12 @@ export function validateServerSupabaseEnv(
   };
 }
 
+export function validateSiteEnv(siteUrl: string | undefined): SiteEnv {
+  return {
+    siteUrl: requireUrl(siteUrl, "SITE_URL"),
+  };
+}
+
 export function getPublicSupabaseEnv() {
   return validatePublicSupabaseEnv(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -64,4 +80,8 @@ export function getServerSupabaseEnv() {
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.SUPABASE_SERVICE_ROLE_KEY,
   );
+}
+
+export function getSiteEnv() {
+  return validateSiteEnv(process.env.SITE_URL);
 }

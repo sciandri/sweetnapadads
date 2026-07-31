@@ -19,10 +19,10 @@
 
 ## Phase 2 — League and finance
 
-- Teams, owners, and ownership history
-- Obligation/payment ledger
-- Balance views and reconciliation invariants
-- 2025 staging import with issue review
+- [x] Teams, owners, season teams, and ownership history
+- [x] Obligation, payment, allocation, and adjustment events
+- [x] Balance views and reconciliation invariants
+- [x] 2025 staging import with issue review
 
 ## Phase 3 — Competition
 

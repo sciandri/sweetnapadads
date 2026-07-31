@@ -37,10 +37,18 @@ facts.
 
 - `financial_obligations`: amounts assessed or owed, with rule provenance
 - `payments`: money actually received or disbursed
-- `payment_allocations`: optional settlement links
-- `ledger_entries`: immutable accounting events and adjustments
+- `payment_allocations`: append-only settlement links and allocation reversals
+- `financial_adjustments`: audited balance corrections
+- `external_cash_events`: cash movements with non-team counterparties
 
 Balances are database views over obligations, payments, and adjustments.
+Obligations and payments are distinct immutable events. Stable season-scoped
+source keys make rule generation and imports idempotent. Allocation triggers
+enforce compatible money directions and prevent a payment or obligation from
+being over-allocated. Corrections are appended as allocation reversals or
+reasoned financial adjustments; posted rows are never edited or deleted.
+Season cash is derived separately from team payments and immutable external
+cash events, so league expenses never distort a team's balance.
 
 ## Content and operations
 
@@ -73,6 +81,15 @@ npm run db:test
 migration, and then applies `supabase/seed.sql`. The seed must contain only
 synthetic local-development data.
 
+The current seed creates a deterministic development commissioner, league,
+2026 season, season settings, franchise and ownership chain, plus a partial
+buy-in payment with an allocation and audited adjustment. The commissioner
+uses the reserved synthetic email
+`dev-commissioner@sweetnapadads.test` and intentionally has no password, so it
+cannot be used to sign in. Create login-capable local identities through the
+Auth admin API or local Studio when exercising the authentication flow. Fixed
+UUIDs make application fixtures and database tests reproducible.
+
 When a hosted development project exists, link it deliberately and preview
 pending migrations before applying them:
 
@@ -102,9 +119,67 @@ Never run a linked reset against production.
 - integer-cent financial settings and season constraints;
 - league-scoped RLS helpers, explicit grants, and policies on every table.
 
+`20260731050000_team_ownership.sql` establishes:
+
+- durable league-scoped franchises and historical owner identities;
+- optional owner links to current Auth users without requiring them for
+  imported history;
+- dated ownership records with one current primary owner per franchise;
+- season-specific names, abbreviations, ESPN team IDs, and participation
+  status;
+- composite foreign keys that prevent cross-league ownership or season links;
+- commissioner-only writes, member reads, no authenticated delete grants, and
+  RLS on every new table.
+
+`20260731060000_financial_events.sql` establishes:
+
+- distinct obligations, payments, allocations, and audited adjustments;
+- positive safe-integer cent amounts with explicit money direction;
+- stable season-scoped source keys for idempotent generation and import;
+- same-league, same-season, and same-team event relationships;
+- allocation caps, compatible settlement directions, and append-only
+  allocation reversals;
+- immutable posted events enforced by triggers and write privileges;
+- commissioner-only creation, league-member visibility, outsider isolation,
+  and RLS on every financial table.
+
+`20260731070000_financial_views.sql` establishes:
+
+- obligation allocation, outstanding amount, and reconciliation status;
+- payment allocation, unallocated amount, and reconciliation status;
+- a canonical team-perspective balance formula over obligations, payments,
+  and audited adjustments;
+- zero-balance rows for participating season teams without financial events;
+- security-invoker views so underlying league RLS remains authoritative.
+
+`20260731080000_historical_import_staging.sql` establishes:
+
+- source-hashed import batches with staged, review, approval, commit, and
+  rejection states;
+- immutable row-level workbook values and formulas without content
+  deduplication;
+- explicit team-identifier and financial-event type/subtype mappings;
+- structured issues with severity, evidence, and commissioner decisions;
+- approval guards for unresolved mappings and blocking findings;
+- a security-invoker batch review view;
+- commissioner-only staging visibility and mutation under RLS.
+
+`20260731090000_external_cash_events.sql` establishes:
+
+- immutable cash-in and cash-out events for non-team counterparties;
+- stable season-scoped source keys and integer-cent amounts;
+- nullable dates only for imported historical evidence whose exact date is
+  absent from the source;
+- member visibility, commissioner creation, outsider isolation, and RLS;
+- a security-invoker season cash view combining team and external movements.
+
 Public self-registration is disabled in `supabase/config.toml`. Authentication
 identities will be created through commissioner-controlled invitation or
 administrative workflows.
+
+Email authentication remains enabled so invited identities can request a
+magic link. Global signup is disabled, and the application also passes
+`shouldCreateUser: false`, so the public login form cannot create identities.
 
 The local project is linked to hosted Supabase project
 `cleyfpzxckjtmsoesgby`. Always run a linked migration dry-run and complete the

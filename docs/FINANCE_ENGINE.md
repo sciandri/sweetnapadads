@@ -18,6 +18,11 @@ Payment examples:
 - penalty received;
 - payout disbursed.
 
+Cash paid to or received from a non-team counterparty is an
+`external_cash_event`, not a team payment. For example, attendee draft-party
+fees remain team obligations and payments, while the venue expense is a
+separate league cash-out event.
+
 ## Sign convention
 
 Balances are presented from the team's perspective:
@@ -32,7 +37,8 @@ team balance =
   - payments received from team
   - obligations owed to team
   + payments made to team
-  + audited adjustments
+  + adjustments that increase the team balance
+  - adjustments that decrease the team balance
 ```
 
 ## Invariants
@@ -44,6 +50,21 @@ team balance =
 - Posted entries are immutable.
 - Corrections append a reversal or adjustment with actor and reason.
 - Ledger totals reconcile to obligation and payment subledgers.
+
+The database exposes `team_financial_balances`,
+`obligation_reconciliation`, and `payment_reconciliation` as
+security-invoker views. These are the canonical read models for application
+balances and settlement state.
+
+`season_cash_balances` is the canonical league-cash read model:
+
+```text
+season cash =
+  payments received from teams
+  - payments made to teams
+  + external cash received
+  - external cash paid
+```
 
 Tie handling and payout rounding are explicit season settings before the
 engine is considered complete.

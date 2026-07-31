@@ -5,8 +5,11 @@ competition, finances, history, commissioner operations, and league lore.
 
 ## Status
 
-Phase 0 is complete. Phase 1 is in progress with a reproducible local Supabase
-stack and the first tested platform migration.
+Phase 0 is complete. Phase 1 now includes a reproducible local Supabase stack,
+tested platform schema and RLS, deterministic development data, and an
+invite-only passwordless authentication flow.
+Phase 2 is underway with durable teams, owner identities, dated ownership
+history, and season-specific ESPN team mappings.
 
 ## Stack
 
@@ -27,7 +30,8 @@ npm run dev
 ```
 
 Fill in the Supabase publishable key in `.env.local` before using authenticated
-routes. Never place the service-role key in a `NEXT_PUBLIC_` variable.
+routes, and keep `SITE_URL=http://localhost:3000`. Never place the service-role
+key in a `NEXT_PUBLIC_` variable.
 
 Open `http://localhost:3000`.
 
@@ -39,7 +43,8 @@ npm run db:reset
 ```
 
 Supabase Studio is available at `http://localhost:54323`. Run
-`npm run db:stop` when the database stack is no longer needed.
+`npm run db:stop` when the database stack is no longer needed. Local email is
+captured by Mailpit at `http://localhost:54324`.
 
 ## Quality checks
 

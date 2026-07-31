@@ -12,9 +12,9 @@
   (`prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w`)
 - Supabase: `sweetnapadads` (`cleyfpzxckjtmsoesgby`, `us-west-2`)
 
-The repository is linked locally to both projects. Linking is not deployment:
-the current working tree has not been deployed to Vercel, and the local
-database migrations remain pending on the hosted Supabase database.
+The repository is linked locally to both projects. The platform foundation is
+deployed to Vercel, and both versioned migrations are applied to hosted
+Supabase. Active uncommitted work is not a deployment.
 
 ## Environments
 
@@ -30,6 +30,22 @@ browser and are safe only in combination with complete RLS. The
 `SUPABASE_SERVICE_ROLE_KEY` bypasses RLS and must be configured only as a
 server-side secret. Supabase clients are constructed per request so Vercel
 instances cannot share user sessions through module state.
+
+`SITE_URL` is the canonical HTTP(S) application origin used to construct Auth
+callbacks. Production must use `https://sweetnapadads.com`; local development
+uses `http://localhost:3000`.
+
+Before releasing authentication:
+
+1. Keep the Supabase email provider enabled and public user signup disabled.
+2. Set the Supabase Auth Site URL to `https://sweetnapadads.com`.
+3. Allow the exact production callback URL
+   `https://sweetnapadads.com/auth/callback`.
+4. Configure the Vercel production `SITE_URL`.
+5. Configure production SMTP before inviting real members; Supabase's default
+   mail service is for limited trial use.
+6. Smoke-test an invited member, an expired link, and an authenticated
+   non-member.
 
 ## Release gate
 

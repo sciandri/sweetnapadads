@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "source_sha256": "f641155c4261a66dea0db600a1aea4edb268b65c2d7bcb4408e7ac3e8d1272a6",
+  "status": "approved",
+  "approved_on": "2026-07-30",
+  "approval_source": "Commissioner instruction in Codex session 0003",
+  "accepted_option_ids": [
+    "champion_configured_720",
+    "date_correct_to_2025_08_16",
+    "derive_last_method",
+    "derive_awards_from_results",
+    "approve_aliases",
+    "keep_both_correct_second_date",
+    "approve_type_subtype_map"
+  ],
+  "decisions": [
+    {
+      "issue_code": "champion_payout_conflict",
+      "title": "Choose the canonical champion obligation",
+      "requires_commissioner_approval": true,
+      "evidence": {
+        "configured_pool_cents": 200000,
+        "weekly_payout_pool_cents": 70000,
+        "season_high_payout_cents": 10000,
+        "podium_pool_cents": 120000,
+        "configured_champion_cents": 72000,
+        "ledger_obligation_cents": 76000,
+        "ledger_payment_cents": 66000,
+        "configured_cell": "League Payouts!C14",
+        "obligation_cell": "League Ledger!E71",
+        "payment_cell": "League Ledger!E74"
+      },
+      "recommended_option_id": "champion_configured_720",
+      "recommendation_reason": "The configured formula allocates 60% of the $1,200 podium pool and the workbook's full $2,000 payout check passes only with a $720 champion award.",
+      "options": [
+        {
+          "option_id": "champion_configured_720",
+          "label": "$720 obligation; $660 paid; $60 outstanding",
+          "normalized_effect": {
+            "obligation_cents": 72000,
+            "payment_cents": 66000,
+            "adjustment_cents": 0,
+            "team_balance_cents": -6000
+          },
+          "treatment": "Generate the $720 rule-backed obligation, import the $660 payment, and preserve the $760 ledger row only as superseded source evidence."
+        },
+        {
+          "option_id": "champion_ledger_760",
+          "label": "$760 obligation; $660 paid; $100 outstanding",
+          "normalized_effect": {
+            "obligation_cents": 76000,
+            "payment_cents": 66000,
+            "adjustment_cents": 0,
+            "team_balance_cents": -10000
+          },
+          "treatment": "Use the ledger obligation as canonical and record a documented exception to the configured payout rule."
+        },
+        {
+          "option_id": "champion_final_660",
+          "label": "$720 obligation; $660 paid; $60 forgiven",
+          "normalized_effect": {
+            "obligation_cents": 72000,
+            "payment_cents": 66000,
+            "adjustment_cents": 6000,
+            "team_balance_cents": 0
+          },
+          "treatment": "Keep the configured obligation and actual payment, then append an audited balance-increasing adjustment that forgives the remaining $60."
+        }
+      ]
+    },
+    {
+      "issue_code": "malformed_ledger_date",
+      "title": "Correct the East Side Top Dog dues date",
+      "requires_commissioner_approval": true,
+      "evidence": {
+        "cell": "League Ledger!C2",
+        "raw_excel_serial": 374603,
+        "raw_interpreted_date": "2925-08-16",
+        "probable_excel_serial": 45885,
+        "probable_date": "2025-08-16",
+        "peer_rows_with_probable_date": [
+          "League Ledger!A4:F4",
+          "League Ledger!A6:F6",
+          "League Ledger!A9:F9"
+        ]
+      },
+      "recommended_option_id": "date_correct_to_2025_08_16",
+      "recommendation_reason": "The malformed value resolves to the same month and day in 2925, while serial 45885 is 2025-08-16 and appears on nearby opening-payment rows.",
+      "options": [
+        {
+          "option_id": "date_correct_to_2025_08_16",
+          "label": "Correct to 2025-08-16",
+          "treatment": "Import the payment date as 2025-08-16 and retain serial 374603 in raw evidence."
+        },
+        {
+          "option_id": "date_unknown",
+          "label": "Treat the exact date as unknown",
+          "treatment": "Do not invent a date; require a separate commissioner-provided date before commit."
+        }
+      ]
+    },
+    {
+      "issue_code": "last_method_formula_error",
+      "title": "Replace broken last-method workbook outputs",
+      "requires_commissioner_approval": true,
+      "evidence": {
+        "range": "Team Balance!T2:T11",
+        "error": "#NAME?",
+        "affected_cells": 10,
+        "dependent_date_range": "Team Balance!S2:S11"
+      },
+      "recommended_option_id": "derive_last_method",
+      "recommendation_reason": "Last method is a presentation value, not a financial event. It can be deterministically derived from corrected normalized payments and should not be imported as source truth.",
+      "options": [
+        {
+          "option_id": "derive_last_method",
+          "label": "Derive from normalized payments",
+          "treatment": "Ignore the broken formula outputs and order payments by paid date, source row, and creation timestamp."
+        },
+        {
+          "option_id": "manual_last_method",
+          "label": "Manually approve each team value",
+          "treatment": "Create ten commissioner decisions for the displayed fallback values."
+        }
+      ]
+    },
+    {
+      "issue_code": "weekly_award_helper_layout",
+      "title": "Choose the authoritative weekly-award source",
+      "requires_commissioner_approval": true,
+      "evidence": {
+        "results_range": "Weekly Results!A1:F177",
+        "primary_award_range": "Weekly Awards!A1:E17",
+        "helper_range": "Weekly Awards!W1:AB17",
+        "stray_formula_range": "Weekly Awards!W20:AB20",
+        "stray_header_range": "Weekly Awards!A201:AB201",
+        "regular_season_weeks": 14,
+        "derived_weekly_payout_total_cents": 70000,
+        "derived_weekly_penalty_total_cents": 28000
+      },
+      "recommended_option_id": "derive_awards_from_results",
+      "recommendation_reason": "Weeks 1-14 derive cleanly from the 160 result rows and match the ledger's sequence of 14 high-score obligations and 14 low-score assessments.",
+      "options": [
+        {
+          "option_id": "derive_awards_from_results",
+          "label": "Derive weeks 1-14 from weekly results",
+          "treatment": "Use scores as source facts, generate awards from season rules, and keep helper cells as non-authoritative evidence."
+        },
+        {
+          "option_id": "import_award_helpers",
+          "label": "Import helper outputs directly",
+          "treatment": "Treat cached helper values as source records and document the incomplete formula/layout ranges."
+        }
+      ]
+    },
+    {
+      "issue_code": "team_alias_variants",
+      "title": "Approve team aliases found outside the Teams sheet",
+      "requires_commissioner_approval": true,
+      "evidence": {
+        "source_range": "Bets!A1:D3",
+        "proposed_aliases": [
+          {
+            "source_value": "That other Vichy team",
+            "canonical_team": "That Other Vichy Team"
+          },
+          {
+            "source_value": "ESTD",
+            "canonical_team": "East Side Top Dog"
+          },
+          {
+            "source_value": "Napa KoJak",
+            "canonical_team": "Napa Kojak"
+          },
+          {
+            "source_value": "Benny Beman",
+            "canonical_team": "Benny Beamen"
+          }
+        ]
+      },
+      "recommended_option_id": "approve_aliases",
+      "recommendation_reason": "Each variant is unambiguous in its row context and maps to exactly one team in the Teams sheet.",
+      "options": [
+        {
+          "option_id": "approve_aliases",
+          "label": "Approve all four aliases",
+          "treatment": "Create explicit historical team mappings; do not rewrite the raw bet text."
+        },
+        {
+          "option_id": "review_aliases_individually",
+          "label": "Review aliases individually",
+          "treatment": "Leave the affected side-bet rows blocked until each alias is confirmed."
+        }
+      ]
+    },
+    {
+      "issue_code": "repeated_penalty_date",
+      "title": "Correct the second Napa Kojak penalty date",
+      "requires_commissioner_approval": true,
+      "evidence": {
+        "first_row": 46,
+        "second_row": 58,
+        "repeated_excel_serial": 45967,
+        "repeated_date": "2025-11-06",
+        "derived_week_9_low_team": "Napa Kojak",
+        "derived_week_12_low_team": "Napa Kojak",
+        "probable_second_excel_serial": 45985,
+        "probable_second_date": "2025-11-24",
+        "ledger_penalty_assessment_count": 14,
+        "regular_season_week_count": 14
+      },
+      "recommended_option_id": "keep_both_correct_second_date",
+      "recommendation_reason": "The 14 assessment rows match the 14 weekly low-score teams in order. Row 58 is the valid week-12 assessment with a copied week-9 date, not a duplicate obligation.",
+      "options": [
+        {
+          "option_id": "keep_both_correct_second_date",
+          "label": "Keep both; date row 58 as 2025-11-24",
+          "treatment": "Generate separate week-9 and week-12 obligations and preserve the repeated raw date in staging evidence."
+        },
+        {
+          "option_id": "treat_second_as_duplicate",
+          "label": "Discard row 58 as a duplicate",
+          "treatment": "Import only 13 penalty assessments and document why the week-12 low-score rule did not generate an obligation."
+        }
+      ]
+    },
+    {
+      "issue_code": "unprovenanced_ledger_labels",
+      "title": "Approve financial event mappings",
+      "requires_commissioner_approval": true,
+      "evidence": {
+        "source_range": "League Ledger!A1:F76",
+        "source_type_counts": {
+          "Dues": 10,
+          "Draft Party": 7,
+          "Penalty Assessed": 14,
+          "Payout Obligation": 18,
+          "Payout Paid": 15,
+          "Penalty Paid": 11
+        }
+      },
+      "recommended_option_id": "approve_type_subtype_map",
+      "recommendation_reason": "Separating source Type and How values preserves obligations and payments as different events while allowing weekly, season-high, and placement categories to retain stable provenance.",
+      "options": [
+        {
+          "option_id": "approve_type_subtype_map",
+          "label": "Approve the proposed Type + How mapping",
+          "treatment": "Map Dues, Draft Party, and Penalty Paid to payments from teams; Payout Paid to payments to teams; Penalty Assessed to team obligations; and Payout Obligation subtypes to league obligations with weekly, season-high, and placement categories."
+        },
+        {
+          "option_id": "custom_type_subtype_map",
+          "label": "Provide a custom mapping",
+          "treatment": "Keep the batch blocked until the commissioner specifies different semantics for one or more Type + How combinations."
+        }
+      ]
+    }
+  ],
+  "recommended_batch_action": {
+    "description": "Approve the recommended treatments for six operational findings, then choose the champion payout treatment separately.",
+    "operational_option_ids": [
+      "date_correct_to_2025_08_16",
+      "derive_last_method",
+      "derive_awards_from_results",
+      "approve_aliases",
+      "keep_both_correct_second_date",
+      "approve_type_subtype_map"
+    ],
+    "champion_option_ids": [
+      "champion_configured_720",
+      "champion_ledger_760",
+      "champion_final_660"
+    ]
+  }
+}

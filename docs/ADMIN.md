@@ -17,3 +17,8 @@ Initial capabilities:
 Every consequential action records actor, timestamp, league, season, and a
 human-readable reason where appropriate. Destructive historical deletion is
 not exposed through the application.
+
+Historical imports are commissioner-only review workflows. The source workbook
+is first staged losslessly, then team aliases, event labels, and discrepancies
+are resolved. Approval is unavailable while a blocking issue or pending
+mapping remains. Approval and normalized-history commit are separate actions.

@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "source": {
+    "filename": "Sweet Looking Napa Dads.xlsx",
+    "format": "xlsx",
+    "size_bytes": 321207,
+    "sha256": "f641155c4261a66dea0db600a1aea4edb268b65c2d7bcb4408e7ac3e8d1272a6"
+  },
+  "inventory": [
+    {
+      "sheet": "Teams",
+      "source_range": "A1:D11",
+      "data_rows": 10,
+      "role": "team_and_owner_evidence"
+    },
+    {
+      "sheet": "League Ledger",
+      "source_range": "A1:F76",
+      "data_rows": 75,
+      "role": "financial_event_evidence"
+    },
+    {
+      "sheet": "Team Balance",
+      "source_range": "A1:U11",
+      "data_rows": 10,
+      "role": "derived_financial_reconciliation"
+    },
+    {
+      "sheet": "Weekly Results",
+      "source_range": "A1:F177",
+      "data_rows": 176,
+      "role": "competition_result_evidence"
+    },
+    {
+      "sheet": "Weekly Awards",
+      "source_range": "A1:AB201",
+      "data_rows": 200,
+      "role": "derived_award_and_helper_evidence"
+    },
+    {
+      "sheet": "League Payouts",
+      "source_range": "A1:D22",
+      "data_rows": 21,
+      "role": "season_rule_evidence"
+    },
+    {
+      "sheet": "Net Cash",
+      "source_range": "A1:C32",
+      "data_rows": 31,
+      "role": "derived_cash_reconciliation"
+    },
+    {
+      "sheet": "Bets",
+      "source_range": "A1:D3",
+      "data_rows": 2,
+      "role": "side_bet_evidence"
+    }
+  ],
+  "known_issues": [
+    {
+      "issue_code": "champion_payout_conflict",
+      "severity": "blocking",
+      "status": "resolved",
+      "evidence": {
+        "configured_cents": 72000,
+        "obligation_cents": 76000,
+        "payment_cents": 66000,
+        "configured_cell": "League Payouts!C14",
+        "obligation_cell": "League Ledger!E71",
+        "payment_cell": "League Ledger!E74"
+      }
+    },
+    {
+      "issue_code": "malformed_ledger_date",
+      "severity": "blocking",
+      "status": "resolved",
+      "evidence": {
+        "cell": "League Ledger!C2",
+        "raw_excel_serial": 374603
+      }
+    },
+    {
+      "issue_code": "last_method_formula_error",
+      "severity": "warning",
+      "status": "resolved",
+      "evidence": {
+        "range": "Team Balance!T2:T11",
+        "error": "#NAME?",
+        "affected_cells": 10
+      }
+    },
+    {
+      "issue_code": "weekly_award_helper_layout",
+      "severity": "blocking",
+      "status": "resolved",
+      "evidence": {
+        "primary_range": "Weekly Awards!A1:E17",
+        "helper_range": "Weekly Awards!W1:AB17",
+        "stray_formula_range": "Weekly Awards!W20:AB20",
+        "stray_header_range": "Weekly Awards!A201:AB201"
+      }
+    },
+    {
+      "issue_code": "team_alias_variants",
+      "severity": "blocking",
+      "status": "resolved",
+      "evidence": {
+        "examples": [
+          "That Other Vichy Team",
+          "That other Vichy team",
+          "East Side Top Dog",
+          "ESTD",
+          "Benny Beamen",
+          "Benny Beman"
+        ]
+      }
+    },
+    {
+      "issue_code": "repeated_penalty_date",
+      "severity": "blocking",
+      "status": "resolved",
+      "evidence": {
+        "description": "Two distinct Napa Kojak low-score assessments share the same date even though their row sequence matches weeks 9 and 12.",
+        "first_cell_range": "League Ledger!A46:F46",
+        "second_cell_range": "League Ledger!A58:F58",
+        "repeated_excel_serial": 45967,
+        "probable_second_serial": 45985
+      }
+    },
+    {
+      "issue_code": "unprovenanced_ledger_labels",
+      "severity": "blocking",
+      "status": "resolved",
+      "evidence": {
+        "description": "Ledger labels require explicit mappings to obligation, payment, adjustment, or ignored evidence before import."
+      }
+    }
+  ],
+  "acceptance_state": {
+    "ready_for_approval": true,
+    "normalized_history_committed": false,
+    "commissioner_decisions_required": false
+  }
+}

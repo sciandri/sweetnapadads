@@ -10,6 +10,10 @@ insert into auth.users (
   email,
   encrypted_password,
   email_confirmed_at,
+  confirmation_token,
+  recovery_token,
+  email_change_token_new,
+  email_change,
   raw_app_meta_data,
   raw_user_meta_data,
   created_at,
@@ -24,6 +28,10 @@ values
     'commissioner@example.test',
     '',
     timezone('utc', statement_timestamp()),
+    '',
+    '',
+    '',
+    '',
     '{"provider":"email","providers":["email"]}',
     '{"display_name":"Commissioner"}',
     timezone('utc', statement_timestamp()),
@@ -37,6 +45,10 @@ values
     'member@example.test',
     '',
     timezone('utc', statement_timestamp()),
+    '',
+    '',
+    '',
+    '',
     '{"provider":"email","providers":["email"]}',
     '{"display_name":"Member"}',
     timezone('utc', statement_timestamp()),
@@ -50,6 +62,10 @@ values
     'outsider@example.test',
     '',
     timezone('utc', statement_timestamp()),
+    '',
+    '',
+    '',
+    '',
     '{"provider":"email","providers":["email"]}',
     '{"display_name":"Outsider"}',
     timezone('utc', statement_timestamp()),
@@ -57,7 +73,15 @@ values
   );
 
 select is(
-  (select count(*) from public.profiles),
+  (
+    select count(*)
+    from public.profiles
+    where user_id in (
+      '11111111-1111-4111-8111-111111111111',
+      '22222222-2222-4222-8222-222222222222',
+      '33333333-3333-4333-8333-333333333333'
+    )
+  ),
   3::bigint,
   'auth user inserts should create profiles'
 );

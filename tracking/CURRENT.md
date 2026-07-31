@@ -1,11 +1,11 @@
 # Current project state
 
 - Last updated: 2026-07-30
-- Session: 0002
-- Session status: complete — published and deployed
+- Session: 0003
+- Session status: active
 - Branch: `main`
-- Phase: Phase 1 — Platform
-- Checkpoint: Platform foundation published and deployed
+- Phase: Phase 2 — League and finance
+- Checkpoint: approved 2025 normalization preview generated and reconciled
 
 ## Current outcome
 
@@ -18,6 +18,32 @@ implemented and tested locally. Request-scoped Supabase browser, server,
 service-role, and session-refresh clients are in place for Next.js 16. The
 reviewed migrations are applied to the hosted Supabase project, and Vercel
 production is live at `https://www.sweetnapadads.com`.
+The local seed now defines a deterministic synthetic commissioner, development
+league, 2026 season, and season-scoped rules.
+The application now has passwordless invite-only login, dual-form callback
+verification, safe return paths, authenticated league authorization, sign-out,
+and member-facing access states.
+Phase 2 now has durable franchises, historical owners, dated ownership links,
+and season-specific team entries with ESPN IDs, same-league constraints, and
+league-scoped RLS.
+It also has separate immutable obligations and payments, append-only
+allocations and reversals, audited adjustments, stable source keys, allocation
+caps, and league-scoped financial RLS.
+Canonical security-invoker views now derive team balances and exact obligation
+and payment reconciliation without duplicating financial state.
+The 2025 workbook is now checksum-pinned and inventoried. Lossless staging,
+team and event mappings, structured discrepancy decisions, approval guards,
+and commissioner-only import RLS are implemented. No source discrepancy was
+accepted until its recommended treatment received commissioner approval.
+Every finding now has an evidence-backed decision packet with explicit options
+and an accepted recommendation. Financial label mappings use `Type + How` so
+weekly, season-high, and placement payouts remain distinct.
+The checksum-pinned normalized preview contains all 160 results, 14 derived
+awards, 49 obligations, 43 payments, and 43 deterministic allocations without
+committing history to domain tables. It reconciles to a `$40` net team balance
+and `$240` realized league cash balance. A separate immutable external-cash
+event model now accounts for the `$700` draft-party expense without assigning
+it to a team.
 
 ## In progress
 
@@ -34,17 +60,35 @@ production is live at `https://www.sweetnapadads.com`.
 - [x] Apply and verify both hosted Supabase migrations.
 - [x] Configure the public Supabase production environment in Vercel.
 - [x] Deploy and verify the production application and custom domain.
+- [x] Seed a synthetic local development league and commissioner identity.
+- [x] Verify the complete application and local database suite.
+- [x] Implement and unit-test invite-only magic-link login.
+- [x] Implement PKCE and token-hash callback verification.
+- [x] Verify unauthenticated, expired-link, and authorized-member browser paths.
+- [x] Configure git-ignored local public Supabase and site URL values.
+- [x] Integrate the supplied logo across public, Auth, and member-shell states.
+- [x] Model and test teams, owners, ownership history, and season teams.
+- [x] Model and test obligations, payments, allocations, reversals, and
+      adjustments.
+- [x] Add and test team balance, obligation reconciliation, and payment
+      reconciliation views.
+- [x] Audit and checksum-pin the eight-sheet 2025 workbook.
+- [x] Add and test lossless historical staging, mappings, issues, and approval
+      gates.
+- [x] Add a machine-checked decision queue for all seven workbook findings.
+- [x] Record commissioner approval for all seven recommended treatments.
+- [x] Generate and reconcile the review-only normalized 2025 preview.
+- [x] Model external league cash events and the season cash balance view.
 
 ## Next actions
 
-1. Seed a synthetic development league and commissioner identity.
-2. Build the invite-only login and callback flow.
-3. Configure local Supabase values for application development without
-   committing them.
+1. Configure hosted Supabase Auth URLs and email settings, plus Vercel
+   `SITE_URL`, during the next publish-and-deploy ritual.
+2. Configure production SMTP before inviting real members.
+3. Implement the atomic, idempotent domain commit for the approved 2025
+   normalized preview.
 4. Add the service-role value to server environments only when a reviewed
    server-side feature requires it.
-5. Integrate the supplied logo into the interface when the branded application
-   shell is implemented.
 
 ## Decisions in force
 
@@ -57,35 +101,47 @@ production is live at `https://www.sweetnapadads.com`.
 
 ## Known risks and blockers
 
-- The 2025 workbook contains documented reconciliation discrepancies; see
-  `docs/MIGRATION_2025.md`.
+- The 2025 workbook discrepancies are resolved in the approved decision queue.
+  The normalized preview is reconciled but intentionally not committed to
+  domain tables; see `docs/MIGRATION_2025.md`.
 - The hosted `sweetnapadads` project exists at
   `https://cleyfpzxckjtmsoesgby.supabase.co`. Codex MCP and CLI access are
-  authenticated, the CLI is linked, and both local migrations match the hosted
-  migration history.
+  authenticated and the CLI is linked. The first two migrations are hosted;
+  the tested team/ownership, financial-events, financial-views, and historical
+  import staging and external-cash migrations are local and pending
+  publication.
 - Vercel production has the public Supabase URL and publishable key. Preview
   and development environments remain intentionally unconfigured to avoid
   silently sharing the production database.
+- The new authentication routes are verified locally but are not published or
+  configured in hosted Supabase/Vercel yet.
+- Production SMTP is not configured; do not invite real members until it is.
 - Docker Desktop must be running for local database commands.
+- The seeded commissioner is a relational fixture without a password and
+  cannot sign in; create login-capable local users through the Auth admin API
+  or local Studio.
 - The repository is linked locally to Vercel project
   `prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w` in the `sciandri` scope. Production
   deployment `dpl_5L67VVGSmAX9tk1agNe2LtXwzbGU` is Ready.
 - ESPN private-league credentials have not been provided and must never be
   committed.
 - `logo/sweetlookingnapadads.png` is the canonical and only supplied brand
-  asset. It has not yet been integrated into the interface.
+  asset and is integrated through a shared responsive component.
 
 ## Verification
 
 - `npm audit`: clean
 - `npm run lint`: passing
 - `npm run typecheck`: passing
-- `npm test`: 5 tests passing
+- `npm test`: 25 tests passing
 - `npm run db:reset`: passing
 - `npm run db:lint`: passing with no warnings
-- `npm run db:test`: 24 database tests passing
+- `npm run db:test`: 153 database tests passing
 - `npm run build`: passing
-- Hosted migration history: local and remote versions match
+- Invite-only Auth browser smoke test: passing through local email, callback,
+  verified claims, membership RLS, and dashboard
+- Hosted migration history: the first two local versions match remote; four
+  verified local migrations are pending publication
 - Vercel production: Ready
 - `https://sweetnapadads.com`: HTTP 200 after redirect to
   `https://www.sweetnapadads.com/`
@@ -95,9 +151,10 @@ production is live at `https://www.sweetnapadads.com`.
 
 ## Latest commit intent
 
-`docs: record platform deployment`
+`feat: add authenticated league, finance, and historical import foundation`
 
 ## Pickup instruction
 
-Read `tracking/CHECKLIST.md`, confirm `main` is clean and synchronized, and
-continue with the first incomplete item under **Next actions**.
+Run the publish-and-deploy ritual when requested, including hosted Auth URL and
+`SITE_URL` configuration plus the pending migrations. Otherwise implement the
+atomic, idempotent commit step for the approved normalized 2025 preview.

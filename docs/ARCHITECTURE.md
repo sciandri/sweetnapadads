@@ -55,6 +55,11 @@ its origin and actor.
 - Service-role credentials and ESPN cookies are server-only.
 - Supabase SSR sessions use cookies refreshed by the root Next.js Proxy.
 - Identity checks use verified Auth claims; authorization remains in RLS.
+- Public login is passwordless and invite-only: magic-link requests never
+  create users, callbacks accept PKCE codes or verified token hashes, and
+  return paths are restricted to this application.
+- Authenticated screens verify both claims and active league membership; the
+  Proxy refreshes sessions but is not the authorization boundary.
 - Protected automation requires a rotating shared secret.
 - Financial corrections append reversing or adjustment entries.
 

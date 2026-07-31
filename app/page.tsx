@@ -1,3 +1,7 @@
+import Link from "next/link";
+
+import { BrandLogo } from "@/components/brand-logo";
+
 export default function Home() {
   const modules = [
     {
@@ -27,16 +31,27 @@ export default function Home() {
 
         <header className="relative z-10 flex items-start justify-between gap-4 border-b border-forest/20 pb-5 sm:items-center">
           <div className="flex items-center gap-2.5 sm:gap-3">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-forest font-mono text-xs font-bold tracking-widest text-background">
-              SL
-            </span>
+            <BrandLogo
+              alt=""
+              className="h-11 w-11 object-contain sm:h-13 sm:w-13"
+              priority
+              sizes="52px"
+            />
             <span className="text-[10px] font-bold uppercase leading-4 tracking-[0.2em] sm:text-xs sm:tracking-[0.24em]">
               Napa · California
             </span>
           </div>
-          <span className="max-w-36 text-right font-mono text-[9px] uppercase leading-4 tracking-[0.16em] text-ink-muted sm:max-w-none sm:text-[11px] sm:tracking-[0.18em]">
-            Est. long before good judgment
-          </span>
+          <div className="flex flex-col items-end gap-2 sm:flex-row sm:items-center sm:gap-5">
+            <span className="hidden max-w-36 text-right font-mono text-[9px] uppercase leading-4 tracking-[0.16em] text-ink-muted sm:inline sm:max-w-none sm:text-[11px] sm:tracking-[0.18em]">
+              Est. long before good judgment
+            </span>
+            <Link
+              className="min-h-10 border border-forest/25 px-3 py-2.5 font-mono text-[9px] font-bold uppercase tracking-[0.16em] transition hover:border-wine hover:text-wine sm:px-4 sm:text-[10px]"
+              href="/login"
+            >
+              Member sign in
+            </Link>
+          </div>
         </header>
 
         <div className="relative z-10 grid flex-1 items-center gap-10 py-12 sm:gap-14 sm:py-16 lg:grid-cols-[1.25fr_0.75fr] lg:py-20">
@@ -58,12 +73,14 @@ export default function Home() {
           </div>
 
           <aside className="relative border-t border-forest/20 pt-8 sm:border-l sm:border-t-0 sm:pl-8 sm:pt-0 lg:ml-auto lg:max-w-sm">
-            <div className="mb-8 flex items-end justify-between sm:mb-10">
-              <span className="font-display text-7xl leading-none text-gold sm:text-8xl">
-                10
-              </span>
-              <span className="mb-2 text-right font-mono text-[10px] uppercase leading-5 tracking-[0.2em] text-ink-muted">
-                Founding teams
+            <div className="mb-7 flex items-end justify-between gap-6 sm:mb-9">
+              <BrandLogo
+                className="h-auto w-40 drop-shadow-[0_16px_28px_rgb(23_63_50_/_12%)] sm:w-48 lg:w-56"
+                priority
+                sizes="(min-width: 1024px) 224px, (min-width: 640px) 192px, 160px"
+              />
+              <span className="mb-2 shrink-0 text-right font-mono text-[9px] uppercase leading-5 tracking-[0.18em] text-ink-muted sm:text-[10px] sm:tracking-[0.2em]">
+                Ten teams
                 <br />
                 One trophy
               </span>

@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   validatePublicSupabaseEnv,
   validateServerSupabaseEnv,
+  validateSiteEnv,
 } from "./env";
 
 describe("Supabase environment validation", () => {
@@ -23,7 +24,7 @@ describe("Supabase environment validation", () => {
       "NEXT_PUBLIC_SUPABASE_URL",
     );
     expect(() => validatePublicSupabaseEnv("not-a-url", "key")).toThrow(
-      "valid URL",
+      "valid HTTP(S) URL",
     );
     expect(() =>
       validatePublicSupabaseEnv("https://example.supabase.co", undefined),
@@ -44,5 +45,16 @@ describe("Supabase environment validation", () => {
     expect(() =>
       validateServerSupabaseEnv("https://example.supabase.co", undefined),
     ).toThrow("SUPABASE_SERVICE_ROLE_KEY");
+  });
+
+  it("requires an explicit canonical site URL for auth redirects", () => {
+    expect(validateSiteEnv("https://sweetnapadads.com/")).toEqual({
+      siteUrl: "https://sweetnapadads.com",
+    });
+    expect(() => validateSiteEnv(undefined)).toThrow("SITE_URL");
+    expect(() => validateSiteEnv("not-a-url")).toThrow("valid HTTP(S) URL");
+    expect(() => validateSiteEnv("javascript:alert(1)")).toThrow(
+      "valid HTTP(S) URL",
+    );
   });
 });

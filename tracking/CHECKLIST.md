@@ -27,17 +27,18 @@ sequencing live in `docs/IMPLEMENTATION_PLAN.md`.
 - [x] Create leagues, seasons, and season settings.
 - [x] Create profiles and league memberships.
 - [x] Implement Supabase Auth server/client helpers.
+- [x] Build the invite-only magic-link login and callback flow.
 - [x] Implement and test Row Level Security.
-- [ ] Seed a development league and commissioner.
+- [x] Seed a development league and commissioner.
 
 ## Phase 2 — League and finance
 
-- [ ] Model teams, owners, season teams, and ownership history.
-- [ ] Implement obligations, payments, allocations, and adjustments.
-- [ ] Create balance and reconciliation views.
-- [ ] Test finance invariants and correction workflows.
-- [ ] Build 2025 staging import and mapping.
-- [ ] Resolve workbook discrepancies with commissioner decisions.
+- [x] Model teams, owners, season teams, and ownership history.
+- [x] Implement obligations, payments, allocations, and adjustments.
+- [x] Create balance and reconciliation views.
+- [x] Test finance invariants and correction workflows.
+- [x] Build 2025 staging import and mapping.
+- [x] Resolve workbook discrepancies with commissioner decisions.
 - [ ] Commit a reconciled 2025 historical import.
 
 ## Phase 3 — Competition
