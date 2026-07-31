@@ -63,8 +63,9 @@ sequencing live in `docs/IMPLEMENTATION_PLAN.md`.
 - [x] Build responsive commissioner ESPN mapping and run controls.
 - [x] Build member dashboard with latest official-order ESPN standings.
 - [x] Build standings, results, and awards.
-- [ ] Build financial transparency and team balances.
-- [ ] Build team, history, records, and activity pages.
+- [x] Build financial transparency and team balances.
+- [x] Build team, history, and franchise record pages.
+- [x] Build league activity page.
 - [ ] Build commissioner administration.
 - [ ] Add Playwright critical-path coverage.
 

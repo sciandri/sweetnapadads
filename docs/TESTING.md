@@ -110,6 +110,26 @@ browser checks use the rehearsed 2025 history to cover season/week navigation,
 populated scorecards, weekly honors, postseason pending states, and the 390px
 responsive layout.
 
+Member finance view tests verify team-perspective status labels, deterministic
+balance ordering, league/team summary grouping, immutable event isolation, and
+joins to canonical obligation/payment reconciliation. Authenticated browser
+checks cover the seeded component formula, locally rehearsed ten-team 2025
+ledger, settled and outstanding states, event remainder labels, actual-cash
+separation, and the 390px responsive layout.
+
+Team-history unit coverage verifies newest-first season ordering, reciprocal
+opponent score aggregation, win/loss/tie summaries, stored award counts,
+canonical balance attachment, empty-season behavior, and current-first dated
+ownership labels. Authenticated browser checks cover the seeded linked owner,
+the rehearsed ten-team 2025 directory, an honest missing-owner state, populated
+franchise statistics, evidence links, and the 390px detail layout.
+
+League-activity unit coverage verifies winner-first accepted results, exact
+score formatting, tied and incomplete states, separate stored honors, and
+date-ordered immutable financial event types. Authenticated browser checks
+cover the seeded financial-only state, populated 2025 competition and finance
+streams, desktop presentation, and the stacked 390px layout.
+
 ESPN matchup fixtures and live redacted shape inspection cover completed games,
 ties, undecided and future exclusion, score rounding, reciprocal opponents,
 dynamic playoff boundaries, mapping failures, and duplicate identifiers. The

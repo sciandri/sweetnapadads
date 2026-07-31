@@ -1,11 +1,11 @@
 # Current project state
 
 - Last updated: 2026-07-31
-- Session: 0006
-- Session status: complete — published and deployed
+- Session: 0007
+- Session status: active
 - Branch: `main`
-- Phase: Phase 3 — Competition
-- Checkpoint: ESPN competition, financial rules, and member results published
+- Phase: Phase 4 — Application
+- Checkpoint: member evidence and activity surfaces complete locally
 
 ## Current outcome
 
@@ -161,6 +161,28 @@ explicitly pending rather than being inferred from visible scores. The 2025
 rehearsal supplied a populated visual contract: season/week selection, Week 14
 honors, postseason pending state, five-matchup grids, and 390px mobile layout
 all passed.
+Members can now inspect the league ledger at `/dashboard/finances`. The route
+reads the four canonical security-invoker finance views plus immutable event
+descriptions through RLS. It keeps actual cash separate from obligations,
+summarizes every team-perspective balance, exposes all six components for the
+selected team, and joins obligations and payments to their stored reconciliation
+status without recalculating the net. The seeded $140 development balance and
+the locally rehearsed 2025 record—$240 cash, $40 outstanding, nine of ten teams
+settled—both matched canonical data in desktop and 390px browser review.
+Members can now browse `/dashboard/teams` and durable franchise detail routes.
+The season directory derives its team count and entries from data. Each
+franchise record combines dated ownership evidence, season-specific names,
+accepted win/loss/tie and point summaries, stored weekly-honor counts, and the
+canonical season balance. It explicitly distinguishes those summaries from
+ESPN's official standings rank and renders missing historical ownership as
+`Not linked`. Seeded ownership plus the ten-team 2025 directory and populated
+Napa Kojak record passed desktop and 390px browser review.
+Members can now browse `/dashboard/activity` for a season-at-a-glance record.
+The route reads accepted matchups, stored weekly honors, obligations, payments,
+and audited adjustments through the active member's RLS client. It deliberately
+keeps competition ordered by scoring week and finance ordered by event date,
+with distinct labels and honest empty states. Seeded finance-only data and the
+populated 2025 rehearsal both passed desktop and 390px browser review.
 
 ## In progress
 
@@ -254,11 +276,16 @@ all passed.
       `20260731180000` on hosted Supabase.
 - [x] Deploy and smoke-test Vercel production
       `dpl_koVUVkhxKmGmqwoUNHRC45zXriJ7` and the custom domain.
+- [x] Add authenticated member financial transparency with team balances,
+      component explanations, immutable events, and reconciliation status.
+- [x] Add a dynamic team directory and durable franchise ownership, season,
+      competition, honors, and financial history pages.
+- [x] Add the season-scoped member activity page with separate competition and
+      immutable financial event timelines.
 
 ## Next actions
 
-1. Build member financial transparency and team-balance views over the
-   canonical security-invoker reconciliation models.
+1. Add the manual-results fallback for weeks ESPN cannot supply or correct.
 2. Configure a server-only OpenAI API key, then implement and test the reviewed
    message-draft Route Handler that returns three editable options.
 3. Decide when the locally rehearsed canonical 2025 history should be staged
@@ -322,7 +349,7 @@ all passed.
 - `npm audit`: clean
 - `npm run lint`: passing
 - `npm run typecheck`: passing
-- `npm test`: 90 tests passing
+- `npm test`: 99 tests passing
 - `npm run db:reset`: passing
 - `npm run db:lint`: passing with no warnings
 - `npm run db:test`: 329 database tests passing
@@ -365,13 +392,22 @@ all passed.
 - Member results and honors: reciprocal grouping, stored result order and
   awards, exact scores, season/week selection, incomplete/tied empty states,
   populated 2025 desktop review, and 390px layout verified
+- Member finances: canonical balance status/order, summary grouping, component
+  formula, reconciled source events, seeded and rehearsed 2025 totals, desktop
+  review, and 390px layout verified
+- Team record book: newest-first seasons, reciprocal record/point summaries,
+  stored honors, canonical balances, ownership ordering and gaps, ten-team 2025
+  directory, populated franchise review, and 390px layout verified
+- Member league activity: stored matchups and honors remain distinct from
+  date-ordered obligations, payments, and adjustments; seeded and rehearsed
+  2025 states pass desktop and 390px layouts
 
 ## Latest commit intent
 
-`docs: record ESPN competition production release`
+`feat: add member league activity`
 
 ## Pickup instruction
 
-Start session 0007 from clean, synchronized `main` with member financial
-transparency and team-balance views. Production ESPN activation, SMTP, and 2025
-history remain separate explicit release decisions.
+Continue session 0007 with the manual-results fallback. Production ESPN
+activation, SMTP, and hosted 2025 history remain separate explicit release
+decisions.

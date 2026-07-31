@@ -70,6 +70,14 @@ season cash =
   - external cash paid
 ```
 
+The authenticated member finance page is implemented at
+`/dashboard/finances`. It presents league-wide team balances, a selected team's
+six canonical components, immutable obligation/payment/adjustment events, and
+reconciled outstanding or unallocated amounts. Positive and negative balances
+retain the team-perspective sign convention. The page deliberately keeps
+actual cash in a separately labeled summary because obligations do not prove
+that money moved.
+
 `season_financial_rules` is the canonical season schedule. It stores required
 weekly high/low rules plus commissioner-defined placement payouts, season
 awards, and penalties. The complete enabled schedule is validated and replaced

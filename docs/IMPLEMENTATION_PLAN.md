@@ -40,7 +40,9 @@
 
 - [x] Authenticated shell and official-order member standings dashboard
 - [x] Member results and weekly awards page
-- Finance, team, and history pages
+- [x] Member financial transparency and team-balance page
+- [x] Team directory and durable franchise history pages
+- [x] League activity page with distinct competition and finance streams
 - Commissioner administration (ESPN mapping and financial rules complete)
 
 ## Phase 5 — Operations

@@ -114,6 +114,31 @@ only persisted weekly honors. Season and week filters are server-rendered URL
 state. The view never infers an award from visible scores; absent awards remain
 explicitly pending for incomplete or tied weeks.
 
+The member finance route reads `team_financial_balances`,
+`obligation_reconciliation`, `payment_reconciliation`, and
+`season_cash_balances` as canonical security-invoker read models. It joins
+their identifiers to immutable obligation, payment, and adjustment descriptions
+through the member's request-scoped RLS client. Application code labels, groups,
+and orders this evidence but never recomputes a team balance. Actual league cash
+is displayed separately from obligations, and every selected team exposes all
+six balance components plus its source-event reconciliation state.
+
+The team directory reads season entries dynamically, so its card count follows
+the selected season rather than a league-size constant. Durable franchise
+detail pages join season-specific names, dated ownership links, accepted
+reciprocal results, stored weekly awards, and canonical financial balances
+through RLS. The application summarizes result counts and scores for the record
+book but explicitly does not label that summary as ESPN's official rank.
+Unlinked ownership evidence remains visible as missing instead of being inferred.
+
+The member activity route reads the same accepted competition and immutable
+financial sources through the member's request-scoped RLS client, but maintains
+two presentation streams. Matchups and persisted honors are ordered by scoring
+week; obligations, payments, and audited adjustments are ordered by their own
+event dates. The application does not synthesize a shared timestamp or merge
+those meanings into one ambiguous event type. Both streams are bounded to the
+thirty most recent display entries for the selected season.
+
 Approved historical previews cross a single PostgreSQL transaction boundary.
 The database resolves season-team identifiers, validates reciprocal results,
 creates competition and financial rows, records per-row provenance, reruns

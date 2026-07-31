@@ -45,6 +45,23 @@ events, content, import reconciliation, and an AI-assisted message composer.
 - Keep dense tables accessible with labels, filters, and useful empty states.
 - Separate confirmed facts, pending sync issues, and commissioner overrides.
 
+The member finance surface follows these principles with a league summary,
+touch-safe team selector cards, a selected balance explanation, and a stacked
+event ledger. Color reinforces—without replacing—explicit `owes league`,
+`league owes team`, and `settled` labels. Actual cash is visually and verbally
+separate from net obligations.
+
+The team record book uses a responsive season directory and durable franchise
+pages. Season cards retain historical team names, make ownership gaps explicit,
+and place accepted record, points, honors, and balance in one scan. Links return
+members to the underlying results and finance evidence.
+
+The league activity surface places two parallel timelines side by side on wide
+screens and stacks them on mobile. Competition is labeled and ordered by week;
+financial events are labeled and ordered by date. Matchups, stored honors,
+obligations, payments, and audited adjustments keep distinct visual labels,
+with explicit empty states for either stream.
+
 ## Commissioner message composer
 
 The composer is optimized for copying into the league's existing group-text

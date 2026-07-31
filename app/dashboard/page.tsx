@@ -105,6 +105,24 @@ export default async function DashboardPage() {
             >
               Results & awards
             </Link>
+            <Link
+              className="grid min-h-11 place-items-center border border-forest/25 px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.16em] hover:border-wine hover:text-wine"
+              href="/dashboard/finances"
+            >
+              Finances
+            </Link>
+            <Link
+              className="grid min-h-11 place-items-center border border-forest/25 px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.16em] hover:border-wine hover:text-wine"
+              href="/dashboard/teams"
+            >
+              Teams & history
+            </Link>
+            <Link
+              className="grid min-h-11 place-items-center border border-forest/25 px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.16em] hover:border-wine hover:text-wine"
+              href="/dashboard/activity"
+            >
+              Activity
+            </Link>
             <form action={signOut}>
               <button
                 className="min-h-11 border border-forest/25 px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.16em] hover:border-wine hover:text-wine"
