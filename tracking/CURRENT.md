@@ -2,10 +2,10 @@
 
 - Last updated: 2026-07-31
 - Session: 0007
-- Session status: active
+- Session status: complete — published and deployed
 - Branch: `main`
 - Phase: Phase 4 — Application
-- Checkpoint: member evidence and activity surfaces complete locally
+- Checkpoint: member evidence and activity surfaces published and deployed
 
 ## Current outcome
 
@@ -84,13 +84,14 @@ seed, rejects unavailable preseason order, requires exact season-team mappings
 of any configured size, minimizes member-readable source evidence, hashes the
 raw response, and submits one atomic ingestion call. Redacted fixtures include
 an explicit twelve-team season contract.
-Source checkpoint `401efe0` is published to GitHub `main`. Hosted Supabase is
+Source checkpoint `7624f5d` is published to GitHub `main`. Hosted Supabase is
 synchronized through all sixteen migrations ending at `20260731180000`; the
 post-apply dry-run is empty. The four new migrations added the reviewed ESPN
 competition, award derivation, mapping administration, and audited financial
 rule schema/functions without importing the 2025 historical dataset. Vercel
-production deployment `dpl_koVUVkhxKmGmqwoUNHRC45zXriJ7` is Ready and aliased
-to the custom domain.
+production deployment `dpl_9UgX2X1eWDmSkBoJCBrTjtE2C7YM` is Ready and aliased
+to the custom domain. It includes the member finance, team-history, and league
+activity surfaces completed in session 0007.
 The protected `POST /api/sync/espn` Route Handler now authorizes an active
 commissioner session or constant-time checked automation bearer secret,
 validates JSON and idempotency input, resolves every active season mapping
@@ -282,6 +283,11 @@ populated 2025 rehearsal both passed desktop and 390px browser review.
       competition, honors, and financial history pages.
 - [x] Add the season-scoped member activity page with separate competition and
       immutable financial event timelines.
+- [x] Publish source checkpoint `7624f5d` to GitHub `main`.
+- [x] Verify hosted Supabase remains synchronized through all sixteen
+      migrations with an empty dry-run.
+- [x] Deploy and smoke-test Vercel production
+      `dpl_9UgX2X1eWDmSkBoJCBrTjtE2C7YM` and the custom domain.
 
 ## Next actions
 
@@ -333,7 +339,7 @@ populated 2025 rehearsal both passed desktop and 390px browser review.
   or local Studio.
 - The repository is linked locally to Vercel project
   `prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w` in the `sciandri` scope. Production
-  deployment `dpl_koVUVkhxKmGmqwoUNHRC45zXriJ7` is Ready.
+  deployment `dpl_9UgX2X1eWDmSkBoJCBrTjtE2C7YM` is Ready.
 - ESPN private-league credentials are configured only in git-ignored local
   environment state and validated for both the 2025 and 2026 ten-team league.
   They and `SYNC_SECRET` are not configured in Vercel and must never be
@@ -361,9 +367,9 @@ populated 2025 rehearsal both passed desktop and 390px browser review.
   verified claims, membership RLS, and dashboard
 - Hosted migration history: all sixteen versions through `20260731180000` match
 - Hosted Auth production config: up to date
-- GitHub `main`: source checkpoint `401efe0` synchronized
+- GitHub `main`: source checkpoint `7624f5d` synchronized
 - Supabase production dry-run: up to date with no pending migrations
-- Vercel production `dpl_koVUVkhxKmGmqwoUNHRC45zXriJ7`: Ready
+- Vercel production `dpl_9UgX2X1eWDmSkBoJCBrTjtE2C7YM`: Ready
 - `https://sweetnapadads.com`: HTTP 200 after redirect to
   `https://www.sweetnapadads.com/`
 - `https://sweetnapadads.com/login`: HTTP 200 with the invitation-only login
@@ -401,13 +407,16 @@ populated 2025 rehearsal both passed desktop and 390px browser review.
 - Member league activity: stored matchups and honors remain distinct from
   date-ordered obligations, payments, and adjustments; seeded and rehearsed
   2025 states pass desktop and 390px layouts
+- Production member-route smoke test: unauthenticated finance, team-directory,
+  and activity requests redirect to login with exact safe return paths
 
 ## Latest commit intent
 
-`feat: add member league activity`
+`docs: close session 0007 release`
 
 ## Pickup instruction
 
-Continue session 0007 with the manual-results fallback. Production ESPN
+Start session 0008 from clean, synchronized `main` with the manual-results
+fallback. Production ESPN
 activation, SMTP, and hosted 2025 history remain separate explicit release
 decisions.

@@ -1,10 +1,10 @@
 # Session 0007 — Member transparency and record book
 
 - Date: 2026-07-31
-- Status: active
+- Status: complete — published and deployed
 - Branch: `main`
 - Starting commit: `d3b272e`
-- Ending source commit: pending
+- Ending source commit: `7624f5d`
 
 ## Goal
 
@@ -45,6 +45,11 @@ tested; this session exposes them without duplicating ledger calculations.
 - [x] Add member dashboard navigation to the activity surface.
 - [x] Verify seeded finance-only and populated 2025 activity at desktop and
       390px widths.
+- [x] Publish the verified source checkpoint to GitHub `main`.
+- [x] Confirm the linked hosted Supabase project is current with an empty
+      migration dry-run.
+- [x] Deploy the committed source to Vercel production and smoke-test the
+      custom domain, login, and new member-route authorization redirects.
 
 ## Decisions
 
@@ -67,6 +72,14 @@ tested; this session exposes them without duplicating ledger calculations.
   directory and franchise statistics pass at desktop and 390px widths.
 - Activity browser review: seeded financial-only state plus populated 2025
   matchups, honors, obligations, and payments pass at desktop and 390px widths.
+- GitHub `main`: source checkpoint `7624f5d` synchronized.
+- Hosted Supabase: all sixteen migrations through `20260731180000` synchronized
+  with no pending migration, seed, or role changes.
+- Vercel production: `dpl_9UgX2X1eWDmSkBoJCBrTjtE2C7YM` Ready and aliased to
+  `https://www.sweetnapadads.com` and the apex domain.
+- Production smoke test: homepage and login return HTTP 200; unauthenticated
+  finance, team-directory, and activity requests redirect to login with exact
+  safe return paths.
 
 ## Risks or blockers
 
@@ -75,5 +88,6 @@ tested; this session exposes them without duplicating ledger calculations.
 
 ## Exact handoff
 
-Continue with the manual-results fallback while preserving the same accepted
-competition invariants and configured financial-rule derivation.
+Start session 0008 from clean, synchronized `main`. Continue with the
+manual-results fallback while preserving the same accepted competition
+invariants and configured financial-rule derivation.

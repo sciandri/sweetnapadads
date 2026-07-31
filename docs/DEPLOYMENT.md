@@ -13,9 +13,9 @@
   (`prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w`)
 - Supabase: `sweetnapadads` (`cleyfpzxckjtmsoesgby`, `us-west-2`)
 
-The repository is linked locally to both projects. Source checkpoint `401efe0`
+The repository is linked locally to both projects. Source checkpoint `7624f5d`
 is deployed to Vercel production as
-`dpl_koVUVkhxKmGmqwoUNHRC45zXriJ7`. All sixteen versioned migrations through
+`dpl_9UgX2X1eWDmSkBoJCBrTjtE2C7YM`. All sixteen versioned migrations through
 `20260731180000` are applied to hosted Supabase.
 
 ## Environments
