@@ -18,8 +18,8 @@ recommended treatments. The source workbook remains unchanged.
 `data/import/2025/normalized-preview.json` is the checksum-pinned, review-only
 normalization result. It contains stable source keys, row-level references,
 160 results, 14 derived weekly awards, 49 obligations, 43 payments, 43
-deterministic allocations, and one external cash event. It is explicitly not
-a committed domain import.
+deterministic allocations, and one external cash event. The artifact remains
+review-only until the approved batch is passed to the domain commit RPC.
 
 The workbook contains eight sheets:
 
@@ -112,7 +112,21 @@ inventing values; the amount is sufficient for cash reconciliation.
 
 ## Commit boundary
 
-Approval and preview generation do not write normalized domain rows. A
-separate, idempotent commit action must translate preview identifiers to UUIDs,
-preserve every stable source key, and atomically mark the historical batch
-committed only after all reconciliation checks pass.
+Approval and preview generation do not write normalized domain rows.
+`commit_historical_import(batch_id, normalized_preview)` is the only domain
+commit boundary. It:
+
+- requires an authenticated active commissioner and an approved batch;
+- verifies the source hash, season, approval decision, commit gate, and every
+  preview team mapping;
+- creates matchups, weekly results, linked awards, obligations, payments,
+  allocations, and external cash events in one transaction;
+- recomputes team, payment-allocation, and league-cash reconciliation before
+  changing the batch to `committed`;
+- preserves the exact normalized preview plus a provenance row for every
+  committed domain record;
+- returns `already_committed` for an exact retry and rejects a changed retry.
+
+Any validation failure rolls back every domain and provenance write and leaves
+the batch approved. The canonical 2025 artifact still requires a staged 2025
+league/season with all ten team mappings before this RPC can be invoked.

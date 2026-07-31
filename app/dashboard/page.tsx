@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { signOut } from "@/app/auth/actions";
@@ -80,6 +81,14 @@ export default async function DashboardPage() {
               Authentication and league authorization are working. The full
               member dashboard arrives in the application phase.
             </p>
+            {membership.role === "commissioner" ? (
+              <Link
+                className="mx-auto mt-8 grid min-h-12 w-fit place-items-center border border-wine bg-wine px-6 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white"
+                href="/dashboard/message-composer"
+              >
+                Open message composer
+              </Link>
+            ) : null}
           </div>
         </section>
       </div>

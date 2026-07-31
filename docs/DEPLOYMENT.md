@@ -32,9 +32,21 @@ browser and are safe only in combination with complete RLS. The
 server-side secret. Supabase clients are constructed per request so Vercel
 instances cannot share user sessions through module state.
 
+The production Vercel project has the service-role value configured for
+server-only use. Preview and development scopes intentionally do not inherit
+it. No browser bundle or `NEXT_PUBLIC_` variable may expose this credential.
+
 `SITE_URL` is the canonical HTTP(S) application origin used to construct Auth
 callbacks. Production must use `https://sweetnapadads.com`; local development
 uses `http://localhost:3000`.
+
+`OPENAI_API_KEY` is a future server-only requirement for live commissioner
+message generation. It is not currently configured, must never use a
+`NEXT_PUBLIC_` prefix, and must be stored only in Vercel environment secrets.
+Until it is configured and the reviewed generation Route Handler is enabled,
+the composer remains an honest preview: commissioners can inspect the bounded
+fact package, write or paste a draft, and copy it, but cannot request AI output.
+The application does not store phone numbers or send SMS messages.
 
 Before releasing authentication:
 

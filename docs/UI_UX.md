@@ -32,7 +32,7 @@ Member navigation:
 - Activity
 
 Commissioners gain an Admin area for seasons, team mappings, syncs, ledger
-events, content, and import reconciliation.
+events, content, import reconciliation, and an AI-assisted message composer.
 
 ## Interaction principles
 
@@ -44,6 +44,23 @@ events, content, and import reconciliation.
   touch-safe spacing, fluid type, and no horizontal overflow.
 - Keep dense tables accessible with labels, filters, and useful empty states.
 - Separate confirmed facts, pending sync issues, and commissioner overrides.
+
+## Commissioner message composer
+
+The composer is optimized for copying into the league's existing group-text
+thread. It includes:
+
+- season and week selectors;
+- explicit toggles for official standings, results, awards, and upcoming
+  matchups;
+- a visible ESPN `last synced` timestamp and stale-data warning;
+- commissioner notes, tone, and target-length controls;
+- two or three editable draft options;
+- a large mobile-safe copy button with a confirmation state; and
+- a final fact summary beside the draft so the commissioner can verify it.
+
+The interface never offers a send button, recipient list, phone-number field,
+or delivery status. AI output is always a draft requiring human review.
 
 The initial landing page establishes the visual language; authenticated
 application shells arrive with the auth milestone.

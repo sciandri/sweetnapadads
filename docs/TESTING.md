@@ -50,3 +50,13 @@ checks that the 2025 workbook checksum and eight-sheet manifest remain exact.
 It also requires an approved treatment for every manifest issue, verifies the
 arithmetic of each champion-payout option, and reconciles the review-only
 normalized preview without committing domain rows.
+
+ESPN snapshot pgTAP coverage verifies raw evidence immutability, idempotent
+sync keys, official-rank preservation, last-successful-snapshot behavior,
+atomic snapshot switching, normalized member visibility, private raw-payload
+isolation, and commissioner-only context assembly. Composer unit tests verify
+that selections constrain the prompt, financial facts stay excluded, and the
+system instructions prohibit recalculating ESPN standings or inventing facts.
+The ingestion transaction suite additionally verifies service-role isolation,
+complete team mapping, contiguous official ranks, exact retry behavior,
+changed-evidence rejection, constraint enforcement, and all-or-nothing writes.

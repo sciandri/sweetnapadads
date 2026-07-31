@@ -12,6 +12,9 @@ Planned server boundaries:
 - `POST /api/admin/payments`: record a payment or disbursement
 - `POST /api/admin/adjustments`: append an audited correction
 - `POST /api/admin/seasons`: create and configure a season
+- `POST /api/admin/message-drafts`: generate an editable commissioner message
+  from authorized, server-assembled league context; this endpoint never sends
+  email or SMS
 
 All handlers:
 
@@ -23,3 +26,9 @@ All handlers:
 
 The sync endpoint additionally accepts an automation secret and an idempotency
 key. Public client code never receives service-role or ESPN credentials.
+
+The message-draft endpoint uses the caller's Supabase session, requires an
+active commissioner membership, resolves league context on the server, and
+passes only the selected normalized facts to the model. The OpenAI key remains
+a non-public Vercel environment variable. A missing key returns a stable
+configuration error without exposing environment details.

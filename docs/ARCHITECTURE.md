@@ -14,6 +14,7 @@ Browser
       -> Supabase Auth
       -> PostgreSQL + RLS
       -> ESPN integration
+      -> OpenAI message drafting (server-only, pending credentials)
       -> object storage
 
 GitHub Actions
@@ -47,6 +48,26 @@ unique constraints make retries safe.
 Manual score entry uses the same normalization and derivation path and records
 its origin and actor.
 
+The commissioner message composer reads through one PostgreSQL function that
+enforces commissioner membership and returns only normalized, selected league
+facts. ESPN's stored rank is passed through unchanged; the application and
+model never recalculate standings. The future OpenAI Route Handler will receive
+that bounded fact package plus commissioner notes and return editable drafts.
+No raw ESPN payload, financial data, phone number, or SMS delivery capability
+crosses the generation boundary.
+
+The future ESPN fetcher is intentionally separated from database persistence.
+After it fetches and validates a response server-side, it submits the raw
+evidence and normalized official-order entries to one service-role-only
+database function. That function is the atomic boundary: partial snapshots
+cannot become current, and an exact retry resolves to the original snapshot.
+
+Approved historical previews cross a single PostgreSQL transaction boundary.
+The database resolves season-team identifiers, validates reciprocal results,
+creates competition and financial rows, records per-row provenance, reruns
+reconciliation, and only then marks the batch committed. Exact retries are
+safe; changed retries fail closed.
+
 ## Security
 
 - No public self-registration.
@@ -64,4 +85,7 @@ its origin and actor.
 - Financial corrections append reversing or adjustment entries.
 
 See [ADR 0001](adr/0001-next-supabase-architecture.md) and
-[ADR 0002](adr/0002-event-based-finance.md).
+[ADR 0002](adr/0002-event-based-finance.md), [ADR
+0003](adr/0003-external-league-cash-events.md), and [ADR
+0004](adr/0004-atomic-historical-domain-commit.md), and [ADR
+0005](adr/0005-espn-standings-and-ai-message-context.md).

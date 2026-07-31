@@ -44,16 +44,18 @@ sequencing live in `docs/IMPLEMENTATION_PLAN.md`.
 ## Phase 3 — Competition
 
 - [ ] Implement ESPN client and redacted fixtures.
-- [ ] Implement team mappings and sync-run lifecycle.
-- [ ] Persist raw ESPN payloads.
+- [x] Implement season-team mappings and the sync-run lifecycle.
+- [x] Persist immutable raw ESPN payload evidence.
+- [x] Persist official-order standings snapshots atomically and idempotently.
+- [x] Add commissioner-only league context over standings, results, and awards.
 - [ ] Normalize matchups and weekly results idempotently.
-- [ ] Derive standings and weekly awards.
+- [ ] Complete ESPN-backed matchup normalization and weekly-award derivation.
 - [ ] Generate rule-backed financial obligations.
 - [ ] Add manual-results fallback.
 
 ## Phase 4 — Application
 
-- [ ] Build authenticated application shell.
+- [x] Build authenticated application shell.
 - [ ] Build member dashboard.
 - [ ] Build standings, results, and awards.
 - [ ] Build financial transparency and team balances.
@@ -65,6 +67,7 @@ sequencing live in `docs/IMPLEMENTATION_PLAN.md`.
 
 - [ ] Add protected scheduled synchronization workflow.
 - [ ] Add production observability and runbooks.
-- [ ] Configure Vercel and Supabase production environments.
+- [x] Configure linked Vercel and Supabase production projects and Auth URLs.
 - [ ] Add notification framework.
-- [ ] Add AI-generated recap workflow.
+- [x] Add the authorized, copy-only AI recap context and composer foundation.
+- [ ] Enable live AI draft generation after server-only key configuration.

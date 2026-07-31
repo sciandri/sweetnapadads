@@ -50,6 +50,8 @@ team balance =
 - Posted entries are immutable.
 - Corrections append a reversal or adjustment with actor and reason.
 - Ledger totals reconcile to obligation and payment subledgers.
+- Historical domain commits recompute all financial and cash totals inside the
+  same transaction that creates the imported events.
 
 The database exposes `team_financial_balances`,
 `obligation_reconciliation`, and `payment_reconciliation` as

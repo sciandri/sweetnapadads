@@ -23,5 +23,5 @@ commissioner administration.
 
 ## Expansion
 
-Notifications, PWA support, generated recaps, trade history, waiver analytics,
-and the golf draft module.
+Commissioner AI message composer with copy-to-thread handoff, PWA support,
+generated recaps, trade history, waiver analytics, and the golf draft module.

@@ -58,7 +58,9 @@ cash events, so league expenses never distort a team's balance.
 - `side_bets`
 - `espn_team_mappings`
 - `espn_sync_runs`
-- `espn_sync_payloads`
+- `espn_raw_payloads`
+- `espn_standings_snapshots`
+- `espn_standing_entries`
 - `sync_issues`
 
 Detailed SQL and RLS policies will be introduced through numbered migrations
@@ -172,6 +174,62 @@ Never run a linked reset against production.
   absent from the source;
 - member visibility, commissioner creation, outsider isolation, and RLS;
 - a security-invoker season cash view combining team and external movements.
+
+`20260731100000_competition_history.sql` establishes:
+
+- season-scoped matchups, reciprocal weekly results, and weekly awards;
+- exact decimal scores and explicit regular-season or postseason phases;
+- stable source keys for import and future ESPN retry safety;
+- financial links from every weekly award to its payout and penalty
+  obligations;
+- immutable imported competition rows, member reads, commissioner creation,
+  and league-scoped RLS.
+
+`20260731110000_historical_import_commit.sql` establishes:
+
+- one canonical normalized preview and reconciliation record per committed
+  batch;
+- source-reference provenance from each batch to every committed domain row;
+- an authenticated commissioner-only `commit_historical_import` RPC;
+- one transaction across competition, obligation, payment, allocation, and
+  external-cash rows;
+- exact collision checks, reciprocal-result validation, financial
+  reconciliation, and deterministic record counts;
+- retry safety: the same batch and preview hash return `already_committed`,
+  while a changed preview is rejected.
+
+`20260731120000_espn_standings_snapshots.sql` establishes:
+
+- idempotent ESPN sync runs with explicit running, succeeded, and failed
+  states;
+- immutable raw response evidence separated from normalized application data;
+- immutable standings snapshots whose entries retain ESPN's official rank,
+  source team identifiers, record, points, streak, and raw source fragment;
+- a security-invoker current-standings view that selects the latest successful
+  snapshot and remains stable while a newer run is incomplete or failed;
+- member visibility of normalized facts, commissioner-only raw-payload access,
+  and service-role-only synchronization writes under RLS.
+
+`20260731130000_commissioner_message_context.sql` establishes:
+
+- a commissioner-only function that assembles one bounded message-generation
+  fact package for a season and week;
+- ESPN standings in their official source order, with source and capture
+  timestamps;
+- normalized weekly matchup results and awards without exposing raw ESPN
+  payloads;
+- an explicit exclusion of financial context from AI message generation.
+
+`20260731140000_espn_standings_ingest.sql` establishes:
+
+- one service-role-only transaction for a successful standings ingestion;
+- strict validation of complete active team mappings, unique ESPN team IDs,
+  and contiguous official ranks without locally repairing source order;
+- atomic creation of the run, immutable raw payload, normalized snapshot, and
+  every standing entry before the run becomes successful;
+- exact idempotent retries and rejection of reused keys with changed source
+  evidence;
+- full rollback when any normalized value or relationship is invalid.
 
 Public self-registration is disabled in `supabase/config.toml`. Authentication
 identities will be created through commissioner-controlled invitation or

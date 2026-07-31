@@ -1,11 +1,11 @@
 # Current project state
 
 - Last updated: 2026-07-31
-- Session: 0003
-- Session status: complete — published and deployed
+- Session: 0004
+- Session status: active
 - Branch: `main`
 - Phase: Phase 2 — League and finance
-- Checkpoint: authenticated league and finance foundation deployed
+- Checkpoint: ESPN-backed commissioner message composer foundation verified
 
 ## Current outcome
 
@@ -46,6 +46,29 @@ committing history to domain tables. It reconciles to a `$40` net team balance
 and `$240` realized league cash balance. A separate immutable external-cash
 event model now accounts for the `$700` draft-party expense without assigning
 it to a team.
+Competition history now has season-scoped matchups, reciprocal results, linked
+weekly awards, stable import source keys, immutable imported rows, and RLS.
+An authenticated commissioner can commit one approved normalized preview
+atomically across competition and finance. The transaction preserves the
+canonical JSON and per-record provenance, recomputes reconciliation, safely
+accepts exact retries, rejects changed retries, and rolls back completely on
+failure.
+ESPN synchronization now has idempotent runs, immutable raw response evidence,
+and immutable normalized standings snapshots. The latest successful snapshot
+remains current through incomplete or failed runs, and standings retain ESPN's
+official ordering rather than recalculating local ranks.
+Successful standings ingestion now uses one service-role-only transaction that
+validates complete season-team mappings and contiguous ESPN ranks, writes raw
+and normalized evidence atomically, accepts exact retries, rejects changed
+idempotency reuse, and leaves no partial run on failure.
+A commissioner-only database function now assembles a bounded message context
+from official standings, selected weekly results, and awards while explicitly
+excluding finances and raw private payloads. The responsive dashboard composer
+lets commissioners choose facts, tone, length, and notes, inspect exactly what
+the model would see, edit final copy, and copy it into the league's existing
+group-text thread. There is intentionally no SMS delivery or phone-number
+storage. Live OpenAI generation is visibly disabled until a server-only API key
+is configured and its Route Handler is reviewed.
 
 ## In progress
 
@@ -86,15 +109,28 @@ it to a team.
 - [x] Apply migrations `20260731050000` through `20260731090000`.
 - [x] Deploy and verify Vercel production
       `dpl_ENTbaLv63W9QivU7QjFUGKF3XMPY`.
+- [x] Add and test matchups, reciprocal weekly results, and linked weekly
+      awards.
+- [x] Add and test the atomic, idempotent historical domain commit RPC.
+- [x] Preserve the canonical committed preview and per-row source provenance.
+- [x] Record ESPN's official standings order as the canonical league order.
+- [x] Add immutable raw ESPN payloads and normalized standings snapshots.
+- [x] Add and test atomic, service-role-only ESPN standings ingestion.
+- [x] Add and test the commissioner-only message context boundary.
+- [x] Add the mobile-responsive commissioner composer and copy workflow.
+- [x] Document that the application does not send SMS or store phone numbers.
 
 ## Next actions
 
-1. Configure production SMTP before inviting real members.
-2. Implement the atomic, idempotent domain commit for the approved 2025
-   normalized preview.
-3. Add the service-role value to server environments only when a reviewed
-   server-side feature requires it.
-4. Create and smoke-test the first real invited member only after SMTP is
+1. Configure a server-only OpenAI API key, then implement and test the reviewed
+   message-draft Route Handler that returns three editable options.
+2. Implement the ESPN fetch and normalization adapter against the verified
+   atomic ingestion function when private-league credentials are available.
+3. Stage a canonical 2025 league, season, raw source, and all ten team mappings.
+4. Invoke the verified domain commit with the approved normalized preview and
+   audit its stored record counts and reconciliation.
+5. Configure production SMTP before inviting real members.
+6. Create and smoke-test the first real invited member only after SMTP is
    configured.
 
 ## Decisions in force
@@ -104,20 +140,28 @@ it to a team.
 - Financial state is event-based: obligations and payments are separate.
 - Money is represented as safe integer cents.
 - Rules are season-scoped data rather than application constants.
+- ESPN's official reported standings order is canonical and is never locally
+  recalculated.
+- AI league messages are commissioner-reviewed copy for the existing group
+  thread; the application does not deliver SMS.
 - `tracking/CURRENT.md` is the canonical session pickup point.
 
 ## Known risks and blockers
 
 - The 2025 workbook discrepancies are resolved in the approved decision queue.
-  The normalized preview is reconciled but intentionally not committed to
-  domain tables; see `docs/MIGRATION_2025.md`.
+  The normalized preview is reconciled and its commit mechanism is verified,
+  but a canonical 2025 league/season and ten team mappings must be staged
+  before the domain transaction can run; see `docs/MIGRATION_2025.md`.
 - The hosted `sweetnapadads` project exists at
   `https://cleyfpzxckjtmsoesgby.supabase.co`. Codex MCP and CLI access are
-  authenticated and the CLI is linked. All seven local migration versions
-  match hosted migration history.
-- Vercel production has the public Supabase URL and publishable key. Preview
-  and development environments remain intentionally unconfigured to avoid
-  silently sharing the production database.
+  authenticated and the CLI is linked. Hosted history matches the seven
+  published migrations through `20260731090000`; the five new verified local
+  migrations remain pending the next `update and track` release.
+- Vercel production has the public Supabase values, canonical `SITE_URL`, and
+  a server-only Supabase service-role value. Preview and development
+  environments remain intentionally unconfigured to avoid silently sharing
+  the production database. The service-role value must only be used from
+  reviewed server-side boundaries.
 - Authentication routes and provider URLs are published. A real invited-member
   smoke test remains pending production SMTP.
 - Production SMTP is not configured; do not invite real members until it is.
@@ -130,6 +174,9 @@ it to a team.
   deployment `dpl_ENTbaLv63W9QivU7QjFUGKF3XMPY` is Ready.
 - ESPN private-league credentials have not been provided and must never be
   committed.
+- An OpenAI API key has not been provided. The composer UI and prompt boundary
+  are implemented, but live generation remains disabled until the key is
+  configured server-side and the Route Handler is added and tested.
 - `logo/sweetlookingnapadads.png` is the canonical and only supplied brand
   asset and is integrated through a shared responsive component.
 
@@ -138,14 +185,15 @@ it to a team.
 - `npm audit`: clean
 - `npm run lint`: passing
 - `npm run typecheck`: passing
-- `npm test`: 25 tests passing
+- `npm test`: 28 tests passing
 - `npm run db:reset`: passing
 - `npm run db:lint`: passing with no warnings
-- `npm run db:test`: 153 database tests passing
+- `npm run db:test`: 255 database tests passing
 - `npm run build`: passing
 - Invite-only Auth browser smoke test: passing through local email, callback,
   verified claims, membership RLS, and dashboard
-- Hosted migration history: all seven local versions match remote
+- Hosted migration history: published versions through `20260731090000` match;
+  local versions `20260731100000` through `20260731140000` are not yet released
 - Hosted Auth production config: up to date
 - GitHub `main`: synchronized after release closeout
 - Vercel production `dpl_ENTbaLv63W9QivU7QjFUGKF3XMPY`: Ready
@@ -158,10 +206,11 @@ it to a team.
 
 ## Latest commit intent
 
-`docs: record authenticated league release`
+`feat: add ESPN-backed commissioner message composer`
 
 ## Pickup instruction
 
-Start session 0004 from clean, synchronized `main`. Configure production SMTP
-before inviting real members; otherwise implement the atomic, idempotent
-domain commit for the approved normalized 2025 preview.
+Continue session 0004 by configuring the server-only OpenAI key and adding the
+authenticated message-draft Route Handler. If credentials remain unavailable,
+continue with the ESPN fetch/normalization adapter or stage the canonical 2025
+import context without weakening either credential boundary.
