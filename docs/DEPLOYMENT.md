@@ -4,7 +4,8 @@
 
 - Web application: Vercel
 - Database and authentication: Supabase
-- Scheduled ESPN sync: GitHub Actions calling a protected production endpoint
+- ESPN sync operations: manual-only GitHub Actions calling a protected
+  production endpoint
 
 ## Provisioned projects
 
@@ -47,6 +48,20 @@ Until it is configured and the reviewed generation Route Handler is enabled,
 the composer remains an honest preview: commissioners can inspect the bounded
 fact package, write or paste a draft, and copy it, but cannot request AI output.
 The application does not store phone numbers or send SMS messages.
+
+`ESPN_LEAGUE_ID`, `ESPN_S2`, `ESPN_SWID`, and `SYNC_SECRET` are required to
+enable scheduled production standings synchronization. All are server-only.
+The protected endpoint is safe to deploy without them and returns a stable
+configuration or authorization failure; do not configure or schedule it until
+season-team mappings have been reviewed in the commissioner control room.
+
+`.github/workflows/espn-standings-sync.yml` is a manual-only production
+workflow protected by the GitHub `production` environment. It requires the
+repository variable `SITE_URL` and Actions secret `SYNC_SECRET`, validates a
+canonical season UUID, uses evidence-derived idempotency, and emits only the
+stable response summary. It has no cron trigger. Follow the
+[ESPN standings runbook](runbooks/ESPN_STANDINGS_SYNC.md) before configuring
+secrets, running it, rotating credentials, or proposing a schedule.
 
 Before releasing authentication:
 

@@ -1,0 +1,90 @@
+name: ESPN standings sync
+
+on:
+  workflow_dispatch:
+    inputs:
+      season_id:
+        description: Canonical production season UUID
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: espn-standings-${{ inputs.season_id }}
+  cancel-in-progress: false
+
+jobs:
+  synchronize:
+    environment: production
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      SEASON_ID: ${{ inputs.season_id }}
+      SITE_URL: ${{ vars.SITE_URL }}
+      SYNC_SECRET: ${{ secrets.SYNC_SECRET }}
+
+    steps:
+      - name: Validate production configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ ! "$SEASON_ID" =~ ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89aAbB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$ ]]; then
+            echo "::error::season_id must be a canonical UUID"
+            exit 1
+          fi
+
+          if [[ -z "$SITE_URL" || "$SITE_URL" != https://* ]]; then
+            echo "::error::The production SITE_URL repository variable is missing or invalid"
+            exit 1
+          fi
+
+          if [[ -z "$SYNC_SECRET" ]]; then
+            echo "::error::The production SYNC_SECRET Actions secret is missing"
+            exit 1
+          fi
+
+      - name: Synchronize official ESPN standings
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          response_file="$(mktemp)"
+          trap 'rm -f "$response_file"' EXIT
+          payload="$(jq -nc --arg season_id "$SEASON_ID" '{season_id:$season_id}')"
+          endpoint="${SITE_URL%/}/api/sync/espn"
+
+          http_code="$(curl \
+            --silent \
+            --show-error \
+            --retry 2 \
+            --retry-all-errors \
+            --connect-timeout 10 \
+            --max-time 60 \
+            --output "$response_file" \
+            --write-out '%{http_code}' \
+            --request POST \
+            --header 'Content-Type: application/json' \
+            --header "Authorization: Bearer $SYNC_SECRET" \
+            --data "$payload" \
+            "$endpoint")"
+
+          if [[ "$http_code" -lt 200 || "$http_code" -ge 300 ]]; then
+            echo "::error::ESPN standings synchronization returned HTTP $http_code"
+            jq -c '{error:(.error // "invalid_response")}' "$response_file" 2>/dev/null \
+              || echo '{"error":"invalid_response"}'
+            exit 1
+          fi
+
+          if ! jq -e '
+            (.status | type == "string") and
+            (.season_id | type == "string") and
+            (.team_count | type == "number")
+          ' "$response_file" >/dev/null; then
+            echo "::error::ESPN standings synchronization returned an invalid success response"
+            exit 1
+          fi
+
+          jq -c '{status,season_id,team_count}' "$response_file"

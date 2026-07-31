@@ -187,6 +187,8 @@ describe("ESPN standings normalization", () => {
     });
 
     expect(ingestion.target_entries).toHaveLength(3);
+    expect(ingestion.target_matchups).toHaveLength(1);
+    expect(ingestion.target_matchups[0].results).toHaveLength(2);
     expect(ingestion.target_payload_sha256).toBe(sha256(rawText));
     expect(ingestion.target_idempotency_key).toContain(
       ingestion.target_payload_sha256,
@@ -194,6 +196,30 @@ describe("ESPN standings normalization", () => {
     expect(ingestion.target_captured_at).toBe("2025-12-28T08:00:00.000Z");
     expect(JSON.stringify(ingestion.target_entries)).not.toContain(
       "redacted-owner",
+    );
+  });
+
+  it("uses a validated caller idempotency key when supplied", async () => {
+    const payload = await fixture();
+    const ingestion = buildEspnStandingsIngestion({
+      leagueId: "league-uuid",
+      seasonId: "season-uuid",
+      seasonYear: 2025,
+      espnLeagueId: 999,
+      response: {
+        endpointPath: "/redacted",
+        fetchedAt: "2025-12-29T00:00:05.000Z",
+        httpStatus: 200,
+        payload,
+        rawText: JSON.stringify(payload),
+      },
+      mappings,
+      idempotencyKey: "scheduled:2025:final",
+    });
+
+    expect(ingestion.target_idempotency_key).toBe("scheduled:2025:final");
+    expect(ingestion.target_source_key).toContain(
+      ingestion.target_payload_sha256,
     );
   });
 });

@@ -7,6 +7,20 @@
     "latestScoringPeriod": 17,
     "standingsUpdateDate": 1766908800000
   },
+  "settings": {
+    "scheduleSettings": {
+      "matchupPeriodCount": 14
+    }
+  },
+  "schedule": [
+    {
+      "id": 1,
+      "matchupPeriodId": 1,
+      "winner": "HOME",
+      "home": { "teamId": 21, "totalPoints": 103.41 },
+      "away": { "teamId": 22, "totalPoints": 80.44 }
+    }
+  ],
   "teams": [
     {
       "id": 21,

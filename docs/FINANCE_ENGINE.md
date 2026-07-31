@@ -45,6 +45,8 @@ team balance =
 
 - Amounts are integer cents.
 - Rules are season-scoped data.
+- Every payout and penalty amount and schedule is season configuration; no
+  monetary rule is an application constant.
 - Generated obligations have unique source keys.
 - Re-running derivation cannot duplicate an obligation.
 - Posted entries are immutable.
@@ -68,5 +70,17 @@ season cash =
   - external cash paid
 ```
 
-Tie handling and payout rounding are explicit season settings before the
-engine is considered complete.
+`season_financial_rules` is the canonical season schedule. It stores required
+weekly high/low rules plus commissioner-defined placement payouts, season
+awards, and penalties. The complete enabled schedule is validated and replaced
+atomically, and every accepted version is preserved as an immutable audit
+snapshot. Configuration never records money movement.
+
+Unique-score weeks create obligations automatically after every active team has
+one accepted regular-season result. The derivation currently reads compatibility
+values projected into `season_settings` by the canonical rule transaction. The
+season-scoped tie policy is `commissioner_review`: tied high or low scores create
+no financial event and remain pending explicit resolution. Placement and other
+season-rule derivation will be enabled only after their triggering competition
+facts and review policies are modeled. Tie handling and payout rounding remain
+explicit season policy rather than hidden code behavior.

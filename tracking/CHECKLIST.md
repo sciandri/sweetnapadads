@@ -50,16 +50,19 @@ sequencing live in `docs/IMPLEMENTATION_PLAN.md`.
 - [x] Persist official-order standings snapshots atomically and idempotently.
 - [x] Add commissioner-only league context over standings, results, and awards.
 - [x] Normalize ESPN's official order into the atomic snapshot RPC.
-- [ ] Normalize matchups and weekly results idempotently.
-- [ ] Complete ESPN-backed matchup normalization and weekly-award derivation.
-- [ ] Generate rule-backed financial obligations.
+- [x] Add the protected commissioner and automation standings endpoint.
+- [x] Normalize ESPN matchups and weekly results idempotently.
+- [x] Derive unique-score weekly awards and report tied weeks for review.
+- [x] Generate weekly rule-backed financial obligations from season config.
+- [x] Configure every placement, season-award, and penalty schedule as data.
 - [ ] Add manual-results fallback.
 
 ## Phase 4 — Application
 
 - [x] Build authenticated application shell.
-- [ ] Build member dashboard.
-- [ ] Build standings, results, and awards.
+- [x] Build responsive commissioner ESPN mapping and run controls.
+- [x] Build member dashboard with latest official-order ESPN standings.
+- [x] Build standings, results, and awards.
 - [ ] Build financial transparency and team balances.
 - [ ] Build team, history, records, and activity pages.
 - [ ] Build commissioner administration.
@@ -68,6 +71,7 @@ sequencing live in `docs/IMPLEMENTATION_PLAN.md`.
 ## Phase 5 — Operations
 
 - [ ] Add protected scheduled synchronization workflow.
+- [x] Add manual-only production sync workflow and activation/failure runbook.
 - [ ] Add production observability and runbooks.
 - [x] Configure linked Vercel and Supabase production projects and Auth URLs.
 - [ ] Add notification framework.

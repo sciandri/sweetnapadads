@@ -27,20 +27,26 @@
 
 ## Phase 3 — Competition
 
-- ESPN adapter and recorded fixtures
-- Mapping and sync run administration
-- Matchups, results, standings, awards, and playoffs
-- Idempotency and failure recovery tests
+- [x] ESPN standings adapter and recorded fixtures
+- [x] Protected commissioner and automation standings endpoint
+- [x] Commissioner mapping and sync run administration
+- [x] ESPN matchups and reciprocal weekly results
+- [x] Unique-score weekly awards and configured rule-backed obligations
+- [x] Audited configurable weekly, placement, season-award, and penalty schedule
+- Placement/season award derivation and playoffs
+- [x] Idempotency and atomic failure-recovery tests
 
 ## Phase 4 — Application
 
-- Authenticated shell and member dashboard
-- Standings, results, awards, finance, team, and history pages
-- Commissioner administration
+- [x] Authenticated shell and official-order member standings dashboard
+- [x] Member results and weekly awards page
+- Finance, team, and history pages
+- Commissioner administration (ESPN mapping and financial rules complete)
 
 ## Phase 5 — Operations
 
-- Scheduled sync workflow
+- [x] Manual-only protected production sync workflow and activation runbook
+- Scheduled sync activation after reviewed production secrets and season policy
 - Observability and production runbooks
 - Notifications and generated recaps
 

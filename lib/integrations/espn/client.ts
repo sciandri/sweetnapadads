@@ -31,7 +31,9 @@ export async function fetchEspnStandings(
   const endpointPath =
     `/apis/v3/games/ffl/seasons/${season}/segments/0/leagues/` +
     `${config.leagueId}`;
-  const query = "view=mSettings&view=mTeam&view=mStandings";
+  const query =
+    "view=mSettings&view=mTeam&view=mStandings&view=mMatchup&" +
+    "view=mMatchupScore&view=mScoreboard";
   const fetchedAt = new Date().toISOString();
   const response = await fetchImplementation(
     `https://lm-api-reads.fantasy.espn.com${endpointPath}?${query}`,

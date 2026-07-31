@@ -74,3 +74,60 @@ member-readable source evidence, hashes raw responses deterministically, and
 checks the atomic ingestion arguments. A synthetic twelve-team case verifies
 that league size is derived from season mappings rather than a ten-team
 application constant.
+
+The synchronization Route Handler suite covers malformed and non-JSON bodies,
+missing authentication, commissioner denial, constant-time automation-secret
+authorization, dynamic twelve-team mapping propagation, caller-supplied
+idempotency keys, unmapped teams, missing configuration, ESPN failures,
+unavailable preseason order, persistence failures, missing seasons, and the
+stable unexpected-error boundary. Tests assert that private error details do
+not cross the HTTP response.
+
+Mapping administration pgTAP coverage verifies the audited table and function,
+authenticated/anonymous privileges, safe ESPN ID swaps, exact team coverage,
+unique IDs, RLS-hidden seasons, commissioner audit visibility, and exact
+accepted evidence. HTTP coverage verifies identity, role, RLS-hidden seasons,
+twelve-team batches, stable rejections, and error redaction. The live local
+browser pass exercises magic-link Auth, an audited mapping save, disabled-sync
+guidance, recent-run empty state, and a 390px layout with no horizontal
+overflow.
+
+The operations contract test pins the ESPN workflow to manual-only execution,
+least-privilege permissions, indirect GitHub secret and variable references,
+evidence-derived idempotency, redacted output, and the documented activation,
+failure, rotation, and scheduling gates. The workflow YAML is parsed locally.
+
+Member standings view tests pin display ordering to ESPN's supplied
+`official_rank`, preserve two-decimal fantasy points, and format the evidence
+capture time in a fixed league time zone. Authenticated browser checks cover
+the desktop dashboard and its 390px mobile empty state after a clean database
+reset.
+
+Member competition view tests verify descending week order, reciprocal matchup
+grouping, winner-first presentation, exact hundredth formatting, incomplete
+result states, and stored award labels without recomputation. Authenticated
+browser checks use the rehearsed 2025 history to cover season/week navigation,
+populated scorecards, weekly honors, postseason pending states, and the 390px
+responsive layout.
+
+ESPN matchup fixtures and live redacted shape inspection cover completed games,
+ties, undecided and future exclusion, score rounding, reciprocal opponents,
+dynamic playoff boundaries, mapping failures, and duplicate identifiers. The
+database suite verifies service-role isolation, raw-run provenance, exact
+retry behavior, score/outcome consistency, and rollback of the entire
+competition snapshot when a matchup fails.
+
+Weekly award pgTAP coverage verifies season-scoped tie policy, service-role
+isolation, complete-team result gates, unique high/low selection, configured
+integer-cent payout and penalty amounts, correct obligation directions,
+deterministic occurrence dates and source references, exact retries, and
+fail-closed tied weeks with no partial financial events.
+
+Season financial-rule pgTAP coverage verifies initialization, member and
+commissioner visibility, direct-write denial, commissioner-only batch saves,
+all five rule kinds, direction and placement constraints, legacy weekly
+projections, immutable audit evidence, and outsider denial. Unit and HTTP tests
+cover strict safe-integer parsing, complete-schedule requirements, duplicate
+keys and ranks, verified claims, RLS-hidden seasons, stable error responses, and
+the audited RPC call. Authenticated browser review covers the editor at desktop
+and 390px widths.

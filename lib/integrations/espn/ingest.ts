@@ -16,6 +16,7 @@ export async function ingestEspnStandings({
   espnLeagueId,
   response,
   mappings,
+  idempotencyKey,
 }: {
   supabase: SupabaseClient;
   leagueId: string;
@@ -30,6 +31,7 @@ export async function ingestEspnStandings({
     rawText: string;
   };
   mappings: EspnTeamMapping[];
+  idempotencyKey?: string;
 }) {
   const ingestion = buildEspnStandingsIngestion({
     leagueId,
@@ -38,9 +40,10 @@ export async function ingestEspnStandings({
     espnLeagueId,
     response,
     mappings,
+    idempotencyKey,
   });
   const { data, error } = await supabase.rpc(
-    "record_espn_standings_snapshot",
+    "record_espn_competition_snapshot",
     ingestion,
   );
 

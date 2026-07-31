@@ -236,6 +236,49 @@ Never run a linked reset against production.
   evidence;
 - full rollback when any normalized value or relationship is invalid.
 
+`20260731150000_espn_team_mapping_admin.sql` establishes:
+
+- immutable commissioner mapping-audit batches with actor and timestamp;
+- commissioner-only visibility and inserts under RLS;
+- one atomic full-season mapping replacement function;
+- exact active-team coverage with unique positive ESPN identifiers;
+- safe identifier swaps by clearing and replacing mappings in one transaction.
+
+`20260731160000_espn_matchup_ingest.sql` establishes:
+
+- raw-run provenance on source-owned ESPN matchups;
+- service-role-only validation and upsert of completed matchups and exactly two
+  reciprocal results;
+- dynamic regular-season/postseason phase supplied by the validated adapter;
+- score/outcome consistency, active ESPN mapping checks, and stable source-key
+  conflict protection;
+- one wrapper transaction that rolls standings, raw evidence, matchups, and
+  results back together when any normalized record fails.
+
+`20260731170000_weekly_award_derivation.sql` establishes:
+
+- a season-scoped `commissioner_review` tie policy;
+- service-role-only derivation after every active team has one accepted
+  regular-season result;
+- weekly high/low selection from normalized scores without application math;
+- immutable payout and penalty obligations using configured integer-cent
+  season amounts and deterministic source keys;
+- automatic processing of complete unique-score weeks while incomplete weeks
+  wait and tied weeks return as pending review.
+
+`20260731180000_season_financial_rules.sql` establishes:
+
+- one canonical season schedule for weekly awards, placement payouts, season
+  awards, and penalties, with positive integer-cent amounts and stable keys;
+- database-enforced payout/penalty directions and unique enabled placement
+  ranks;
+- member-readable rules, commissioner-readable immutable change snapshots,
+  and no direct authenticated writes under RLS;
+- one commissioner-only atomic replacement function that validates the entire
+  enabled schedule and records actor, timestamp, and exact accepted JSON;
+- required weekly high/low rules and a compatibility projection back to the
+  legacy `season_settings` columns used by the current weekly derivation.
+
 Public self-registration is disabled in `supabase/config.toml`. Authentication
 identities will be created through commissioner-controlled invitation or
 administrative workflows.

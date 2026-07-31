@@ -27,7 +27,27 @@ export type EspnLeaguePayload = {
     latestScoringPeriod?: unknown;
     standingsUpdateDate?: unknown;
   };
+  settings?: {
+    scheduleSettings?: {
+      matchupPeriodCount?: unknown;
+    };
+  };
+  schedule?: unknown;
   teams?: unknown;
+};
+
+export type EspnMatchupSide = {
+  teamId?: unknown;
+  totalPoints?: unknown;
+};
+
+export type EspnScheduleItem = {
+  id?: unknown;
+  matchupPeriodId?: unknown;
+  playoffTierType?: unknown;
+  winner?: unknown;
+  home?: EspnMatchupSide;
+  away?: EspnMatchupSide;
 };
 
 export type EspnTeamMapping = {
@@ -48,4 +68,22 @@ export type NormalizedEspnStanding = {
   streak: string | null;
   record_summary: string;
   source_record: Record<string, unknown>;
+};
+
+export type NormalizedEspnResult = {
+  season_team_id: string;
+  opponent_season_team_id: string;
+  espn_team_id: number;
+  score: number;
+  result: "win" | "loss" | "tie";
+  source_key: string;
+};
+
+export type NormalizedEspnMatchup = {
+  espn_matchup_id: number;
+  week: number;
+  phase: "regular_season" | "postseason";
+  source_key: string;
+  source_updated_at: string | null;
+  results: [NormalizedEspnResult, NormalizedEspnResult];
 };

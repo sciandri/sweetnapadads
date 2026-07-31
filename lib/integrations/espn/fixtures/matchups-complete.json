@@ -1,0 +1,49 @@
+{
+  "id": 999,
+  "seasonId": 2025,
+  "scoringPeriodId": 16,
+  "status": {
+    "latestScoringPeriod": 16,
+    "finalScoringPeriod": 16,
+    "standingsUpdateDate": 1766908800000
+  },
+  "settings": {
+    "scheduleSettings": {
+      "matchupPeriodCount": 14
+    }
+  },
+  "schedule": [
+    {
+      "id": 1,
+      "matchupPeriodId": 1,
+      "playoffTierType": "NONE",
+      "winner": "HOME",
+      "home": { "teamId": 21, "totalPoints": 103.4100000001 },
+      "away": { "teamId": 22, "totalPoints": 80.4399999999 }
+    },
+    {
+      "id": 2,
+      "matchupPeriodId": 1,
+      "playoffTierType": "NONE",
+      "winner": "TIE",
+      "home": { "teamId": 23, "totalPoints": 99.5 },
+      "away": { "teamId": 24, "totalPoints": 99.5 }
+    },
+    {
+      "id": 71,
+      "matchupPeriodId": 15,
+      "playoffTierType": "WINNERS_BRACKET",
+      "winner": "AWAY",
+      "home": { "teamId": 21, "totalPoints": 110.25 },
+      "away": { "teamId": 23, "totalPoints": 112.75 }
+    },
+    {
+      "id": 72,
+      "matchupPeriodId": 16,
+      "playoffTierType": "WINNERS_BRACKET",
+      "winner": "UNDECIDED",
+      "home": { "teamId": 22, "totalPoints": 0 },
+      "away": { "teamId": 24, "totalPoints": 0 }
+    }
+  ]
+}

@@ -16,6 +16,27 @@ Initial capabilities:
 - generate, review, edit, and copy league-message drafts using verified ESPN
   and competition context.
 
+Every payout and penalty must be commissioner-configurable for its season
+before automation is enabled. This includes weekly high/low rules, placement
+payouts, season awards, and any future penalty category. Configuration changes
+must be audited; application code never supplies a fallback dollar amount.
+
+The responsive season financial-rule editor is implemented at
+`/dashboard/admin/season-rules`. It replaces the selected season's complete
+enabled schedule as one batch. Weekly high/low rules are required; commissioners
+can add or remove placement payouts, season awards, and general penalties.
+Dollar inputs become integer cents at the request boundary, placement ranks and
+stable keys must be unique, and every accepted save creates an immutable audit
+snapshot. Saving configuration does not create an obligation or record a
+payment.
+
+The responsive ESPN control room is implemented at `/dashboard/admin/espn`.
+It shows every active season team, saves a complete mapping batch, triggers the
+protected competition endpoint, and displays recent run status. Mapping changes
+cross a commissioner-only PostgreSQL function, replace the full active set
+atomically, and preserve actor, timestamp, season, league, and accepted mapping
+evidence. Production credentials and scheduling remain deliberately disabled.
+
 Every consequential action records actor, timestamp, league, season, and a
 human-readable reason where appropriate. Destructive historical deletion is
 not exposed through the application.

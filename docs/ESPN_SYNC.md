@@ -8,9 +8,22 @@
 4. Validate league identity, team mappings, matchup count, and score state.
 5. Normalize teams, matchups, and weekly results.
 6. Preserve ESPN's official standings order in an immutable snapshot and
-   derive awards from normalized results and season rules.
+   derive unique-score awards from complete normalized results and configured
+   season rules.
 7. Generate finance obligations from configured rules.
 8. Record activity events and final run status.
+
+The server adapter requests ESPN's matchup, matchup-score, and scoreboard views
+with the standings response. Completed matchups are accepted only when ESPN
+reports `HOME`, `AWAY`, or `TIE`; future and `UNDECIDED` rows remain absent.
+Regular-season versus postseason phase is derived from ESPN's season-specific
+`matchupPeriodCount`, not an application week constant. Each accepted matchup
+produces exactly two mapped, reciprocal score/result rows.
+
+After competition ingestion, complete regular-season weeks derive their weekly
+high and low awards plus separate immutable obligations. Amounts come only from
+season configuration. Incomplete weeks wait; an exact high or low score tie is
+reported under the `commissioner_review` policy and creates no financial event.
 
 The server-only adapter in `lib/integrations/espn/` reads the private-league
 credentials from environment state and requests ESPN's settings, teams, and
@@ -26,6 +39,26 @@ the normalized entries exactly cover active mapped season teams, that ranks
 are unique and contiguous as ESPN supplied them, and that source identifiers
 match their stored mappings. It then records the run, raw response, snapshot,
 and entries in one transaction. Any invalid entry rolls back the entire write.
+
+`POST /api/sync/espn` is the protected orchestration boundary. It accepts an
+authenticated commissioner session or a constant-time checked `SYNC_SECRET`
+bearer credential, resolves the requested season and all active mappings from
+PostgreSQL, fetches ESPN only after authorization and mapping validation, and
+passes the result to the atomic ingestion function. The endpoint exists in the
+codebase but remains operationally disabled until production ESPN
+credentials and `SYNC_SECRET` are deliberately configured.
+
+Commissioners manage mappings and manual runs from
+`/dashboard/admin/espn`. Saving replaces the complete active-team mapping set
+through one audited database transaction; synchronization remains unavailable
+when a mapping is blank or duplicated. The screen also shows recent immutable
+run evidence without exposing raw private payloads.
+
+GitHub automation is defined as a manual-only `workflow_dispatch` operation.
+It validates the season UUID, uses the protected production environment,
+prevents concurrent runs for the same season, and relies on the raw response
+hash for retry-safe idempotency. A cron trigger is intentionally absent until
+the activation and scheduling decisions in the production runbook are complete.
 
 ## Idempotency
 

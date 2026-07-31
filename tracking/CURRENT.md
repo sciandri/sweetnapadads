@@ -1,11 +1,11 @@
 # Current project state
 
 - Last updated: 2026-07-31
-- Session: 0005
-- Session status: complete — published and deployed
+- Session: 0006
+- Session status: active
 - Branch: `main`
 - Phase: Phase 3 — Competition
-- Checkpoint: ESPN adapter and canonical import rehearsal published
+- Checkpoint: member results and weekly honors complete locally
 
 ## Current outcome
 
@@ -88,6 +88,76 @@ Source checkpoint `74c5f48` is published to GitHub `main`. Hosted Supabase
 remains synchronized through all twelve migrations with an empty migration
 dry-run; no production database data or schema changed. Vercel production
 deployment `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4` is Ready on the custom domain.
+The protected `POST /api/sync/espn` Route Handler now authorizes an active
+commissioner session or constant-time checked automation bearer secret,
+validates JSON and idempotency input, resolves every active season mapping
+dynamically, fetches private ESPN standings server-side, and records them
+through the existing atomic ingestion boundary. Stable responses redact all
+provider, credential, and database details. Production execution remains
+disabled because ESPN credentials and `SYNC_SECRET` are intentionally absent.
+Commissioners now have a responsive ESPN control room at
+`/dashboard/admin/espn`. It loads every active team for the selected season,
+saves one complete mapping batch through a commissioner-only atomic RPC,
+records immutable actor/timestamp evidence, triggers the protected sync route,
+and shows recent runs. The screen supports a dynamic team count and passed a
+real local magic-link/RLS save plus a 390px no-overflow browser check.
+
+The production ESPN Actions workflow is now defined as manual-only and
+disabled by missing environment configuration. It validates the canonical
+season UUID, uses least-privilege permissions and per-season concurrency,
+references only the GitHub `SYNC_SECRET` and `SITE_URL` configuration, derives
+idempotency from raw ESPN evidence, and emits a redacted summary. The runbook
+covers activation, manual verification, failures, secret rotation, and the
+separate decision required before adding any cron schedule.
+
+The authenticated member dashboard now reads the latest successful standings
+snapshot through RLS, selects the active or latest configured season, preserves
+ESPN's stored official rank, and displays team labels, record, points for,
+points against, streak, scoring period, and the Pacific capture time. Its
+responsive card-to-table layout and explicit no-snapshot state were verified
+in the authenticated browser at desktop and 390px widths.
+
+The ESPN adapter now consumes matchup, matchup-score, and scoreboard views from
+the same private response. Live 2025 shape validation confirmed 80 matchups
+across ten teams without logging names, owners, league IDs, cookies, or raw
+payloads. Completed ESPN matchups normalize into two reciprocal results; future
+and undecided games are excluded, and postseason phase comes from ESPN's
+season-specific matchup-period setting. A new service-role wrapper records raw
+evidence, official standings, matchups, and results in one transaction, with
+stable upserts for score corrections and complete rollback on any invalid row.
+
+Complete regular-season weeks now derive weekly high/low awards automatically
+from accepted scores. The payout and penalty amounts come from integer-cent
+season configuration, produce separate immutable obligations, and use stable
+rule source keys. Incomplete weeks wait. The season-scoped tie policy is
+`commissioner_review`: tied extrema create no award or financial row and the
+sync response identifies the pending weeks in the commissioner control room.
+The commissioner reaffirmed that every payout and penalty category—including
+placement and season awards—must be configured as season data, never coded as
+a fallback amount; ADR 0006 records that rule.
+The canonical `season_financial_rules` schedule now represents weekly awards,
+placement payouts, season awards, and general penalties with stable keys and
+integer cents. Commissioners replace the complete enabled schedule through one
+authorization-checked PostgreSQL transaction. Direct authenticated writes are
+unavailable, and every accepted version preserves its actor, timestamp, and
+exact JSON as immutable audit evidence. The required weekly rules project into
+the legacy settings columns used by current weekly derivation, so those columns
+are compatibility state rather than a second configuration surface.
+Commissioners can manage the schedule at
+`/dashboard/admin/season-rules`. The responsive editor enforces positive dollar
+inputs, unique stable keys and placement ranks, makes configuration distinct
+from financial events, and passed authenticated desktop and 390px browser
+review.
+Members can now browse accepted competition history at `/dashboard/results`.
+The server-rendered route authorizes an active league membership, validates the
+requested season against that league, and reads matchups, reciprocal results,
+weekly awards, and season-team labels through RLS. Its deterministic view model
+groups each matchup once, preserves stored win/loss/tie outcomes and score
+hundredths, and attaches only already-derived awards. Missing honors remain
+explicitly pending rather than being inferred from visible scores. The 2025
+rehearsal supplied a populated visual contract: season/week selection, Week 14
+honors, postseason pending state, five-matchup grids, and 390px mobile layout
+all passed.
 
 ## In progress
 
@@ -154,13 +224,35 @@ deployment `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4` is Ready on the custom domain.
 - [x] Verify hosted Supabase is current with no pending migrations.
 - [x] Deploy and smoke-test Vercel production
       `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4` and the custom domain.
+- [x] Add and test the protected ESPN standings Route Handler for commissioner
+      sessions and scheduled automation.
+- [x] Add and test atomic, audited commissioner ESPN mapping administration.
+- [x] Add the responsive commissioner mapping, manual sync, and recent-run
+      control room.
+- [x] Add and test the manual-only GitHub Actions production sync workflow.
+- [x] Add the production activation, verification, failure, rotation, and
+      scheduling runbook.
+- [x] Replace the authenticated placeholder with the responsive member
+      standings dashboard over `current_espn_standings` and RLS.
+- [x] Add redacted ESPN matchup fixtures and strict completed-game
+      normalization with dynamic regular-season and playoff boundaries.
+- [x] Atomically ingest ESPN standings, matchups, and reciprocal weekly results
+      with raw-run provenance and idempotent source-owned updates.
+- [x] Derive complete unique-score weekly awards and configured immutable
+      payout/penalty obligations; surface tied weeks for review.
+- [x] Record the architecture rule that every payout and penalty schedule is
+      season configuration rather than application code.
+- [x] Add the audited canonical financial-rule schedule and commissioner editor
+      for weekly, placement, season-award, and penalty categories.
+- [x] Add the authenticated member results and weekly honors route with stored
+      outcomes, honest pending states, and responsive navigation.
 
 ## Next actions
 
-1. Configure a server-only OpenAI API key, then implement and test the reviewed
+1. Build member financial transparency and team-balance views over the
+   canonical security-invoker reconciliation models.
+2. Configure a server-only OpenAI API key, then implement and test the reviewed
    message-draft Route Handler that returns three editable options.
-2. Add a protected ESPN synchronization Route Handler and season-team mapping
-   administration before enabling scheduled or production synchronization.
 3. Decide when the locally rehearsed canonical 2025 history should be staged
    and committed to hosted Supabase; do not infer production authorization.
 4. Configure production SMTP before inviting real members.
@@ -191,7 +283,9 @@ deployment `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4` is Ready on the custom domain.
 - The hosted `sweetnapadads` project exists at
   `https://cleyfpzxckjtmsoesgby.supabase.co`. Codex MCP and CLI access are
   authenticated and the CLI is linked. All twelve migration versions through
-  `20260731140000` match hosted history.
+  `20260731140000` match hosted history. Local reviewed migrations
+  `20260731150000` through `20260731180000` remain pending until the next
+  update-and-track release.
 - Vercel production has the public Supabase values, canonical `SITE_URL`, and
   a server-only Supabase service-role value. Preview and development
   environments remain intentionally unconfigured to avoid silently sharing
@@ -209,7 +303,8 @@ deployment `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4` is Ready on the custom domain.
   deployment `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4` is Ready.
 - ESPN private-league credentials are configured only in git-ignored local
   environment state and validated for both the 2025 and 2026 ten-team league.
-  They are not configured in Vercel and must never be committed or logged.
+  They and `SYNC_SECRET` are not configured in Vercel and must never be
+  committed or logged. The sync route therefore remains configuration-disabled.
 - An OpenAI API key has not been provided. The composer UI and prompt boundary
   are implemented, but live generation remains disabled until the key is
   configured server-side and the Route Handler is added and tested.
@@ -221,10 +316,10 @@ deployment `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4` is Ready on the custom domain.
 - `npm audit`: clean
 - `npm run lint`: passing
 - `npm run typecheck`: passing
-- `npm test`: 37 tests passing
+- `npm test`: 90 tests passing
 - `npm run db:reset`: passing
 - `npm run db:lint`: passing with no warnings
-- `npm run db:test`: 255 database tests passing
+- `npm run db:test`: 329 database tests passing
 - `npm run import:2025:rehearse`: passing twice; second run idempotent
 - ESPN credential check: authenticated HTTP 200 for 2025 and 2026; league ID
   and ten-team response verified without logging credential values
@@ -243,14 +338,32 @@ deployment `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4` is Ready on the custom domain.
 - Desktop visual pass: passing
 - Responsive visual pass: passing at 320px, 390px, 768px, and 1440px with no
   horizontal overflow
+- ESPN control-room browser pass: local magic-link Auth, audited mapping save,
+  stable disabled-sync guidance, no console errors, and 390px no-overflow layout
+- ESPN workflow contract: manual-only, least privilege, indirect secrets,
+  evidence-derived idempotency, redacted output, and runbook gates verified
+- Member standings browser pass: authenticated desktop and 390px layouts show
+  the current season, capture evidence, and honest no-snapshot state
+- ESPN matchup contract: redacted live 2025 schedule shape verified; completed,
+  tied, future, undecided, mapped, and postseason cases covered
+- Atomic competition ingestion: exact retries, raw-run provenance,
+  score/outcome validation, and full standings rollback verified
+- Weekly award derivation: configured cent amounts, immutable obligation
+  directions, exact retries, incomplete-week waiting, and tied-week review
+  verified
+- Financial-rule configuration: five rule kinds, atomic commissioner saves,
+  strict parser/API validation, legacy weekly projections, immutable audit
+  snapshots, outsider denial, and desktop/390px browser layouts verified
+- Member results and honors: reciprocal grouping, stored result order and
+  awards, exact scores, season/week selection, incomplete/tied empty states,
+  populated 2025 desktop review, and 390px layout verified
 
 ## Latest commit intent
 
-`docs: record ESPN adapter production release`
+`feat: add member results and weekly honors`
 
 ## Pickup instruction
 
-Start session 0006 from clean, synchronized `main`. Continue with live OpenAI
-generation when its server-only key is available, or add the protected ESPN
-synchronization Route Handler and season-team mapping administration.
-Production 2025 history still requires an explicit release decision.
+Continue session 0006 with member financial transparency and team-balance
+views. Production ESPN activation, SMTP, and 2025 history remain separate
+explicit release decisions.

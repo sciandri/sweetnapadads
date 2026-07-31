@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 
+import { normalizeEspnMatchups } from "@/lib/integrations/espn/matchups";
 import type {
   EspnLeaguePayload,
   EspnTeam,
@@ -186,6 +187,7 @@ export function buildEspnStandingsIngestion({
   espnLeagueId,
   response,
   mappings,
+  idempotencyKey,
 }: {
   leagueId: string;
   seasonId: string;
@@ -199,9 +201,16 @@ export function buildEspnStandingsIngestion({
     rawText: string;
   };
   mappings: EspnTeamMapping[];
+  idempotencyKey?: string;
 }) {
   const payloadHash = sha256(response.rawText);
   const entries = normalizeEspnStandings({
+    payload: response.payload,
+    expectedLeagueId: espnLeagueId,
+    expectedSeason: seasonYear,
+    mappings,
+  });
+  const matchups = normalizeEspnMatchups({
     payload: response.payload,
     expectedLeagueId: espnLeagueId,
     expectedSeason: seasonYear,
@@ -227,7 +236,7 @@ export function buildEspnStandingsIngestion({
     target_season_id: seasonId,
     target_scoring_period: scoringPeriod,
     target_source_revision: sourceRevision,
-    target_idempotency_key: sourceKey,
+    target_idempotency_key: idempotencyKey ?? sourceKey,
     target_endpoint_path: response.endpointPath,
     target_http_status: response.httpStatus,
     target_raw_payload: response.payload,
@@ -237,5 +246,6 @@ export function buildEspnStandingsIngestion({
     target_source_key: sourceKey,
     target_captured_at: capturedAt,
     target_entries: entries,
+    target_matchups: matchups,
   };
 }

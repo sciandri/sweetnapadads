@@ -64,6 +64,55 @@ cannot become current, and an exact retry resolves to the original snapshot.
 The adapter in `lib/integrations/espn/` now provides the server-only client,
 strict pure normalizer, and service-role ingestion call. Its recorded fixtures
 are redacted and contain no private team names, owner identifiers, or cookies.
+The Node.js Route Handler at `POST /api/sync/espn` composes those boundaries.
+It authenticates before reading season data, authorizes commissioners through
+RLS or verifies the automation bearer secret in constant time, and returns
+only stable error codes.
+
+GitHub Actions receives only the production application origin and rotating
+automation secret, then calls that same Route Handler. ESPN cookies and the
+Supabase service-role credential remain exclusively in Vercel's server-only
+environment and never enter GitHub Actions. The workflow is manual-only until
+the production activation and scheduling gates are reviewed.
+
+Commissioner mapping changes cross
+`set_espn_season_team_mappings` rather than issuing row-by-row UI updates. The
+function validates exact active-team coverage, temporarily clears old IDs so
+swaps cannot violate uniqueness mid-operation, replaces the complete set in one
+transaction, and writes an immutable `espn_team_mapping_changes` audit batch.
+
+Completed ESPN matchups cross the same outer competition-snapshot transaction
+as raw evidence and standings. The adapter derives phase from ESPN season
+settings, excludes undecided games, and supplies two reciprocal results. The
+database validates mappings, score/outcome agreement, and stable source
+identity before source-owned ESPN rows are inserted or refreshed. Any matchup
+failure rolls back the new run, raw payload, and standings snapshot together.
+
+Complete regular-season weeks then pass through database award derivation.
+High-score payouts and low-score penalties read integer-cent amounts from the
+season configuration and create immutable obligations, never payments.
+`season_financial_rules` is the canonical complete schedule for weekly rules,
+placement payouts, season awards, and general penalties. Commissioners replace
+that enabled schedule through one audited security-definer function; direct
+authenticated writes are unavailable. The two legacy weekly amount columns are
+maintained only as a compatibility projection for the current weekly derivation
+and are not an independent configuration surface. Tied extrema currently follow
+the explicit `commissioner_review` policy and produce no financial row.
+
+The authenticated member dashboard reads `current_espn_standings` through the
+member's request-scoped Supabase client and RLS. It joins only season-team
+display labels, orders by ESPN's stored `official_rank`, and exposes the
+snapshot capture time and scoring period so members can see when the table was
+last accepted. An absent snapshot produces an explicit empty state rather than
+locally derived standings.
+
+The member results route reads `matchups`, `weekly_results`, `weekly_awards`,
+and season-team labels through the same request-scoped client and their existing
+league RLS. A deterministic presentation model groups reciprocal results into
+one matchup, retains stored win/loss/tie outcomes and exact scores, and attaches
+only persisted weekly honors. Season and week filters are server-rendered URL
+state. The view never infers an award from visible scores; absent awards remain
+explicitly pending for incomplete or tied weeks.
 
 Approved historical previews cross a single PostgreSQL transaction boundary.
 The database resolves season-team identifiers, validates reciprocal results,
@@ -91,4 +140,5 @@ See [ADR 0001](adr/0001-next-supabase-architecture.md) and
 [ADR 0002](adr/0002-event-based-finance.md), [ADR
 0003](adr/0003-external-league-cash-events.md), and [ADR
 0004](adr/0004-atomic-historical-domain-commit.md), and [ADR
-0005](adr/0005-espn-standings-and-ai-message-context.md).
+0005](adr/0005-espn-standings-and-ai-message-context.md), and [ADR
+0006](adr/0006-espn-competition-and-configured-awards.md).
