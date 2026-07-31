@@ -12,9 +12,9 @@
   (`prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w`)
 - Supabase: `sweetnapadads` (`cleyfpzxckjtmsoesgby`, `us-west-2`)
 
-The repository is linked locally to both projects. Source commit `c25a642` is
-deployed to Vercel production as
-`dpl_DPkGYFhjWBHhVbgYPt1CT7wJex1j`. All seven versioned migrations through
+The repository is linked locally to both projects. Release closeout commit
+`bdc4cc2` is deployed to Vercel production as
+`dpl_ENTbaLv63W9QivU7QjFUGKF3XMPY`. All seven versioned migrations through
 `20260731090000` are applied to hosted Supabase.
 
 ## Environments

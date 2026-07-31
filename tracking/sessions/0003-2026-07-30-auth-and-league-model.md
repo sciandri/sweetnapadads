@@ -85,7 +85,7 @@ are complete. The first incomplete platform item is the local development seed.
 - [x] Add Vercel production `SITE_URL`.
 - [x] Dry-run and apply migrations `20260731050000` through
       `20260731090000` to hosted Supabase.
-- [x] Deploy production as `dpl_DPkGYFhjWBHhVbgYPt1CT7wJex1j`.
+- [x] Deploy production as `dpl_ENTbaLv63W9QivU7QjFUGKF3XMPY`.
 - [x] Verify GitHub source, hosted migration history, Auth configuration,
       production aliases, home page, and invitation-only login page.
 
@@ -119,10 +119,10 @@ are complete. The first incomplete platform item is the local development seed.
 - Local browser smoke test: magic-link email, callback exchange, verified
   claims, membership RLS, and commissioner dashboard passing
 - `npm audit`: zero known vulnerabilities
-- GitHub `main`: `c25a642`
+- GitHub `main`: release source `c25a642`, closeout baseline `bdc4cc2`
 - Hosted migration history: all seven local versions match remote
 - Hosted Supabase Auth production config: up to date
-- Vercel deployment `dpl_DPkGYFhjWBHhVbgYPt1CT7wJex1j`: Ready
+- Vercel deployment `dpl_ENTbaLv63W9QivU7QjFUGKF3XMPY`: Ready
 - Production home and login: HTTP 200
 
 ## Risks or blockers

@@ -18,7 +18,7 @@ implemented and tested locally. Request-scoped Supabase browser, server,
 service-role, and session-refresh clients are in place for Next.js 16. All
 seven reviewed migrations are applied to hosted Supabase. Production Auth
 uses `https://sweetnapadads.com` with the exact callback allowlist, Vercel has
-the canonical `SITE_URL`, and source commit `c25a642` is live at
+the canonical `SITE_URL`, and release closeout commit `bdc4cc2` is live at
 `https://www.sweetnapadads.com`.
 The local seed now defines a deterministic synthetic commissioner, development
 league, 2026 season, and season-scoped rules.
@@ -85,7 +85,7 @@ it to a team.
 - [x] Configure hosted Supabase Auth URLs and Vercel production `SITE_URL`.
 - [x] Apply migrations `20260731050000` through `20260731090000`.
 - [x] Deploy and verify Vercel production
-      `dpl_DPkGYFhjWBHhVbgYPt1CT7wJex1j`.
+      `dpl_ENTbaLv63W9QivU7QjFUGKF3XMPY`.
 
 ## Next actions
 
@@ -127,7 +127,7 @@ it to a team.
   or local Studio.
 - The repository is linked locally to Vercel project
   `prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w` in the `sciandri` scope. Production
-  deployment `dpl_DPkGYFhjWBHhVbgYPt1CT7wJex1j` is Ready.
+  deployment `dpl_ENTbaLv63W9QivU7QjFUGKF3XMPY` is Ready.
 - ESPN private-league credentials have not been provided and must never be
   committed.
 - `logo/sweetlookingnapadads.png` is the canonical and only supplied brand
@@ -147,8 +147,8 @@ it to a team.
   verified claims, membership RLS, and dashboard
 - Hosted migration history: all seven local versions match remote
 - Hosted Auth production config: up to date
-- GitHub `main`: source commit `c25a642`
-- Vercel production `dpl_DPkGYFhjWBHhVbgYPt1CT7wJex1j`: Ready
+- GitHub `main`: synchronized after release closeout
+- Vercel production `dpl_ENTbaLv63W9QivU7QjFUGKF3XMPY`: Ready
 - `https://sweetnapadads.com`: HTTP 200 after redirect to
   `https://www.sweetnapadads.com/`
 - `https://sweetnapadads.com/login`: HTTP 200 with the invitation-only login
