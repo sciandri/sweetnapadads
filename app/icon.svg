@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="32" fill="#173f32"/>
+  <path d="M17 40c5-4 8-10 9-18 4 6 8 8 15 9-5 3-8 7-9 13-4-3-9-4-15-4Z" fill="#c89b52"/>
+  <text x="32" y="54" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#f2ecdf">SLND</text>
+</svg>

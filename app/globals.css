@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f2ecdf;
+  --foreground: #162b22;
+  --surface: #faf6ed;
+  --surface-strong: #e8ddc8;
+  --ink-muted: #5d685f;
+  --forest: #173f32;
+  --forest-light: #2b6652;
+  --wine: #7c2f3d;
+  --gold: #c89b52;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-ink-muted: var(--ink-muted);
+  --color-forest: var(--forest);
+  --color-forest-light: var(--forest-light);
+  --color-wine: var(--wine);
+  --color-gold: var(--gold);
+  --font-sans: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --font-display: "Iowan Old Style", Baskerville, "Times New Roman", serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--forest);
+}
+
+.paper-noise {
+  background-image:
+    radial-gradient(
+      circle at 20% 20%,
+      rgb(255 255 255 / 45%) 0 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 80% 50%,
+      rgb(23 63 50 / 8%) 0 1px,
+      transparent 1px
+    );
+  background-size:
+    23px 23px,
+    31px 31px;
+}
