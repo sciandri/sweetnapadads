@@ -1,10 +1,10 @@
 # Session 0006 — Protected ESPN synchronization route
 
 - Date: 2026-07-31
-- Status: active
+- Status: complete — published and deployed
 - Branch: `main`
 - Starting commit: `ab66028`
-- Ending source commit: pending
+- Ending source commit: `401efe0`
 
 ## Goal
 
@@ -100,7 +100,7 @@ secrets remain intentionally absent.
 - `npm test`: 90 tests passing.
 - `npm run build`: passing with both ESPN APIs and the commissioner control
   room as dynamic routes.
-- `npm run db:reset`: passing through all thirteen migrations and seed data.
+- `npm run db:reset`: passing through all sixteen migrations and seed data.
 - `npm run db:lint`: passing with no warnings.
 - `npm run db:test`: 329 tests passing.
 - `npm run tracking:check`: passing with six session logs.
@@ -126,6 +126,13 @@ secrets remain intentionally absent.
 - Member results: reciprocal scorecards, winner-first presentation, exact
   hundredths, stored honors, pending postseason state, and responsive populated
   2025 browser review pass.
+- GitHub `main`: source checkpoint `401efe0` synchronized.
+- Hosted Supabase: all sixteen migrations through `20260731180000` synchronized;
+  post-apply dry-run empty. No hosted 2025 history was imported.
+- Vercel production: `dpl_koVUVkhxKmGmqwoUNHRC45zXriJ7` Ready and aliased to
+  `https://www.sweetnapadads.com`.
+- Production smoke test: apex and `www` homepages and login return HTTP 200;
+  unauthenticated results access redirects to login with a safe return path.
 
 ## Risks or blockers
 
@@ -134,6 +141,7 @@ secrets remain intentionally absent.
 
 ## Exact handoff
 
-Build member financial transparency and team-balance views over the canonical
-security-invoker read models. Production activation, SMTP, scheduling, and
-hosted 2025 history remain separate explicit decisions.
+Start session 0007 from clean, synchronized `main`. Build member financial
+transparency and team-balance views over the canonical security-invoker read
+models. Production ESPN activation, SMTP, scheduling, and hosted 2025 history
+remain separate explicit decisions.

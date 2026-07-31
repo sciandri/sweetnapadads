@@ -2,10 +2,10 @@
 
 - Last updated: 2026-07-31
 - Session: 0006
-- Session status: active
+- Session status: complete — published and deployed
 - Branch: `main`
 - Phase: Phase 3 — Competition
-- Checkpoint: member results and weekly honors complete locally
+- Checkpoint: ESPN competition, financial rules, and member results published
 
 ## Current outcome
 
@@ -16,7 +16,7 @@ authenticated project-scoped Supabase MCP connection for Codex. Leagues,
 seasons, settings, profiles, memberships, and their RLS policies are now
 implemented and tested locally. Request-scoped Supabase browser, server,
 service-role, and session-refresh clients are in place for Next.js 16. All
-twelve reviewed migrations are applied to hosted Supabase. Production Auth
+sixteen reviewed migrations are applied to hosted Supabase. Production Auth
 uses `https://sweetnapadads.com` with the exact callback allowlist, Vercel has
 the canonical `SITE_URL`, and source commit `8bdeeef` is live at
 `https://www.sweetnapadads.com`.
@@ -84,10 +84,13 @@ seed, rejects unavailable preseason order, requires exact season-team mappings
 of any configured size, minimizes member-readable source evidence, hashes the
 raw response, and submits one atomic ingestion call. Redacted fixtures include
 an explicit twelve-team season contract.
-Source checkpoint `74c5f48` is published to GitHub `main`. Hosted Supabase
-remains synchronized through all twelve migrations with an empty migration
-dry-run; no production database data or schema changed. Vercel production
-deployment `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4` is Ready on the custom domain.
+Source checkpoint `401efe0` is published to GitHub `main`. Hosted Supabase is
+synchronized through all sixteen migrations ending at `20260731180000`; the
+post-apply dry-run is empty. The four new migrations added the reviewed ESPN
+competition, award derivation, mapping administration, and audited financial
+rule schema/functions without importing the 2025 historical dataset. Vercel
+production deployment `dpl_koVUVkhxKmGmqwoUNHRC45zXriJ7` is Ready and aliased
+to the custom domain.
 The protected `POST /api/sync/espn` Route Handler now authorizes an active
 commissioner session or constant-time checked automation bearer secret,
 validates JSON and idempotency input, resolves every active season mapping
@@ -246,6 +249,11 @@ all passed.
       for weekly, placement, season-award, and penalty categories.
 - [x] Add the authenticated member results and weekly honors route with stored
       outcomes, honest pending states, and responsive navigation.
+- [x] Publish source checkpoint `401efe0` to GitHub `main`.
+- [x] Apply and verify migrations `20260731150000` through
+      `20260731180000` on hosted Supabase.
+- [x] Deploy and smoke-test Vercel production
+      `dpl_koVUVkhxKmGmqwoUNHRC45zXriJ7` and the custom domain.
 
 ## Next actions
 
@@ -282,10 +290,8 @@ all passed.
   explicit decision; see `docs/MIGRATION_2025.md`.
 - The hosted `sweetnapadads` project exists at
   `https://cleyfpzxckjtmsoesgby.supabase.co`. Codex MCP and CLI access are
-  authenticated and the CLI is linked. All twelve migration versions through
-  `20260731140000` match hosted history. Local reviewed migrations
-  `20260731150000` through `20260731180000` remain pending until the next
-  update-and-track release.
+  authenticated and the CLI is linked. All sixteen migration versions through
+  `20260731180000` match hosted history; the linked dry-run is empty.
 - Vercel production has the public Supabase values, canonical `SITE_URL`, and
   a server-only Supabase service-role value. Preview and development
   environments remain intentionally unconfigured to avoid silently sharing
@@ -300,7 +306,7 @@ all passed.
   or local Studio.
 - The repository is linked locally to Vercel project
   `prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w` in the `sciandri` scope. Production
-  deployment `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4` is Ready.
+  deployment `dpl_koVUVkhxKmGmqwoUNHRC45zXriJ7` is Ready.
 - ESPN private-league credentials are configured only in git-ignored local
   environment state and validated for both the 2025 and 2026 ten-team league.
   They and `SYNC_SECRET` are not configured in Vercel and must never be
@@ -326,15 +332,17 @@ all passed.
 - `npm run build`: passing
 - Invite-only Auth browser smoke test: passing through local email, callback,
   verified claims, membership RLS, and dashboard
-- Hosted migration history: all twelve versions through `20260731140000` match
+- Hosted migration history: all sixteen versions through `20260731180000` match
 - Hosted Auth production config: up to date
-- GitHub `main`: source checkpoint `74c5f48` synchronized
+- GitHub `main`: source checkpoint `401efe0` synchronized
 - Supabase production dry-run: up to date with no pending migrations
-- Vercel production `dpl_CVmy7nrZg8ifz5U4MW9UuUoCYkV4`: Ready
+- Vercel production `dpl_koVUVkhxKmGmqwoUNHRC45zXriJ7`: Ready
 - `https://sweetnapadads.com`: HTTP 200 after redirect to
   `https://www.sweetnapadads.com/`
 - `https://sweetnapadads.com/login`: HTTP 200 with the invitation-only login
 - Unauthenticated `/dashboard/message-composer`: redirects safely to login
+- Unauthenticated `/dashboard/results`: safely redirects to
+  `/login?next=/dashboard/results`
 - Desktop visual pass: passing
 - Responsive visual pass: passing at 320px, 390px, 768px, and 1440px with no
   horizontal overflow
@@ -360,10 +368,10 @@ all passed.
 
 ## Latest commit intent
 
-`feat: add member results and weekly honors`
+`docs: record ESPN competition production release`
 
 ## Pickup instruction
 
-Continue session 0006 with member financial transparency and team-balance
-views. Production ESPN activation, SMTP, and 2025 history remain separate
-explicit release decisions.
+Start session 0007 from clean, synchronized `main` with member financial
+transparency and team-balance views. Production ESPN activation, SMTP, and 2025
+history remain separate explicit release decisions.
