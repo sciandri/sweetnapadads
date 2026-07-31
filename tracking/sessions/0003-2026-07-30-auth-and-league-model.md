@@ -1,10 +1,10 @@
 # Session 0003 — Platform Auth and league model
 
-- Date: 2026-07-30
-- Status: active
+- Date: 2026-07-30 to 2026-07-31
+- Status: complete — published and deployed
 - Branch: `main`
 - Starting commit: `eeede7e`
-- Ending commit: pending
+- Ending source commit: `c25a642`
 
 ## Goal
 
@@ -78,6 +78,16 @@ are complete. The first incomplete platform item is the local development seed.
       realized league cash.
 - [x] Separate the `$700` external draft-party expense from team payments with
       an immutable external-cash event model and canonical cash view.
+- [x] Run the complete application, security, database, build, and tracking
+      release gates.
+- [x] Commit and push source checkpoint `c25a642` to GitHub `main`.
+- [x] Configure hosted Supabase Auth for the production site and callback URL.
+- [x] Add Vercel production `SITE_URL`.
+- [x] Dry-run and apply migrations `20260731050000` through
+      `20260731090000` to hosted Supabase.
+- [x] Deploy production as `dpl_DPkGYFhjWBHhVbgYPt1CT7wJex1j`.
+- [x] Verify GitHub source, hosted migration history, Auth configuration,
+      production aliases, home page, and invitation-only login page.
 
 ## Decisions
 
@@ -108,21 +118,25 @@ are complete. The first incomplete platform item is the local development seed.
 - `npm run db:test`: 153 passing
 - Local browser smoke test: magic-link email, callback exchange, verified
   claims, membership RLS, and commissioner dashboard passing
+- `npm audit`: zero known vulnerabilities
+- GitHub `main`: `c25a642`
+- Hosted migration history: all seven local versions match remote
+- Hosted Supabase Auth production config: up to date
+- Vercel deployment `dpl_DPkGYFhjWBHhVbgYPt1CT7wJex1j`: Ready
+- Production home and login: HTTP 200
 
 ## Risks or blockers
 
 - Docker Desktop must be running for local database verification.
 - The synthetic commissioner has no password and cannot exercise login flows.
-- Hosted Auth URLs, Vercel `SITE_URL`, and production SMTP are not configured
-  for this uncommitted authentication release.
-- Team/ownership migration `20260731050000`, financial-events migration
-  `20260731060000`, financial-views migration `20260731070000`, and historical
-  import staging migration `20260731080000`, and external-cash migration
-  `20260731090000` are tested locally and not yet applied to hosted Supabase.
+- Production SMTP is not configured; do not invite real members until it is.
+- The hosted schema has no synthetic development seed and no real league
+  membership yet, by design.
+- The service-role key remains absent from Vercel because no deployed feature
+  requires it.
 
 ## Exact handoff
 
-Run the publish-and-deploy ritual when requested, including hosted Supabase
-Auth URL/email configuration, Vercel `SITE_URL`, and the pending migration.
-Otherwise implement the atomic, idempotent domain commit for the approved,
-reconciled 2025 preview.
+Start session 0004 from clean, synchronized `main`. Configure production SMTP
+before inviting real members; otherwise implement the atomic, idempotent
+domain commit for the approved, reconciled 2025 preview.

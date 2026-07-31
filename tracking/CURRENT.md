@@ -1,11 +1,11 @@
 # Current project state
 
-- Last updated: 2026-07-30
+- Last updated: 2026-07-31
 - Session: 0003
-- Session status: active
+- Session status: complete — published and deployed
 - Branch: `main`
 - Phase: Phase 2 — League and finance
-- Checkpoint: approved 2025 normalization preview generated and reconciled
+- Checkpoint: authenticated league and finance foundation deployed
 
 ## Current outcome
 
@@ -15,9 +15,11 @@ migration, database linting, pgTAP coverage, CI database verification, and an
 authenticated project-scoped Supabase MCP connection for Codex. Leagues,
 seasons, settings, profiles, memberships, and their RLS policies are now
 implemented and tested locally. Request-scoped Supabase browser, server,
-service-role, and session-refresh clients are in place for Next.js 16. The
-reviewed migrations are applied to the hosted Supabase project, and Vercel
-production is live at `https://www.sweetnapadads.com`.
+service-role, and session-refresh clients are in place for Next.js 16. All
+seven reviewed migrations are applied to hosted Supabase. Production Auth
+uses `https://sweetnapadads.com` with the exact callback allowlist, Vercel has
+the canonical `SITE_URL`, and source commit `c25a642` is live at
+`https://www.sweetnapadads.com`.
 The local seed now defines a deterministic synthetic commissioner, development
 league, 2026 season, and season-scoped rules.
 The application now has passwordless invite-only login, dual-form callback
@@ -79,16 +81,21 @@ it to a team.
 - [x] Record commissioner approval for all seven recommended treatments.
 - [x] Generate and reconcile the review-only normalized 2025 preview.
 - [x] Model external league cash events and the season cash balance view.
+- [x] Publish source commit `c25a642` to GitHub `main`.
+- [x] Configure hosted Supabase Auth URLs and Vercel production `SITE_URL`.
+- [x] Apply migrations `20260731050000` through `20260731090000`.
+- [x] Deploy and verify Vercel production
+      `dpl_DPkGYFhjWBHhVbgYPt1CT7wJex1j`.
 
 ## Next actions
 
-1. Configure hosted Supabase Auth URLs and email settings, plus Vercel
-   `SITE_URL`, during the next publish-and-deploy ritual.
-2. Configure production SMTP before inviting real members.
-3. Implement the atomic, idempotent domain commit for the approved 2025
+1. Configure production SMTP before inviting real members.
+2. Implement the atomic, idempotent domain commit for the approved 2025
    normalized preview.
-4. Add the service-role value to server environments only when a reviewed
+3. Add the service-role value to server environments only when a reviewed
    server-side feature requires it.
+4. Create and smoke-test the first real invited member only after SMTP is
+   configured.
 
 ## Decisions in force
 
@@ -106,15 +113,13 @@ it to a team.
   domain tables; see `docs/MIGRATION_2025.md`.
 - The hosted `sweetnapadads` project exists at
   `https://cleyfpzxckjtmsoesgby.supabase.co`. Codex MCP and CLI access are
-  authenticated and the CLI is linked. The first two migrations are hosted;
-  the tested team/ownership, financial-events, financial-views, and historical
-  import staging and external-cash migrations are local and pending
-  publication.
+  authenticated and the CLI is linked. All seven local migration versions
+  match hosted migration history.
 - Vercel production has the public Supabase URL and publishable key. Preview
   and development environments remain intentionally unconfigured to avoid
   silently sharing the production database.
-- The new authentication routes are verified locally but are not published or
-  configured in hosted Supabase/Vercel yet.
+- Authentication routes and provider URLs are published. A real invited-member
+  smoke test remains pending production SMTP.
 - Production SMTP is not configured; do not invite real members until it is.
 - Docker Desktop must be running for local database commands.
 - The seeded commissioner is a relational fixture without a password and
@@ -122,7 +127,7 @@ it to a team.
   or local Studio.
 - The repository is linked locally to Vercel project
   `prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w` in the `sciandri` scope. Production
-  deployment `dpl_5L67VVGSmAX9tk1agNe2LtXwzbGU` is Ready.
+  deployment `dpl_DPkGYFhjWBHhVbgYPt1CT7wJex1j` is Ready.
 - ESPN private-league credentials have not been provided and must never be
   committed.
 - `logo/sweetlookingnapadads.png` is the canonical and only supplied brand
@@ -140,21 +145,23 @@ it to a team.
 - `npm run build`: passing
 - Invite-only Auth browser smoke test: passing through local email, callback,
   verified claims, membership RLS, and dashboard
-- Hosted migration history: the first two local versions match remote; four
-  verified local migrations are pending publication
-- Vercel production: Ready
+- Hosted migration history: all seven local versions match remote
+- Hosted Auth production config: up to date
+- GitHub `main`: source commit `c25a642`
+- Vercel production `dpl_DPkGYFhjWBHhVbgYPt1CT7wJex1j`: Ready
 - `https://sweetnapadads.com`: HTTP 200 after redirect to
   `https://www.sweetnapadads.com/`
+- `https://sweetnapadads.com/login`: HTTP 200 with the invitation-only login
 - Desktop visual pass: passing
 - Responsive visual pass: passing at 320px, 390px, 768px, and 1440px with no
   horizontal overflow
 
 ## Latest commit intent
 
-`feat: add authenticated league, finance, and historical import foundation`
+`docs: record authenticated league release`
 
 ## Pickup instruction
 
-Run the publish-and-deploy ritual when requested, including hosted Auth URL and
-`SITE_URL` configuration plus the pending migrations. Otherwise implement the
-atomic, idempotent commit step for the approved normalized 2025 preview.
+Start session 0004 from clean, synchronized `main`. Configure production SMTP
+before inviting real members; otherwise implement the atomic, idempotent
+domain commit for the approved normalized 2025 preview.

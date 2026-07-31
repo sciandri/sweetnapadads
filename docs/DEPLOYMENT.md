@@ -12,9 +12,10 @@
   (`prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w`)
 - Supabase: `sweetnapadads` (`cleyfpzxckjtmsoesgby`, `us-west-2`)
 
-The repository is linked locally to both projects. The platform foundation is
-deployed to Vercel, and both versioned migrations are applied to hosted
-Supabase. Active uncommitted work is not a deployment.
+The repository is linked locally to both projects. Source commit `c25a642` is
+deployed to Vercel production as
+`dpl_DPkGYFhjWBHhVbgYPt1CT7wJex1j`. All seven versioned migrations through
+`20260731090000` are applied to hosted Supabase.
 
 ## Environments
 
@@ -46,6 +47,10 @@ Before releasing authentication:
    mail service is for limited trial use.
 6. Smoke-test an invited member, an expired link, and an authenticated
    non-member.
+
+Items 1–4 are configured in production. Production SMTP and real-member Auth
+smoke tests remain intentionally pending; do not invite real members before
+SMTP is configured.
 
 ## Release gate
 

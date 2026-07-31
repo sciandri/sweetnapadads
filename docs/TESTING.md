@@ -47,5 +47,6 @@ Historical-import pgTAP coverage verifies lossless duplicate-row preservation,
 immutable source evidence, mapping and blocker approval gates, terminal review
 states, and commissioner-only staging access. The application suite also
 checks that the 2025 workbook checksum and eight-sheet manifest remain exact.
-It also requires a proposed, unaccepted decision for every manifest issue and
-verifies the arithmetic of each champion-payout option.
+It also requires an approved treatment for every manifest issue, verifies the
+arithmetic of each champion-payout option, and reconciles the review-only
+normalized preview without committing domain rows.
