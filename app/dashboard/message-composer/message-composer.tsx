@@ -26,6 +26,11 @@ export function MessageComposer({ context }: MessageComposerProps) {
   const [length, setLength] = useState<MessageLength>("medium");
   const [notes, setNotes] = useState("");
   const [draft, setDraft] = useState("");
+  const [options, setOptions] = useState<string[]>([]);
+  const [generationStatus, setGenerationStatus] = useState<
+    "idle" | "loading" | "error"
+  >("idle");
+  const [generationMessage, setGenerationMessage] = useState("");
   const [copyStatus, setCopyStatus] = useState<
     "idle" | "copied" | "failed"
   >("idle");
@@ -39,6 +44,47 @@ export function MessageComposer({ context }: MessageComposerProps) {
       setCopyStatus("failed");
     }
     window.setTimeout(() => setCopyStatus("idle"), 1800);
+  }
+
+  async function generateDrafts() {
+    setGenerationStatus("loading");
+    setGenerationMessage("");
+    try {
+      const response = await fetch("/api/admin/message-drafts", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          season_id: context.season.id,
+          week: context.selected_week,
+          selection: {
+            includeStandings,
+            includeResults,
+            includeAwards,
+          },
+          notes,
+          tone,
+          length,
+        }),
+      });
+      const payload = (await response.json()) as {
+        drafts?: string[];
+        error?: string;
+      };
+      if (!response.ok || payload.drafts?.length !== 3) {
+        throw new Error(payload.error ?? "generation_failed");
+      }
+      setOptions(payload.drafts);
+      setDraft(payload.drafts[0]);
+      setGenerationStatus("idle");
+      setGenerationMessage("Three new options are ready. Option 1 is in the editor.");
+    } catch (error) {
+      setGenerationStatus("error");
+      setGenerationMessage(
+        error instanceof Error && error.message === "generation_not_configured"
+          ? "AI generation is not configured yet. Add the server-only OpenAI key and try again."
+          : "Draft generation did not complete. Your facts and notes are unchanged; please try again.",
+      );
+    }
   }
 
   const capturedAt = context.standings.captured_at
@@ -146,15 +192,21 @@ export function MessageComposer({ context }: MessageComposerProps) {
         </label>
 
         <button
-          className="mt-5 min-h-12 w-full cursor-not-allowed bg-forest px-5 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-background opacity-55"
-          disabled
+          className="mt-5 min-h-12 w-full bg-forest px-5 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-background transition disabled:cursor-wait disabled:opacity-55"
+          disabled={generationStatus === "loading"}
+          onClick={generateDrafts}
           type="button"
         >
-          Generate three options · OpenAI setup pending
+          {generationStatus === "loading"
+            ? "Generating three options…"
+            : "Generate three options"}
         </button>
-        <p className="mt-3 text-sm leading-6 text-ink-muted">
-          The verified context and interface are ready. Generation turns on
-          after the server-only OpenAI key is configured.
+        <p
+          aria-live="polite"
+          className={`mt-3 text-sm leading-6 ${generationStatus === "error" ? "text-wine" : "text-ink-muted"}`}
+        >
+          {generationMessage ||
+            "Generation uses only the selected verified facts and your notes. Nothing is sent to the group thread."}
         </p>
       </section>
 
@@ -272,6 +324,20 @@ export function MessageComposer({ context }: MessageComposerProps) {
               {draft.length} characters
             </span>
           </div>
+          {options.length === 3 ? (
+            <div className="mt-5 grid gap-2 sm:grid-cols-3" aria-label="Generated options">
+              {options.map((option, index) => (
+                <button
+                  className="min-h-11 border border-forest/25 px-3 py-2 font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-forest transition hover:border-wine hover:text-wine"
+                  key={`${index}-${option.slice(0, 24)}`}
+                  onClick={() => setDraft(option)}
+                  type="button"
+                >
+                  Use option {index + 1}
+                </button>
+              ))}
+            </div>
+          ) : null}
           <textarea
             className="mt-5 min-h-56 w-full resize-y border border-forest/25 bg-background p-4 text-base leading-7 outline-none placeholder:text-ink-muted/55 focus:border-wine"
             onChange={(event) => setDraft(event.target.value)}

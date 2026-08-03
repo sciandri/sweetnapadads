@@ -62,8 +62,8 @@ export default async function TeamHistoryPage({ params }: TeamHistoryPageProps) 
   const seasonIds = (seasonsResult.data ?? []).map((season) => season.id);
 
   const [resultsResult, awardsResult, balancesResult] = seasonIds.length ? await Promise.all([
-    supabase.from("weekly_results").select("matchup_id, season_id, season_team_id, opponent_season_team_id, score, result").in("season_id", seasonIds),
-    supabase.from("weekly_awards").select("season_id, high_score_season_team_id, low_score_season_team_id").in("season_id", seasonIds),
+    supabase.from("accepted_weekly_results").select("matchup_id, season_id, season_team_id, opponent_season_team_id, score, result").in("season_id", seasonIds),
+    supabase.from("accepted_weekly_awards").select("season_id, high_score_season_team_id, low_score_season_team_id").in("season_id", seasonIds),
     supabase.from("team_financial_balances").select("season_id, season_team_id, balance_cents").in("season_id", seasonIds),
   ]) : [{ data: [] }, { data: [] }, { data: [] }];
 

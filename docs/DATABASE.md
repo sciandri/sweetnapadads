@@ -28,10 +28,16 @@ records include `season_id`.
 - `standings`
 - `playoff_results`
 - `weekly_awards`
+- `manual_result_batches`: immutable commissioner evidence for a complete week
+  ESPN did not supply
+- `result_correction_batches`: immutable evidence for accepted-week overlays
 
 Source-owned records carry stable ESPN identifiers and `source_updated_at`.
-Manual overrides are separate audited records rather than overwritten source
-facts.
+Manual missing-week results and accepted corrections reference their immutable
+audit batches. Existing source facts are never overwritten. Security-invoker
+`accepted_matchups`, `accepted_weekly_results`, and `accepted_weekly_awards`
+views apply missing-week precedence and latest-correction precedence for member
+reads.
 
 ## Finance
 
@@ -107,6 +113,13 @@ npx supabase db push
 ```
 
 Never run a linked reset against production.
+
+Production is never populated from `supabase/seed.sql`. On 2026-08-02 the
+confirmed commissioner identity was attached to the canonical production
+league with an active commissioner membership, and a neutral 2026 setup season
+was created with zero-dollar financial placeholders. Historical 2025 facts are
+loaded only through the checksum-pinned staging, approval, and domain-commit
+boundary described in `docs/MIGRATION_2025.md`.
 
 ## Current migration baseline
 
@@ -224,6 +237,11 @@ Never run a linked reset against production.
 - normalized weekly matchup results and awards without exposing raw ESPN
   payloads;
 - an explicit exclusion of financial context from AI message generation.
+
+`20260802173011_notification_framework.sql` adds immutable league notices,
+append-only channel delivery evidence, audience-scoped RLS, and the
+commissioner-only idempotent publish boundary. The current product writes only
+`in_app` delivered events; email and SMS are modeled but inactive.
 
 `20260731140000_espn_standings_ingest.sql` establishes:
 

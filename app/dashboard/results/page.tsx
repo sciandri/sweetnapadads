@@ -55,16 +55,16 @@ export default async function ResultsPage({ searchParams }: ResultsPageProps) {
 
   const [matchupsResult, resultsResult, awardsResult, teamsResult] = await Promise.all([
     supabase
-      .from("matchups")
+      .from("accepted_matchups")
       .select("id, week, phase, source_type")
       .eq("season_id", season.id)
       .order("week", { ascending: false }),
     supabase
-      .from("weekly_results")
+      .from("accepted_weekly_results")
       .select("matchup_id, season_team_id, opponent_season_team_id, score, result")
       .eq("season_id", season.id),
     supabase
-      .from("weekly_awards")
+      .from("accepted_weekly_awards")
       .select("week, high_score_season_team_id, high_score, low_score_season_team_id, low_score")
       .eq("season_id", season.id)
       .order("week", { ascending: false }),

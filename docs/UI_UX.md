@@ -68,11 +68,10 @@ The composer is optimized for copying into the league's existing group-text
 thread. It includes:
 
 - season and week selectors;
-- explicit toggles for official standings, results, awards, and upcoming
-  matchups;
+- explicit toggles for official standings, accepted results, and awards;
 - a visible ESPN `last synced` timestamp and stale-data warning;
 - commissioner notes, tone, and target-length controls;
-- two or three editable draft options;
+- three editable draft options;
 - a large mobile-safe copy button with a confirmation state; and
 - a final fact summary beside the draft so the commissioner can verify it.
 

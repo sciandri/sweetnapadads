@@ -33,6 +33,8 @@
 - [x] ESPN matchups and reciprocal weekly results
 - [x] Unique-score weekly awards and configured rule-backed obligations
 - [x] Audited configurable weekly, placement, season-award, and penalty schedule
+- [x] Audited complete-week fallback when ESPN supplied no accepted results
+- [x] Accepted-week correction overlay and financial reconciliation
 - Placement/season award derivation and playoffs
 - [x] Idempotency and atomic failure-recovery tests
 

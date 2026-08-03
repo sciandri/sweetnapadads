@@ -57,7 +57,7 @@ Generator context may include:
 
 - ESPN's official standings order from the latest successful snapshot;
 - selected weekly results and scores;
-- weekly awards and upcoming matchups when available;
+- weekly awards when available;
 - league and season identity; and
 - commissioner-supplied facts and instructions.
 

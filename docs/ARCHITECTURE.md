@@ -14,7 +14,7 @@ Browser
       -> Supabase Auth
       -> PostgreSQL + RLS
       -> ESPN integration
-      -> OpenAI message drafting (server-only, pending credentials)
+      -> OpenAI message drafting (server-only Responses API)
       -> object storage
 
 GitHub Actions
@@ -45,13 +45,25 @@ source-owned competition rows, then recalculates standings, awards, and
 financial obligations in one controlled workflow. Stable source keys and
 unique constraints make retries safe.
 
-Manual score entry uses the same normalization and derivation path and records
-its origin and actor.
+Manual missing-week entry crosses `record_manual_week_results`, an
+authenticated commissioner-only security-definer function with an empty search
+path and explicit grants. It takes a transaction-scoped advisory lock, requires
+every active season team exactly once, derives reciprocal outcomes, and records
+the actor, reason, request key, normalized evidence hash, and source batch.
+Direct authenticated inserts into the competition tables are revoked. Exact
+retries resolve to the original batch; changed evidence and any already
+accepted week fail closed.
+
+The manual boundary derives configured weekly awards only after the full week
+is accepted. Accepted-week corrections use a second append-only batch and
+accepted projections. The original source remains immutable. Corrected extrema
+append replacement obligations and audited neutralizing adjustments as needed,
+so financial history is reconciled rather than rewritten.
 
 The commissioner message composer reads through one PostgreSQL function that
 enforces commissioner membership and returns only normalized, selected league
 facts. ESPN's stored rank is passed through unchanged; the application and
-model never recalculate standings. The future OpenAI Route Handler will receive
+model never recalculate standings. The OpenAI Route Handler receives
 that bounded fact package plus commissioner notes and return editable drafts.
 No raw ESPN payload, financial data, phone number, or SMS delivery capability
 crosses the generation boundary.
@@ -72,8 +84,8 @@ only stable error codes.
 GitHub Actions receives only the production application origin and rotating
 automation secret, then calls that same Route Handler. ESPN cookies and the
 Supabase service-role credential remain exclusively in Vercel's server-only
-environment and never enter GitHub Actions. The workflow is manual-only until
-the production activation and scheduling gates are reviewed.
+environment and never enter GitHub Actions. The bounded in-season schedule is
+effective only after the documented production variables and secret are set.
 
 Commissioner mapping changes cross
 `set_espn_season_team_mappings` rather than issuing row-by-row UI updates. The
@@ -165,5 +177,6 @@ See [ADR 0001](adr/0001-next-supabase-architecture.md) and
 [ADR 0002](adr/0002-event-based-finance.md), [ADR
 0003](adr/0003-external-league-cash-events.md), and [ADR
 0004](adr/0004-atomic-historical-domain-commit.md), and [ADR
-0005](adr/0005-espn-standings-and-ai-message-context.md), and [ADR
-0006](adr/0006-espn-competition-and-configured-awards.md).
+0005](adr/0005-espn-standings-and-ai-message-context.md), [ADR
+0006](adr/0006-espn-competition-and-configured-awards.md), and [ADR
+0007](adr/0007-accepted-result-projections-and-notifications.md).

@@ -92,7 +92,8 @@ browser pass exercises magic-link Auth, an audited mapping save, disabled-sync
 guidance, recent-run empty state, and a 390px layout with no horizontal
 overflow.
 
-The operations contract test pins the ESPN workflow to manual-only execution,
+The operations contract test pins the ESPN workflow to manual and bounded
+in-season scheduled execution,
 least-privilege permissions, indirect GitHub secret and variable references,
 evidence-derived idempotency, redacted output, and the documented activation,
 failure, rotation, and scheduling gates. The workflow YAML is parsed locally.
@@ -151,3 +152,28 @@ cover strict safe-integer parsing, complete-schedule requirements, duplicate
 keys and ranks, verified claims, RLS-hidden seasons, stable error responses, and
 the audited RPC call. Authenticated browser review covers the editor at desktop
 and 390px widths.
+
+Manual-results coverage verifies strict score precision and active-team
+pairing at the request boundary, verified claims and commissioner authorization,
+stable redacted HTTP errors, and correct RPC arguments. pgTAP verifies direct
+write denial, exact season-team coverage, reciprocal outcomes, configured
+weekly award and obligation derivation, immutable audit evidence, transaction
+idempotency, changed-evidence rejection, existing-week refusal, and outsider
+denial.
+
+Accepted-correction pgTAP coverage verifies source immutability, latest-overlay
+selection, manual-over-ESPN precedence, complete-team validation, award moves
+and ties, neutralizing adjustments, replacement obligations, exact retries,
+outsider denial, and canonical balances. HTTP tests cover the distinct route
+and stable errors.
+
+Playwright exercises authenticated member and commissioner routes with a
+generated local token-hash session. Desktop and 390px projects cover result
+control, notifications, the message composer, and horizontal-overflow guards.
+The composer test also verifies the safe missing-key state.
+
+Notification pgTAP coverage verifies least privilege, audience visibility,
+immutable notice/delivery evidence, active-member delivery counts,
+idempotency, and outsider denial. AI unit and route coverage pins selected fact
+boundaries, server-side context reassembly, strict three-draft output,
+non-storage, missing-key behavior, refusals, and redacted upstream failures.

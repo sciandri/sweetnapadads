@@ -10,6 +10,8 @@ Planned server boundaries:
 - `POST /api/sync/espn`: protected standings and completed-matchup sync for an
   automation caller or authenticated commissioner
 - `POST /api/admin/results`: validated manual-results fallback
+- `POST /api/admin/results/corrections`: append an accepted-week correction
+  with financial reconciliation
 - `PATCH /api/admin/espn-mappings`: atomically replace every active team ESPN
   mapping for one season
 - `PATCH /api/admin/financial-rules`: atomically replace the enabled payout and
@@ -20,6 +22,8 @@ Planned server boundaries:
 - `POST /api/admin/message-drafts`: generate an editable commissioner message
   from authorized, server-assembled league context; this endpoint never sends
   email or SMS
+- `POST /api/admin/notifications`: publish an immutable in-app notification
+- `GET /api/health`: return a secret-free liveness response
 
 All handlers:
 
@@ -54,6 +58,34 @@ The endpoint accepts JSON only, limits declared bodies to 4 KB, and never
 returns provider, cookie, environment, or database error details. Public client
 code never receives service-role or ESPN credentials.
 
+### `POST /api/admin/results`
+
+The JSON body contains `season_id`, `week`, `reason`, and a complete `matchups`
+array. Each matchup identifies two active season teams and supplies both scores
+to at most two decimal places. The caller must send an `Idempotency-Key` header
+and have an active commissioner membership for the season's league.
+
+PostgreSQL locks the season/week, verifies every active team appears exactly
+once, derives reciprocal win/loss/tie results, records one immutable manual
+batch, and derives configured weekly awards and obligations for a complete
+regular-season week. An exact retry returns the original batch; changed
+evidence or an already accepted week fails closed. Stable failures are
+`invalid_request`, `unauthorized`, `season_not_found`, `forbidden`,
+`results_already_exist`, `results_rejected`, and `save_failed`.
+
+This fallback accepts only a week with no existing matchups. The endpoint never
+overwrites accepted history.
+
+### `POST /api/admin/results/corrections`
+
+The request has the same complete-week evidence shape and idempotency contract
+as missing-week entry, but requires one complete currently accepted week.
+PostgreSQL appends a correction batch, corrected matchups/results, recalculated
+awards, and any required balance adjustments in one locked transaction. The
+accepted views select the latest correction while retaining all prior source
+rows. Stable failures include `correction_missing_source`,
+`correction_rejected`, and the shared authentication/request errors.
+
 ### `PATCH /api/admin/espn-mappings`
 
 The JSON body contains `season_id` and a non-empty `mappings` array whose rows
@@ -77,8 +109,20 @@ accepted schedule as an immutable commissioner audit snapshot. Stable failures
 are `invalid_request`, `unauthorized`, `season_not_found`, `forbidden`,
 `rules_rejected`, and `save_failed`.
 
+### `POST /api/admin/message-drafts`
+
 The message-draft endpoint uses the caller's Supabase session, requires an
-active commissioner membership, resolves league context on the server, and
-passes only the selected normalized facts to the model. The OpenAI key remains
-a non-public Vercel environment variable. A missing key returns a stable
-configuration error without exposing environment details.
+active commissioner membership, resolves league context again on the server,
+and passes only the selected normalized facts and bounded commissioner notes to
+OpenAI. It uses the Responses API, provider storage is disabled, and strict JSON
+schema output produces exactly three editable strings. The OpenAI key remains a
+non-public Vercel environment variable. A missing key returns
+`generation_not_configured`; refusals and upstream failures are stable and do
+not expose provider details.
+
+### `POST /api/admin/notifications`
+
+An active commissioner publishes a bounded title/body to members or
+commissioners with an idempotency key. PostgreSQL records the immutable notice
+and one append-only in-app delivery event per active recipient. Email and SMS
+channels exist as future delivery states but are not dispatched.

@@ -54,7 +54,8 @@ through one audited database transaction; synchronization remains unavailable
 when a mapping is blank or duplicated. The screen also shows recent immutable
 run evidence without exposing raw private payloads.
 
-GitHub automation is defined as a manual-only `workflow_dispatch` operation.
+GitHub automation supports `workflow_dispatch` and the bounded in-season
+Tuesday schedule documented in the runbook.
 It validates the season UUID, uses the protected production environment,
 prevents concurrent runs for the same season, and relies on the raw response
 hash for retry-safe idempotency. A cron trigger is intentionally absent until
@@ -76,8 +77,15 @@ source revision, capture time, league ID, or source key fails closed.
 
 Validation failures create actionable `sync_issues` and leave prior accepted
 data intact. Raw responses are retained even for failed runs. Commissioners
-can resolve mappings and retry. Manual entry passes through the same validation
-and derivation services with `source = manual`.
+can resolve mappings and retry.
+
+If ESPN cannot supply any accepted result for a complete week, a commissioner
+can use `/dashboard/admin/results`. The manual boundary validates exact active
+team coverage, records an immutable evidence batch with `source = manual`,
+derives reciprocal results, and runs the same configured weekly award logic.
+It refuses any week that already has an accepted matchup. Correction mode
+appends a commissioner evidence batch, selects it through accepted-result
+views, and reconciles displaced award obligations with immutable adjustments.
 
 Cookies are environment secrets and never logged or stored in payload tables.
 

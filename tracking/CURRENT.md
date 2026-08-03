@@ -1,11 +1,11 @@
 # Current project state
 
-- Last updated: 2026-07-31
-- Session: 0007
-- Session status: complete — published and deployed
+- Last updated: 2026-08-02
+- Session: 0008
+- Session status: active
 - Branch: `main`
-- Phase: Phase 4 — Application
-- Checkpoint: member evidence and activity surfaces published and deployed
+- Phase: Phase 5 — Operations
+- Checkpoint: update-and-track release in progress; local gates pass
 
 ## Current outcome
 
@@ -20,6 +20,13 @@ sixteen reviewed migrations are applied to hosted Supabase. Production Auth
 uses `https://sweetnapadads.com` with the exact callback allowlist, Vercel has
 the canonical `SITE_URL`, and source commit `8bdeeef` is live at
 `https://www.sweetnapadads.com`.
+Production custom SMTP now uses Resend on the dedicated Auth subdomain. The
+first real commissioner invitation was accepted, the confirmed identity has an
+active commissioner membership in the canonical production league, and a
+neutral 2026 setup season now provides valid navigation context without
+inventing teams or financial rules. The Resend credential must be rotated
+before inviting additional members because it appeared in an operator-only
+verification transcript.
 The local seed now defines a deterministic synthetic commissioner, development
 league, 2026 season, and season-scoped rules.
 The application now has passwordless invite-only login, dual-form callback
@@ -184,6 +191,40 @@ and audited adjustments through the active member's RLS client. It deliberately
 keeps competition ordered by scoring week and finance ordered by event date,
 with distinct labels and honest empty states. Seeded finance-only data and the
 populated 2025 rehearsal both passed desktop and 390px browser review.
+Commissioners can now fill a complete week that ESPN did not supply at
+`/dashboard/admin/results`. The responsive form derives its pairs from every
+active season team, accepts scores to the hundredth and a required reason, and
+submits one retry-safe request. PostgreSQL locks the season/week, verifies exact
+team coverage, records immutable actor/evidence metadata, derives reciprocal
+outcomes, and invokes configured regular-season award and obligation logic.
+Direct authenticated competition inserts are revoked. Any week with an
+accepted matchup fails closed; correcting existing history is deliberately
+separate because its financial effects require audited reconciliation.
+Accepted-week correction is now implemented as an append-only overlay. The
+original competition and finance evidence remains immutable; accepted-result
+views select missing-week evidence ahead of later ESPN rows and the latest
+correction ahead of prior accepted rows. A correction recalculates awards and
+appends neutralizing adjustments plus replacement obligations when extrema
+move or disappear. Exact retries are idempotent, changed evidence fails closed,
+and all member competition surfaces plus AI context use the accepted views.
+
+The MVP commissioner administration set is complete: ESPN mapping/sync,
+season-configured payouts and penalties, missing/corrected result control,
+in-app notice publication, and AI-assisted copy generation. The notification
+framework preserves immutable notices and per-member in-app delivery evidence.
+It does not send email or SMS.
+
+The message composer now calls a commissioner-only server Route Handler that
+reassembles authorized context, sends no financial data, disables OpenAI
+response storage, and requires strict output containing exactly three editable
+drafts. It defaults to the balanced `gpt-5.6-terra` tier and fails safely as
+`generation_not_configured` until a server-only key is supplied.
+
+The ESPN workflow now retains manual dispatch and has a bounded Tuesday
+September–January schedule. Structured operational events, a secret-free
+health endpoint, and an incident/rollback runbook provide the production
+observability baseline. Playwright covers authenticated member and commissioner
+critical paths at desktop and 390px widths.
 
 ## In progress
 
@@ -288,17 +329,28 @@ populated 2025 rehearsal both passed desktop and 390px browser review.
       migrations with an empty dry-run.
 - [x] Deploy and smoke-test Vercel production
       `dpl_9UgX2X1eWDmSkBoJCBrTjtE2C7YM` and the custom domain.
+- [x] Add the authenticated, audited commissioner fallback for a complete week
+      missing from ESPN.
+- [x] Validate exact active-team coverage, reciprocal outcomes, immutable
+      evidence, configured awards, idempotency, and overwrite refusal.
+- [x] Add accepted-week overlays and audited award/obligation reconciliation.
+- [x] Move member and AI reads to canonical accepted-result projections.
+- [x] Add authenticated desktop/mobile Playwright critical-path coverage.
+- [x] Add the protected in-season sync schedule, health endpoint, structured
+      operational events, and operations runbook.
+- [x] Add immutable in-app notification publication and delivery evidence.
+- [x] Implement the live AI generation boundary and three-option composer UI.
 
 ## Next actions
 
-1. Add the manual-results fallback for weeks ESPN cannot supply or correct.
-2. Configure a server-only OpenAI API key, then implement and test the reviewed
-   message-draft Route Handler that returns three editable options.
-3. Decide when the locally rehearsed canonical 2025 history should be staged
-   and committed to hosted Supabase; do not infer production authorization.
-4. Configure production SMTP before inviting real members.
-5. Create and smoke-test the first real invited member only after SMTP is
-   configured.
+1. Complete the active “update and track” release: push the source checkpoint,
+   apply the three reviewed migrations, commit reconciled 2025 history, deploy
+   production, and record exact hosted verification.
+2. Rotate the Resend SMTP credential before inviting another real member.
+3. Configure the server-only OpenAI key locally and in Vercel, then run one
+   reviewed live three-draft smoke test.
+4. Configure `SYNC_SECRET`, ESPN secrets, `SITE_URL`, and `SEASON_ID` in their
+   documented Vercel/GitHub scopes before scheduled sync can execute.
 
 ## Decisions in force
 
@@ -324,15 +376,17 @@ populated 2025 rehearsal both passed desktop and 390px browser review.
 - The hosted `sweetnapadads` project exists at
   `https://cleyfpzxckjtmsoesgby.supabase.co`. Codex MCP and CLI access are
   authenticated and the CLI is linked. All sixteen migration versions through
-  `20260731180000` match hosted history; the linked dry-run is empty.
+  `20260731180000` match hosted history; three locally reviewed migrations are
+  pending this authorized release.
 - Vercel production has the public Supabase values, canonical `SITE_URL`, and
   a server-only Supabase service-role value. Preview and development
   environments remain intentionally unconfigured to avoid silently sharing
   the production database. The service-role value must only be used from
   reviewed server-side boundaries.
-- Authentication routes and provider URLs are published. A real invited-member
-  smoke test remains pending production SMTP.
-- Production SMTP is not configured; do not invite real members until it is.
+- Authentication routes and provider URLs are published. Custom Resend SMTP,
+  the accepted commissioner invitation, active membership, and authenticated
+  dashboard access are verified. Rotate the SMTP credential before another
+  invitation.
 - Docker Desktop must be running for local database commands.
 - The seeded commissioner is a relational fixture without a password and
   cannot sign in; create login-capable local users through the Auth admin API
@@ -345,8 +399,8 @@ populated 2025 rehearsal both passed desktop and 390px browser review.
   They and `SYNC_SECRET` are not configured in Vercel and must never be
   committed or logged. The sync route therefore remains configuration-disabled.
 - An OpenAI API key has not been provided. The composer UI and prompt boundary
-  are implemented, but live generation remains disabled until the key is
-  configured server-side and the Route Handler is added and tested.
+  and generation Route Handler are implemented and tested, but a real provider
+  call remains disabled until the key is configured server-side.
 - `logo/sweetlookingnapadads.png` is the canonical and only supplied brand
   asset and is integrated through a shared responsive component.
 
@@ -355,10 +409,10 @@ populated 2025 rehearsal both passed desktop and 390px browser review.
 - `npm audit`: clean
 - `npm run lint`: passing
 - `npm run typecheck`: passing
-- `npm test`: 99 tests passing
+- `npm test`: 125 tests passing across 30 files
 - `npm run db:reset`: passing
 - `npm run db:lint`: passing with no warnings
-- `npm run db:test`: 329 database tests passing
+- `npm run db:test`: 388 database tests passing across 19 files
 - `npm run import:2025:rehearse`: passing twice; second run idempotent
 - ESPN credential check: authenticated HTTP 200 for 2025 and 2026; league ID
   and ten-team response verified without logging credential values
@@ -367,8 +421,8 @@ populated 2025 rehearsal both passed desktop and 390px browser review.
   verified claims, membership RLS, and dashboard
 - Hosted migration history: all sixteen versions through `20260731180000` match
 - Hosted Auth production config: up to date
-- GitHub `main`: source checkpoint `7624f5d` synchronized
-- Supabase production dry-run: up to date with no pending migrations
+- GitHub `main`: source checkpoint `169fc50` synchronized before this release
+- Supabase production dry-run: three reviewed migrations pending
 - Vercel production `dpl_9UgX2X1eWDmSkBoJCBrTjtE2C7YM`: Ready
 - `https://sweetnapadads.com`: HTTP 200 after redirect to
   `https://www.sweetnapadads.com/`
@@ -381,8 +435,9 @@ populated 2025 rehearsal both passed desktop and 390px browser review.
   horizontal overflow
 - ESPN control-room browser pass: local magic-link Auth, audited mapping save,
   stable disabled-sync guidance, no console errors, and 390px no-overflow layout
-- ESPN workflow contract: manual-only, least privilege, indirect secrets,
-  evidence-derived idempotency, redacted output, and runbook gates verified
+- ESPN workflow contract: manual plus bounded in-season schedule, least
+  privilege, indirect secrets, evidence-derived idempotency, redacted output,
+  and runbook gates verified
 - Member standings browser pass: authenticated desktop and 390px layouts show
   the current season, capture evidence, and honest no-snapshot state
 - ESPN matchup contract: redacted live 2025 schedule shape verified; completed,
@@ -407,16 +462,30 @@ populated 2025 rehearsal both passed desktop and 390px browser review.
 - Member league activity: stored matchups and honors remain distinct from
   date-ordered obligations, payments, and adjustments; seeded and rehearsed
   2025 states pass desktop and 390px layouts
+- Manual missing-week fallback: strict request parsing, authenticated
+  commissioner RPC, exact team coverage, reciprocal outcomes, configured award
+  obligations, immutable audit evidence, idempotency, overwrite refusal, and
+  outsider denial verified
+- Manual-results route smoke: production build serves `/login` and protects
+  `/dashboard/admin/results` with the exact safe return path
+- Accepted-result corrections: immutable original evidence, latest overlay,
+  manual-over-ESPN precedence, award moves/ties, neutralizing adjustments,
+  replacement obligations, canonical balances, retry safety, and RLS verified
+- Notification framework: immutable publication and delivery evidence,
+  audience RLS, idempotency, and 12-member delivery behavior verified
+- AI draft boundary: server-side authorization/context, strict three-option
+  output, `store: false`, safe missing-key behavior, and redacted failures
+  verified
+- Playwright critical paths: 7 passing across desktop and 390px mobile; one
+  intentional desktop skip for the mobile-only overflow assertion
 - Production member-route smoke test: unauthenticated finance, team-directory,
   and activity requests redirect to login with exact safe return paths
 
 ## Latest commit intent
 
-`docs: close session 0007 release`
+`feat: complete commissioner operations and release candidate`
 
 ## Pickup instruction
 
-Start session 0008 from clean, synchronized `main` with the manual-results
-fallback. Production ESPN
-activation, SMTP, and hosted 2025 history remain separate explicit release
-decisions.
+Continue the active “update and track” release from the first unfinished step;
+do not invite another member until the Resend credential has been rotated.

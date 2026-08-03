@@ -12,6 +12,7 @@ import {
 } from "@/lib/integrations/espn/security";
 import { EspnStandingsError } from "@/lib/integrations/espn/standings";
 import type { EspnTeamMapping } from "@/lib/integrations/espn/types";
+import { operationalEvent } from "@/lib/operations/telemetry";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -141,7 +142,7 @@ async function handlePost(request: Request) {
       idempotencyKey: parsed.idempotencyKey,
     });
 
-    return Response.json({
+    const responseBody = {
       status: result?.status ?? "recorded",
       season_id: season.id,
       team_count: mappings.length,
@@ -156,7 +157,15 @@ async function handlePost(request: Request) {
             (week: unknown) => Number.isInteger(week) && Number(week) > 0,
           )
         : [],
+    };
+    operationalEvent("espn_sync_completed", {
+      season_id: season.id,
+      team_count: responseBody.team_count,
+      matchup_count: responseBody.matchup_count,
+      award_week_count: responseBody.award_week_count,
+      pending_tie_count: responseBody.pending_tie_weeks.length,
     });
+    return Response.json(responseBody);
   } catch (error) {
     if (
       error instanceof EspnStandingsError &&
@@ -181,6 +190,10 @@ export async function POST(request: Request) {
   try {
     return await handlePost(request);
   } catch {
+    operationalEvent("espn_sync_unexpected_failure", {
+      route: "/api/sync/espn",
+      status: 500,
+    });
     return errorResponse(500, "ingestion_failed");
   }
 }

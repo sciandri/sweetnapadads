@@ -4,8 +4,8 @@
 
 - Web application: Vercel
 - Database and authentication: Supabase
-- ESPN sync operations: manual-only GitHub Actions calling a protected
-  production endpoint
+- ESPN sync operations: protected manual and in-season scheduled GitHub Actions
+  calling one production endpoint
 
 ## Provisioned projects
 
@@ -41,13 +41,13 @@ it. No browser bundle or `NEXT_PUBLIC_` variable may expose this credential.
 callbacks. Production must use `https://sweetnapadads.com`; local development
 uses `http://localhost:3000`.
 
-`OPENAI_API_KEY` is a future server-only requirement for live commissioner
-message generation. It is not currently configured, must never use a
-`NEXT_PUBLIC_` prefix, and must be stored only in Vercel environment secrets.
-Until it is configured and the reviewed generation Route Handler is enabled,
-the composer remains an honest preview: commissioners can inspect the bounded
-fact package, write or paste a draft, and copy it, but cannot request AI output.
-The application does not store phone numbers or send SMS messages.
+`OPENAI_API_KEY` is the server-only requirement for live commissioner message
+generation. It is not currently configured, must never use a `NEXT_PUBLIC_`
+prefix, and must be stored only in Vercel environment secrets. The reviewed
+Route Handler is implemented and returns `generation_not_configured` until the
+key is present. `OPENAI_MODEL` is an optional server-only override; the default
+is `gpt-5.6-terra`. The application does not store phone numbers or send SMS
+messages.
 
 `ESPN_LEAGUE_ID`, `ESPN_S2`, `ESPN_SWID`, and `SYNC_SECRET` are required to
 enable scheduled production standings synchronization. All are server-only.
@@ -55,11 +55,12 @@ The protected endpoint is safe to deploy without them and returns a stable
 configuration or authorization failure; do not configure or schedule it until
 season-team mappings have been reviewed in the commissioner control room.
 
-`.github/workflows/espn-standings-sync.yml` is a manual-only production
-workflow protected by the GitHub `production` environment. It requires the
-repository variable `SITE_URL` and Actions secret `SYNC_SECRET`, validates a
+`.github/workflows/espn-standings-sync.yml` is a production workflow protected
+by the GitHub `production` environment. It requires repository variables
+`SITE_URL` and `SEASON_ID` plus Actions secret `SYNC_SECRET`, validates a
 canonical season UUID, uses evidence-derived idempotency, and emits only the
-stable response summary. It has no cron trigger. Follow the
+stable response summary. It retains manual dispatch and runs Tuesdays at 16:00
+UTC from September through January. Follow the
 [ESPN standings runbook](runbooks/ESPN_STANDINGS_SYNC.md) before configuring
 secrets, running it, rotating credentials, or proposing a schedule.
 
@@ -75,9 +76,17 @@ Before releasing authentication:
 6. Smoke-test an invited member, an expired link, and an authenticated
    non-member.
 
-Items 1–4 are configured in production. Production SMTP and real-member Auth
-smoke tests remain intentionally pending; do not invite real members before
-SMTP is configured.
+All six items are configured in production. Supabase Auth uses custom Resend
+SMTP from `login@auth.sweetnapadads.com`; the first commissioner invitation was
+accepted and the authenticated membership path was verified. The production
+league and a neutral 2026 setup season exist so member and commissioner routes
+have valid league context. The 2026 financial placeholders remain zero until
+the commissioner accepts the actual season rule schedule.
+
+The Resend credential used for the first smoke test must be rotated before
+inviting additional members because its value became visible in the operator
+verification transcript. Store only the replacement credential in Supabase;
+never copy it into the repository or tracking records.
 
 ## Release gate
 

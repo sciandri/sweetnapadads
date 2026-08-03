@@ -55,7 +55,8 @@ sequencing live in `docs/IMPLEMENTATION_PLAN.md`.
 - [x] Derive unique-score weekly awards and report tied weeks for review.
 - [x] Generate weekly rule-backed financial obligations from season config.
 - [x] Configure every placement, season-award, and penalty schedule as data.
-- [ ] Add manual-results fallback.
+- [x] Add audited manual entry for a complete week missing from ESPN.
+- [x] Add correction and financial reconciliation for an accepted week.
 
 ## Phase 4 — Application
 
@@ -66,15 +67,15 @@ sequencing live in `docs/IMPLEMENTATION_PLAN.md`.
 - [x] Build financial transparency and team balances.
 - [x] Build team, history, and franchise record pages.
 - [x] Build league activity page.
-- [ ] Build commissioner administration.
-- [ ] Add Playwright critical-path coverage.
+- [x] Build commissioner administration for the MVP operational controls.
+- [x] Add Playwright critical-path coverage.
 
 ## Phase 5 — Operations
 
-- [ ] Add protected scheduled synchronization workflow.
+- [x] Add protected scheduled synchronization workflow.
 - [x] Add manual-only production sync workflow and activation/failure runbook.
-- [ ] Add production observability and runbooks.
+- [x] Add production observability and runbooks.
 - [x] Configure linked Vercel and Supabase production projects and Auth URLs.
-- [ ] Add notification framework.
+- [x] Add notification framework.
 - [x] Add the authorized, copy-only AI recap context and composer foundation.
 - [ ] Enable live AI draft generation after server-only key configuration.

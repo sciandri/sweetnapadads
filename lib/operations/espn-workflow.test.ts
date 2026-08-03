@@ -17,12 +17,13 @@ async function workflow() {
 }
 
 describe("ESPN standings operations contract", () => {
-  it("is manual-only until production activation is approved", async () => {
+  it("retains manual recovery and defines the reviewed in-season schedule", async () => {
     const source = await workflow();
 
     expect(source).toContain("workflow_dispatch:");
-    expect(source).not.toMatch(/^\s*schedule:/m);
-    expect(source).not.toMatch(/^\s*- cron:/m);
+    expect(source).toMatch(/^\s*schedule:/m);
+    expect(source).toContain('cron: "0 16 * 9-12,1 2"');
+    expect(source).toContain("SEASON_ID: ${{ inputs.season_id || vars.SEASON_ID }}");
   });
 
   it("uses least privilege, production environment protection, and concurrency", async () => {
@@ -30,7 +31,7 @@ describe("ESPN standings operations contract", () => {
 
     expect(source).toContain("permissions:\n  contents: read");
     expect(source).toContain("environment: production");
-    expect(source).toContain("group: espn-standings-${{ inputs.season_id }}");
+    expect(source).toContain("group: espn-standings-${{ inputs.season_id || vars.SEASON_ID }}");
     expect(source).toContain("cancel-in-progress: false");
   });
 
@@ -62,7 +63,7 @@ describe("ESPN standings operations contract", () => {
     expect(runbook).toContain("## Manual production run");
     expect(runbook).toContain("## Stable failure responses");
     expect(runbook).toContain("## Secret rotation");
-    expect(runbook).toContain("## Enabling a schedule later");
+    expect(runbook).toContain("## Scheduled production run");
     expect(runbook).toContain("prior successful standings snapshot authoritative");
     expect(runbook).toContain("derives its key from the immutable raw ESPN response hash");
   });

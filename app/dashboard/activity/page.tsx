@@ -83,9 +83,9 @@ export default async function ActivityPage({ searchParams }: ActivityPageProps) 
     adjustmentsResult,
   ] = await Promise.all([
     supabase.from("season_teams").select("id, name").eq("season_id", season.id),
-    supabase.from("matchups").select("id, week, phase, source_type").eq("season_id", season.id),
-    supabase.from("weekly_results").select("matchup_id, season_team_id, score, result").eq("season_id", season.id),
-    supabase.from("weekly_awards").select("id, week, high_score_season_team_id, high_score, low_score_season_team_id, low_score, source_type").eq("season_id", season.id),
+    supabase.from("accepted_matchups").select("id, week, phase, source_type").eq("season_id", season.id),
+    supabase.from("accepted_weekly_results").select("matchup_id, season_team_id, score, result").eq("season_id", season.id),
+    supabase.from("accepted_weekly_awards").select("id, week, high_score_season_team_id, high_score, low_score_season_team_id, low_score, source_type").eq("season_id", season.id),
     supabase.from("financial_obligations").select("id, season_team_id, direction, amount_cents, description, occurred_on").eq("season_id", season.id),
     supabase.from("payments").select("id, season_team_id, direction, amount_cents, paid_on, note").eq("season_id", season.id),
     supabase.from("financial_adjustments").select("id, season_team_id, direction, amount_cents, reason, occurred_on").eq("season_id", season.id),

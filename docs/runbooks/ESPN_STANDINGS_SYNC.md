@@ -2,10 +2,10 @@
 
 ## Current operating mode
 
-The GitHub Actions workflow is manual-only. It has no `schedule` trigger and
-cannot run until the production environment is deliberately configured. Do not
-add a cron schedule before completing the activation gate below and observing
-at least one successful manual production run.
+The GitHub Actions workflow retains manual dispatch and defines an in-season
+Tuesday schedule. The schedule becomes operational only after this source is
+published and the protected production environment passes the activation gate
+below. Until then, missing `SEASON_ID` or secret configuration fails closed.
 
 ## Activation gate
 
@@ -22,6 +22,7 @@ at least one successful manual production run.
 6. Configure the GitHub Actions `production` environment:
    - secret `SYNC_SECRET`, exactly matching the Vercel value;
    - variable `SITE_URL`, exactly `https://sweetnapadads.com`.
+   - variable `SEASON_ID`, the canonical active production season UUID.
 7. Keep ESPN credentials only in Vercel. GitHub receives the synchronization
    secret but never receives ESPN cookies or the Supabase service-role key.
 
@@ -70,11 +71,16 @@ not manually reorder teams, edit raw payloads, or delete failed evidence.
 5. Run one manual synchronization and verify the control room.
 6. The old value is invalid as soon as Vercel uses the replacement.
 
-## Enabling a schedule later
+## Scheduled production run
 
-Scheduling is a separate production decision. Before adding a cron trigger,
-choose the active season and cadence, document time zone conversion to UTC,
-define offseason behavior, and decide how the workflow obtains the current
-season UUID without hardcoding it into application code. The first scheduled
-change must retain `workflow_dispatch` for recovery and pass the complete
-release ritual before activation.
+The cron expression `0 16 * 9-12,1 2` runs Tuesdays at 16:00 UTC during
+September through January. That is 9:00 a.m. Pacific while daylight saving
+time is active and 8:00 a.m. Pacific during standard time. The five-month gate
+keeps the workflow dormant during the league offseason; manual dispatch remains
+available for recovery and preseason verification.
+
+Scheduled runs read the active canonical UUID from the protected GitHub
+`SEASON_ID` variable. Change that variable as part of each new-season release;
+never hardcode a UUID into the workflow. A missing or malformed value stops
+before any network call. Review the first manual run after every season or
+secret rotation before relying on the next scheduled execution.

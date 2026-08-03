@@ -37,6 +37,28 @@ cross a commissioner-only PostgreSQL function, replace the full active set
 atomically, and preserve actor, timestamp, season, league, and accepted mapping
 evidence. Production credentials and scheduling remain deliberately disabled.
 
+The responsive missing-week fallback is implemented at
+`/dashboard/admin/results`. A commissioner selects a season and week, pairs
+every active team exactly once, enters scores to the hundredth, and supplies a
+required reason. The save is one locked database transaction: it records an
+immutable audit batch, reciprocal results, and any uniquely determined
+configured weekly awards and obligations. The form derives its pair count from
+active season teams, so ten- and twelve-team seasons use the same workflow.
+
+Missing-week mode deliberately refuses a week with any accepted matchup.
+Correction mode writes a new immutable evidence batch over one complete
+accepted week. The latest correction becomes the accepted projection without
+changing the original ESPN, import, or manual rows. When high/low awards move or
+disappear, append-only adjustments neutralize displaced obligations and the
+replacement awards receive configured obligations. Exact retries are safe and
+changed retries fail closed.
+
+The MVP commissioner area now includes ESPN mapping and sync, complete season
+financial-rule configuration, missing/corrected result control, in-app
+notifications, and AI-assisted message drafting. Lower-frequency season,
+membership, payment, and playoff data entry remains an intentional future
+expansion rather than an unaudited generic table editor.
+
 Every consequential action records actor, timestamp, league, season, and a
 human-readable reason where appropriate. Destructive historical deletion is
 not exposed through the application.
@@ -49,4 +71,7 @@ mapping remains. Approval and normalized-history commit are separate actions.
 AI message generation is also commissioner-only. The generator receives a
 bounded fact package assembled by the server. ESPN determines standings order;
 the model may summarize it but cannot recompute it. The application records no
-SMS recipients and performs no external message delivery.
+SMS recipients and performs no external message delivery. The Responses API
+call uses strict structured output for exactly three drafts, disables provider
+response storage, and fails with a stable configuration response until the
+server-only OpenAI key is present.

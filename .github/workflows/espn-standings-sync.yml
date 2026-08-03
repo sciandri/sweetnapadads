@@ -7,12 +7,14 @@ on:
         description: Canonical production season UUID
         required: true
         type: string
+  schedule:
+    - cron: "0 16 * 9-12,1 2"
 
 permissions:
   contents: read
 
 concurrency:
-  group: espn-standings-${{ inputs.season_id }}
+  group: espn-standings-${{ inputs.season_id || vars.SEASON_ID }}
   cancel-in-progress: false
 
 jobs:
@@ -21,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
-      SEASON_ID: ${{ inputs.season_id }}
+      SEASON_ID: ${{ inputs.season_id || vars.SEASON_ID }}
       SITE_URL: ${{ vars.SITE_URL }}
       SYNC_SECRET: ${{ secrets.SYNC_SECRET }}
 

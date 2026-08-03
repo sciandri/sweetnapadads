@@ -20,6 +20,7 @@ vi.mock("@/lib/integrations/espn/ingest", () => ({
 }));
 vi.mock("@/lib/supabase/admin", () => ({ createAdminClient: vi.fn() }));
 vi.mock("@/lib/supabase/server", () => ({ createClient: vi.fn() }));
+vi.mock("@/lib/operations/telemetry", () => ({ operationalEvent: vi.fn() }));
 
 const seasonId = "11111111-1111-4111-8111-111111111111";
 const leagueId = "22222222-2222-4222-8222-222222222222";

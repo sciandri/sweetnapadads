@@ -39,7 +39,7 @@ export default async function DashboardPage() {
     redirect("/access-denied");
   }
 
-  const [{ data: league }, { data: seasons }] = await Promise.all([
+  const [{ data: league }, { data: seasons }, { data: notifications }] = await Promise.all([
     supabase
       .from("leagues")
       .select("name")
@@ -50,6 +50,12 @@ export default async function DashboardPage() {
       .select("id, year, name, status")
       .eq("league_id", membership.league_id)
       .order("year", { ascending: false }),
+    supabase
+      .from("league_notifications")
+      .select("id, title, body, kind, published_at")
+      .eq("league_id", membership.league_id)
+      .order("published_at", { ascending: false })
+      .limit(3),
   ]);
 
   const season =
@@ -175,6 +181,13 @@ export default async function DashboardPage() {
             </div>
           </div>
 
+          {notifications?.length ? (
+            <section aria-labelledby="league-notices-heading" className="mt-7 border border-forest/20 bg-surface/70 p-5 sm:p-6">
+              <div className="flex flex-wrap items-end justify-between gap-3"><div><p className="font-mono text-[8px] font-bold uppercase tracking-[0.15em] text-wine">League feed</p><h2 className="mt-1 font-display text-3xl" id="league-notices-heading">Commissioner notices</h2></div>{membership.role === "commissioner" ? <Link className="font-mono text-[9px] font-bold uppercase tracking-[0.13em] text-wine underline-offset-4 hover:underline" href="/dashboard/admin/notifications">Publish notice</Link> : null}</div>
+              <ol className="mt-4 grid gap-3 lg:grid-cols-3">{notifications.map((notification) => <li className="border-t border-forest/20 pt-3" key={notification.id}><p className="font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-ink-muted">{String(notification.kind)}</p><p className="mt-1 font-display text-xl">{notification.title}</p><p className="mt-2 line-clamp-3 text-sm leading-6 text-ink-muted">{notification.body}</p></li>)}</ol>
+            </section>
+          ) : null}
+
           {standingRows.length ? (
             <div className="mt-7" aria-label="Official ESPN standings">
               <div className="hidden grid-cols-[3rem_minmax(12rem,1fr)_7rem_7rem_7rem_5rem] gap-3 border-b border-forest/25 px-3 pb-3 font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-ink-muted md:grid">
@@ -261,7 +274,7 @@ export default async function DashboardPage() {
           {membership.role === "commissioner" ? (
             <nav
               aria-label="Commissioner tools"
-              className="mt-10 grid gap-3 border-t border-forest/20 pt-7 sm:max-w-3xl sm:grid-cols-3"
+              className="mt-10 grid gap-3 border-t border-forest/20 pt-7 sm:grid-cols-2 lg:grid-cols-5"
             >
               <Link
                 className="grid min-h-12 place-items-center border border-wine bg-wine px-5 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-white"
@@ -280,6 +293,18 @@ export default async function DashboardPage() {
                 href="/dashboard/admin/season-rules"
               >
                 Season rules
+              </Link>
+              <Link
+                className="grid min-h-12 place-items-center border border-forest/25 px-5 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.16em] hover:border-wine hover:text-wine"
+                href="/dashboard/admin/results"
+              >
+                Result control
+              </Link>
+              <Link
+                className="grid min-h-12 place-items-center border border-forest/25 px-5 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.16em] hover:border-wine hover:text-wine"
+                href="/dashboard/admin/notifications"
+              >
+                Notifications
               </Link>
             </nav>
           ) : null}
