@@ -2,11 +2,11 @@
 
 - Last updated: 2026-08-03
 - Session: 0009
-- Session status: closing
+- Session status: paused — source published; Vercel authentication blocked
 - Branch: `main`
 - Phase: Phase 5 — Operations
-- Checkpoint: 2025 closing correction documented; accepted ESPN results now
-  expose derived weekly financial effects; release verification complete
+- Checkpoint: source commit `e4de3c4` published and Supabase synchronized;
+  production deployment blocked by the active Vercel account
 
 ## Current outcome
 
@@ -100,7 +100,7 @@ seed, rejects unavailable preseason order, requires exact season-team mappings
 of any configured size, minimizes member-readable source evidence, hashes the
 raw response, and submits one atomic ingestion call. Redacted fixtures include
 an explicit twelve-team season contract.
-Source checkpoint `64bf20a` is published to GitHub `main`. Hosted Supabase is
+Source checkpoint `e4de3c4` is published to GitHub `main`. Hosted Supabase is
 synchronized through all twenty-one migrations ending at `20260802183000`;
 the post-apply dry-run is empty. The canonical 2025 dataset is committed and
 reconciled in production, and the spreadsheet's two side bets are normalized
@@ -421,7 +421,11 @@ pgTAP verifies the exact privilege matrix.
   or local Studio.
 - The repository is linked locally to Vercel project
   `prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w` in the `sciandri` scope. Production
-  deployment `dpl_5ZmJ2YT327evXjcxfsrLzxx9VtiV` is Ready.
+  deployment `dpl_5ZmJ2YT327evXjcxfsrLzxx9VtiV` remains the last verified
+  Ready release. The current Vercel CLI session resolves to
+  `igniteiq-frontend`, which cannot access that project; commit `e4de3c4`
+  cannot be deployed until the CLI is authenticated to the owning account or
+  team. Do not remove or replace `.vercel/project.json` as a workaround.
 - ESPN private-league credentials are configured only in git-ignored local
   environment state and validated for both the 2025 and 2026 ten-team league.
   They and `SYNC_SECRET` are not configured in Vercel and must never be
@@ -450,7 +454,7 @@ pgTAP verifies the exact privilege matrix.
 - Hosted migration history: all twenty-one versions through `20260802183000`
   match
 - Hosted Auth production config: up to date
-- GitHub `main`: source checkpoint `64bf20a` synchronized
+- GitHub `main`: source checkpoint `e4de3c4` synchronized
 - Supabase production dry-run: no pending migrations, seeds, or roles
 - Production 2025 import: 533 raw rows, 80 matchups, 160 results, 14 awards,
   49 obligations, 43 payments, 43 allocations, one external cash event, and
@@ -464,6 +468,8 @@ pgTAP verifies the exact privilege matrix.
 - Vercel production `dpl_5ZmJ2YT327evXjcxfsrLzxx9VtiV`: Ready
 - `https://sweetnapadads.com`: HTTP 200 after redirect to
   `https://www.sweetnapadads.com/`
+- Existing production `/api/health`: HTTP 200 with `status: ok` after the
+  blocked deployment attempt; production remains healthy on the prior release
 - `https://sweetnapadads.com/login`: HTTP 200 with the invitation-only login
 - Unauthenticated `/dashboard/message-composer`: redirects safely to login
 - Unauthenticated `/dashboard/results`: safely redirects to
@@ -524,11 +530,13 @@ pgTAP verifies the exact privilege matrix.
 
 ## Latest commit intent
 
-`feat: connect weekly results to financial effects`
+`docs: record blocked Vercel release handoff`
 
 ## Pickup instruction
 
-Complete this “update and track” release. Do not invite another member until
-the Resend credential has been rotated. The next product workstream is the real
-2026 ten- or twelve-team roster, ESPN mappings, and commissioner-approved
-season rules; then configure production ESPN automation secrets.
+Authenticate Vercel CLI to the account or team that owns project
+`prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w`, deploy source commit `e4de3c4` to
+production, verify the custom domain and health endpoint, and record the
+deployment in this session. Do not invite another member until the Resend
+credential has been rotated. After release, begin the real 2026 ten- or
+twelve-team roster, ESPN mappings, and commissioner-approved season rules.

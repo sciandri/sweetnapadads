@@ -1,10 +1,10 @@
 # Session 0009 — 2025 closing correction and weekly result parity
 
 - Date: 2026-08-03
-- Status: closing
+- Status: paused — source published; Vercel authentication blocked
 - Branch: `main`
 - Starting commit: `b2b9602`
-- Ending commit: pending
+- Ending source commit: `e4de3c4`
 
 ## Goal
 
@@ -72,6 +72,15 @@ team balance. The commissioner clarified that both were zero at season close.
   after an anomalously long silent cache-write pause, not a compilation error.
 - Playwright: 9 passing across desktop and 390px mobile, with one intentional
   desktop skip for the mobile-only overflow assertion.
+- GitHub `main`: source commit `e4de3c4` pushed and synchronized.
+- Hosted Supabase: all twenty-one migrations through `20260802183000` match;
+  the linked dry-run reports no migration, seed, or role changes.
+- Vercel deployment: not created. Two device logins resolved to
+  `igniteiq-frontend`, which cannot access linked project
+  `prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w`.
+- Existing production remains healthy: the custom domain follows its canonical
+  redirect and returns HTTP 200; `/api/health` returns HTTP 200 with
+  `status: ok` on the prior deployment.
 
 ## Risks or blockers
 
@@ -80,10 +89,15 @@ team balance. The commissioner clarified that both were zero at season close.
 - The finance page defaults to active 2026 and shows source events only for the
   selected team, so it does not yet expose an obvious league-wide 2025 incoming
   payment list.
+- The Vercel CLI must be authenticated to the owning account or team before
+  source commit `e4de3c4` can replace the last verified production deployment.
+  The canonical `.vercel/project.json` remains intact.
 
 ## Exact handoff
 
-After this release, begin with the real 2026 ten- or twelve-team roster, ESPN
-mappings, and commissioner-approved season rules. Rotate the Resend credential
-before inviting another member, and configure production ESPN automation only
-after the roster and mappings are reviewed.
+Authenticate Vercel to the owner of project
+`prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w`, deploy source commit `e4de3c4`, verify the
+custom domain and health endpoint, and append the deployment ID here. Then
+begin the real 2026 ten- or twelve-team roster, ESPN mappings, and
+commissioner-approved season rules. Rotate the Resend credential before
+inviting another member.
