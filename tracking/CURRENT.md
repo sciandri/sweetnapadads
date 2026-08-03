@@ -226,6 +226,12 @@ health endpoint, and an incident/rollback runbook provide the production
 observability baseline. Playwright covers authenticated member and commissioner
 critical paths at desktop and 390px widths.
 
+The production security-advisor review identified inherited anonymous execute
+privileges on two older security-definer RPCs and the hosted RLS event trigger.
+A portable grant-hardening migration now removes those anonymous paths while
+retaining only the authenticated/service roles required by the guarded RPCs;
+pgTAP verifies the exact privilege matrix.
+
 ## In progress
 
 - [x] Initialize and verify the local Supabase stack.
@@ -340,6 +346,8 @@ critical paths at desktop and 390px widths.
       operational events, and operations runbook.
 - [x] Add immutable in-app notification publication and delivery evidence.
 - [x] Implement the live AI generation boundary and three-option composer UI.
+- [x] Remove inherited anonymous execution from the historical-import and
+      commissioner-message security-definer boundaries.
 
 ## Next actions
 
@@ -412,7 +420,7 @@ critical paths at desktop and 390px widths.
 - `npm test`: 125 tests passing across 30 files
 - `npm run db:reset`: passing
 - `npm run db:lint`: passing with no warnings
-- `npm run db:test`: 388 database tests passing across 19 files
+- `npm run db:test`: 394 database tests passing across 20 files
 - `npm run import:2025:rehearse`: passing twice; second run idempotent
 - ESPN credential check: authenticated HTTP 200 for 2025 and 2026; league ID
   and ten-team response verified without logging credential values

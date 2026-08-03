@@ -47,6 +47,9 @@ item and must not overwrite imported or ESPN source facts.
 - [x] Configure custom Resend SMTP, accept the first production commissioner
       invitation, attach the confirmed identity to the canonical league, and
       create a neutral 2026 setup season so authenticated navigation works.
+- [x] Close inherited anonymous execution on the historical-import and
+      commissioner-message security-definer RPCs, including a conditional
+      revoke for Supabase's hosted-only RLS event trigger.
 
 ## Decisions
 
@@ -65,7 +68,7 @@ item and must not overwrite imported or ESPN source facts.
 - `npm test`: 125 tests passing across 30 files
 - `npm run db:reset`: passing
 - `npm run db:lint`: passing with no warnings
-- `npm run db:test`: 388 database tests passing across 19 files
+- `npm run db:test`: 394 database tests passing across 20 files
 - `npm run build`: passing with the API and commissioner page as dynamic routes
 - `npm run tracking:check`: passing with eight session logs
 - Local production-build smoke: `/login` returns HTTP 200 and the unauthenticated
