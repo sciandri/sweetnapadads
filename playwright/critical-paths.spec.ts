@@ -34,6 +34,29 @@ test("result control exposes distinct missing-week and correction modes", async 
   await expect(page.getByText(/explicitly reconciles any displaced weekly obligations/)).toBeVisible();
 });
 
+test("accepted ESPN scores expose outcomes, weekly honors, and financial effects", async ({ page }) => {
+  await page.goto("/dashboard/results?week=1");
+
+  await expect(page.getByRole("heading", { name: "Week 1" })).toBeVisible();
+  const finalMatchups = page.getByRole("region", { name: "Final matchups" });
+  await expect(finalMatchups.getByText("Development Franchise 2026")).toBeVisible();
+  await expect(finalMatchups.getByText("Browser Test Opponent 2026")).toBeVisible();
+  await expect(finalMatchups.getByText("128.42")).toBeVisible();
+  await expect(finalMatchups.getByText("91.18")).toBeVisible();
+  await expect(finalMatchups.getByText("win", { exact: true })).toBeVisible();
+  await expect(finalMatchups.getByText("loss", { exact: true })).toBeVisible();
+
+  const highAward = page.getByTestId("weekly-high-award");
+  await expect(highAward).toContainText("Automatically derived");
+  await expect(highAward).toContainText("League owes winner");
+  await expect(highAward).toContainText("$25");
+
+  const lowPenalty = page.getByTestId("weekly-low-penalty");
+  await expect(lowPenalty).toContainText("Automatically derived");
+  await expect(lowPenalty).toContainText("Low scorer owes league");
+  await expect(lowPenalty).toContainText("$10");
+});
+
 test("message composer fails safely when AI credentials are absent", async ({ page }) => {
   await page.goto("/dashboard/message-composer");
   await page.getByRole("button", { name: "Generate three options" }).click();

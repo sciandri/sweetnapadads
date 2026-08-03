@@ -1,12 +1,12 @@
 # Current project state
 
-- Last updated: 2026-08-02
-- Session: 0008
-- Session status: completed
+- Last updated: 2026-08-03
+- Session: 0009
+- Session status: closing
 - Branch: `main`
 - Phase: Phase 5 — Operations
-- Checkpoint: production release complete; 2025 history and all spreadsheet
-  activity imported
+- Checkpoint: 2025 closing correction documented; accepted ESPN results now
+  expose derived weekly financial effects; release verification complete
 
 ## Current outcome
 
@@ -17,7 +17,7 @@ authenticated project-scoped Supabase MCP connection for Codex. Leagues,
 seasons, settings, profiles, memberships, and their RLS policies are now
 implemented and tested locally. Request-scoped Supabase browser, server,
 service-role, and session-refresh clients are in place for Next.js 16. All
-sixteen reviewed migrations are applied to hosted Supabase. Production Auth
+twenty-one reviewed migrations are applied to hosted Supabase. Production Auth
 uses `https://sweetnapadads.com` with the exact callback allowlist, Vercel has
 the canonical `SITE_URL`, and source commit `8bdeeef` is live at
 `https://www.sweetnapadads.com`.
@@ -48,12 +48,19 @@ accepted until its recommended treatment received commissioner approval.
 Every finding now has an evidence-backed decision packet with explicit options
 and an accepted recommendation. Financial label mappings use `Type + How` so
 weekly, season-high, and placement payouts remain distinct.
-The checksum-pinned normalized preview contains all 160 results, 14 derived
+The checksum-pinned imported preview contains all 160 results, 14 derived
 awards, 49 obligations, 43 payments, and 43 deterministic allocations without
 committing history to domain tables. It reconciles to a `$40` net team balance
 and `$240` realized league cash balance. A separate immutable external-cash
 event model now accounts for the `$700` draft-party expense without assigning
-it to a team.
+it to a team. The commissioner later confirmed the actual 2025 closing state
+was zero for the league and every team; append-only corrections now settle the
+remaining `$240` cash and Los Pollos Hermanos II's `$40` balance without
+rewriting imported evidence. Direct workbook review confirms all ten `Team
+Balance` outputs are zero but `Net Cash (Realized)` is `$240`; the cash
+correction is therefore a commissioner-supplied real-world fact rather than a
+workbook-derived value. All 28 incoming team payments totaling `$2,710` are
+present in production.
 Competition history now has season-scoped matchups, reciprocal results, linked
 weekly awards, stable import source keys, immutable imported rows, and RLS.
 An authenticated commissioner can commit one approved normalized preview
@@ -169,14 +176,22 @@ explicitly pending rather than being inferred from visible scores. The 2025
 rehearsal supplied a populated visual contract: season/week selection, Week 14
 honors, postseason pending state, five-matchup grids, and 390px mobile layout
 all passed.
+The weekly honor cards now join their immutable rule obligations and show the
+configured league-to-winner payout and low-scorer-to-league penalty beside the
+stored high/low score. The browser never recomputes an amount. A deterministic
+authenticated Playwright fixture now submits an ESPN-style accepted week
+through the real database derivation function and verifies outcomes, honors,
+financial directions, exact configured amounts, and mobile layout.
 Members can now inspect the league ledger at `/dashboard/finances`. The route
 reads the four canonical security-invoker finance views plus immutable event
 descriptions through RLS. It keeps actual cash separate from obligations,
 summarizes every team-perspective balance, exposes all six components for the
 selected team, and joins obligations and payments to their stored reconciliation
 status without recalculating the net. The seeded $140 development balance and
-the locally rehearsed 2025 record—$240 cash, $40 outstanding, nine of ten teams
-settled—both matched canonical data in desktop and 390px browser review.
+the locally rehearsed imported 2025 record both matched canonical data in
+desktop and 390px browser review. Production now additionally reflects the
+commissioner-confirmed closing state: `$0` league cash and all ten teams
+settled at `$0`.
 Members can now browse `/dashboard/teams` and durable franchise detail routes.
 The season directory derives its team count and entries from data. Each
 franchise record combines dated ownership evidence, season-specific names,
@@ -354,6 +369,8 @@ pgTAP verifies the exact privilege matrix.
       commissioner-message security-definer boundaries.
 - [x] Commit and reconcile the canonical 2025 history in hosted Supabase.
 - [x] Normalize both spreadsheet side bets as visible immutable activity.
+- [x] Expose weekly award and penalty obligations directly beside accepted
+      ESPN-derived results and verify the end-to-end member view.
 
 ## Next actions
 
@@ -420,7 +437,7 @@ pgTAP verifies the exact privilege matrix.
 - `npm audit`: clean
 - `npm run lint`: passing
 - `npm run typecheck`: passing
-- `npm test`: 126 tests passing across 30 files
+- `npm test`: 127 tests passing across 30 files
 - `npm run db:reset`: passing
 - `npm run db:lint`: passing with no warnings
 - `npm run db:test`: 405 database tests passing across 21 files
@@ -437,7 +454,11 @@ pgTAP verifies the exact privilege matrix.
 - Supabase production dry-run: no pending migrations, seeds, or roles
 - Production 2025 import: 533 raw rows, 80 matchups, 160 results, 14 awards,
   49 obligations, 43 payments, 43 allocations, one external cash event, and
-  390 provenance links; `$240` cash and `$40` net team balance reconcile
+  390 provenance links; the source import's `$240` cash and `$40` net team
+  balance remain preserved as evidence
+- Production 2025 closing correction: one audited `$40` team adjustment and
+  one audited `$240` cash reconciliation; all ten team balances and league cash
+  now verify at `$0`
 - Spreadsheet side-bet activity: two `$20` records committed with exact source
   descriptions and references
 - Vercel production `dpl_5ZmJ2YT327evXjcxfsrLzxx9VtiV`: Ready
@@ -493,17 +514,21 @@ pgTAP verifies the exact privilege matrix.
 - AI draft boundary: server-side authorization/context, strict three-option
   output, `store: false`, safe missing-key behavior, and redacted failures
   verified
-- Playwright critical paths: 7 passing across desktop and 390px mobile; one
+- Playwright critical paths: 9 passing across desktop and 390px mobile; one
   intentional desktop skip for the mobile-only overflow assertion
+- Accepted ESPN week browser contract: reciprocal win/loss results, exact
+  scores, automatically derived high/low honors, configured `$25` payout and
+  `$10` penalty, and desktop/mobile presentation all passing
 - Production member-route smoke test: unauthenticated finance, team-directory,
   and activity requests redirect to login with exact safe return paths
 
 ## Latest commit intent
 
-`docs: close session 0008 production release`
+`feat: connect weekly results to financial effects`
 
 ## Pickup instruction
 
-Start from clean, synchronized `main`. Do not invite another member until the
-Resend credential has been rotated. Then choose OpenAI activation or real 2026
-roster, ESPN mapping, and season-rule configuration as the next workstream.
+Complete this “update and track” release. Do not invite another member until
+the Resend credential has been rotated. The next product workstream is the real
+2026 ten- or twelve-team roster, ESPN mappings, and commissioner-approved
+season rules; then configure production ESPN automation secrets.

@@ -162,6 +162,27 @@ The commissioner explicitly approved the hosted production commit on
 preserves all 533 rows, the approved mappings and issues, the exact committed
 preview, 390 domain provenance links, and the expected domain counts above.
 
+## Commissioner-confirmed closing correction
+
+On 2026-08-03, the commissioner clarified that the final 2025 closing state
+was zero league cash and a zero balance for every team. The imported source
+evidence remains unchanged. The Excel `Team Balance` sheet reports zero for
+all ten teams, while `Net Cash` reports `$240` realized league cash. The
+approved normalized import used the configured `$720` champion obligation in
+place of the ledger's `$760` obligation and therefore left Los Pollos Hermanos
+II at a `$40` team-perspective balance. Production appends two audited manual
+corrections instead of rewriting those records:
+
+- a `$40` `decrease_team_balance` adjustment settles Los Pollos Hermanos II;
+- a `$240` `closing_reconciliation` cash-out settles the season cash account.
+
+Both records use stable source keys, identify the commissioner, and use
+2026-08-03 as the correction-recording date. The canonical production views
+now return `$0` for all ten team balances and `$0` for 2025 league cash.
+The team correction agrees with Excel's closing team balances. The cash
+correction reflects the commissioner's later real-world instruction and not
+the workbook's `$240` realized-cash output.
+
 The two `Bets` rows were preserved in the original raw evidence and alias
 review but were not domain records in the original commit preview. The release
 therefore adds a separate immutable `side_bets` model and normalizes both `$20`

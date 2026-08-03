@@ -7,9 +7,11 @@ import {
   buildCompetitionWeeks,
   formatCompetitionScore,
   type CompetitionMatchupRecord,
+  type WeeklyAwardObligationRecord,
   type WeeklyAwardRecord,
   type WeeklyResultRecord,
 } from "@/lib/competition/view";
+import { formatCurrency } from "@/lib/format/currency";
 import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -65,7 +67,7 @@ export default async function ResultsPage({ searchParams }: ResultsPageProps) {
       .eq("season_id", season.id),
     supabase
       .from("accepted_weekly_awards")
-      .select("week, high_score_season_team_id, high_score, low_score_season_team_id, low_score")
+      .select("week, high_score_season_team_id, high_score, high_score_obligation_id, low_score_season_team_id, low_score, low_score_obligation_id, source_type")
       .eq("season_id", season.id)
       .order("week", { ascending: false }),
     supabase
@@ -73,6 +75,17 @@ export default async function ResultsPage({ searchParams }: ResultsPageProps) {
       .select("id, name, abbreviation")
       .eq("season_id", season.id),
   ]);
+
+  const awardObligationIds = (awardsResult.data ?? []).flatMap((award) => [
+    award.high_score_obligation_id,
+    award.low_score_obligation_id,
+  ]);
+  const awardObligationsResult = awardObligationIds.length
+    ? await supabase
+        .from("financial_obligations")
+        .select("id, direction, amount_cents, description")
+        .in("id", awardObligationIds)
+    : { data: [] };
 
   const weeks = buildCompetitionWeeks(
     (matchupsResult.data ?? []) as CompetitionMatchupRecord[],
@@ -86,6 +99,10 @@ export default async function ResultsPage({ searchParams }: ResultsPageProps) {
       low_score: Number(award.low_score),
     })) as WeeklyAwardRecord[],
     teamsResult.data ?? [],
+    (awardObligationsResult.data ?? []).map((obligation) => ({
+      ...obligation,
+      amount_cents: Number(obligation.amount_cents),
+    })) as WeeklyAwardObligationRecord[],
   );
   const requestedWeek = Number(Array.isArray(params.week) ? params.week[0] : params.week);
   const selectedWeek = weeks.find((week) => week.week === requestedWeek) ?? weeks[0];
@@ -146,15 +163,31 @@ export default async function ResultsPage({ searchParams }: ResultsPageProps) {
               {selectedWeek.award ? (
                 <section aria-labelledby="weekly-honors-heading" className="grid gap-3 sm:grid-cols-2">
                   <h2 className="sr-only" id="weekly-honors-heading">Weekly honors</h2>
-                  <article className="border-l-4 border-forest bg-surface/85 p-5 sm:p-6">
-                    <p className="font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-forest">High score · Weekly honor</p>
+                  <article className="border-l-4 border-forest bg-surface/85 p-5 sm:p-6" data-testid="weekly-high-award">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <p className="font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-forest">High score · Weekly award</p>
+                      <p className="font-mono text-[8px] font-bold uppercase tracking-[0.13em] text-ink-muted">{selectedWeek.award.source_type === "system" ? "Automatically derived" : `${selectedWeek.award.source_type} record`}</p>
+                    </div>
                     <p className="mt-3 font-display text-3xl">{selectedWeek.award.high.team_name}</p>
                     <p className="mt-2 font-display text-5xl text-forest">{formatCompetitionScore(selectedWeek.award.high.score)}</p>
+                    <div className="mt-5 border-t border-forest/15 pt-4">
+                      <p className="font-mono text-[8px] font-bold uppercase tracking-[0.14em] text-ink-muted">League owes winner</p>
+                      <p className="mt-2 font-display text-3xl text-forest">{selectedWeek.award.high.obligation ? formatCurrency(selectedWeek.award.high.obligation.amount_cents) : "Amount unavailable"}</p>
+                      <p className="mt-1 text-xs leading-5 text-ink-muted">{selectedWeek.award.high.obligation?.description ?? "No linked financial obligation was readable."}</p>
+                    </div>
                   </article>
-                  <article className="border-l-4 border-wine bg-surface/85 p-5 sm:p-6">
-                    <p className="font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-wine">Low score · Weekly penalty</p>
+                  <article className="border-l-4 border-wine bg-surface/85 p-5 sm:p-6" data-testid="weekly-low-penalty">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <p className="font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-wine">Low score · Weekly penalty</p>
+                      <p className="font-mono text-[8px] font-bold uppercase tracking-[0.13em] text-ink-muted">{selectedWeek.award.source_type === "system" ? "Automatically derived" : `${selectedWeek.award.source_type} record`}</p>
+                    </div>
                     <p className="mt-3 font-display text-3xl">{selectedWeek.award.low.team_name}</p>
                     <p className="mt-2 font-display text-5xl text-wine">{formatCompetitionScore(selectedWeek.award.low.score)}</p>
+                    <div className="mt-5 border-t border-wine/15 pt-4">
+                      <p className="font-mono text-[8px] font-bold uppercase tracking-[0.14em] text-ink-muted">Low scorer owes league</p>
+                      <p className="mt-2 font-display text-3xl text-wine">{selectedWeek.award.low.obligation ? formatCurrency(selectedWeek.award.low.obligation.amount_cents) : "Amount unavailable"}</p>
+                      <p className="mt-1 text-xs leading-5 text-ink-muted">{selectedWeek.award.low.obligation?.description ?? "No linked financial obligation was readable."}</p>
+                    </div>
                   </article>
                 </section>
               ) : (

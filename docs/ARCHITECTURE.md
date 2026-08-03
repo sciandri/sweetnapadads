@@ -118,13 +118,14 @@ snapshot capture time and scoring period so members can see when the table was
 last accepted. An absent snapshot produces an explicit empty state rather than
 locally derived standings.
 
-The member results route reads `matchups`, `weekly_results`, `weekly_awards`,
-and season-team labels through the same request-scoped client and their existing
-league RLS. A deterministic presentation model groups reciprocal results into
-one matchup, retains stored win/loss/tie outcomes and exact scores, and attaches
-only persisted weekly honors. Season and week filters are server-rendered URL
-state. The view never infers an award from visible scores; absent awards remain
-explicitly pending for incomplete or tied weeks.
+The member results route reads accepted matchups, results, weekly awards,
+their linked financial obligations, and season-team labels through the same
+request-scoped client and existing league RLS. A deterministic presentation
+model groups reciprocal results into one matchup, retains stored win/loss/tie
+outcomes and exact scores, and attaches only persisted weekly honors and their
+configured dollar effects. Season and week filters are server-rendered URL
+state. The view never infers an award or amount from visible scores; absent
+awards remain explicitly pending for incomplete or tied weeks.
 
 The member finance route reads `team_financial_balances`,
 `obligation_reconciliation`, `payment_reconciliation`, and

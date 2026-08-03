@@ -41,7 +41,7 @@
 ## Phase 4 — Application
 
 - [x] Authenticated shell and official-order member standings dashboard
-- [x] Member results and weekly awards page
+- [x] Member results, weekly awards, and linked financial-effects page
 - [x] Member financial transparency and team-balance page
 - [x] Team directory and durable franchise history pages
 - [x] League activity page with distinct competition and finance streams

@@ -173,9 +173,13 @@ outsider denial, and canonical balances. HTTP tests cover the distinct route
 and stable errors.
 
 Playwright exercises authenticated member and commissioner routes with a
-generated local token-hash session. Desktop and 390px projects cover result
-control, notifications, the message composer, and horizontal-overflow guards.
-The composer test also verifies the safe missing-key state.
+generated local token-hash session. Its deterministic ESPN-style week passes
+through the database award-derivation function and verifies reciprocal
+win/loss outcomes, exact scores, the configured high-score payout, and the
+configured low-score penalty on the member results page. Desktop and 390px
+projects also cover result control, notifications, the message composer, and
+horizontal-overflow guards. The composer test verifies the safe missing-key
+state.
 
 Notification pgTAP coverage verifies least privilege, audience visibility,
 immutable notice/delivery evidence, active-member delivery counts,

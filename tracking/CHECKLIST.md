@@ -42,6 +42,8 @@ sequencing live in `docs/IMPLEMENTATION_PLAN.md`.
 - [x] Rehearse the complete canonical 2025 import locally and idempotently.
 - [x] Commit a reconciled 2025 historical import.
 - [x] Normalize all spreadsheet activity, including both undated side bets.
+- [x] Record the commissioner-confirmed 2025 closing correction so league cash
+      and all team balances are zero without rewriting imported evidence.
 
 ## Phase 3 — Competition
 
@@ -65,6 +67,7 @@ sequencing live in `docs/IMPLEMENTATION_PLAN.md`.
 - [x] Build responsive commissioner ESPN mapping and run controls.
 - [x] Build member dashboard with latest official-order ESPN standings.
 - [x] Build standings, results, and awards.
+- [x] Show configured weekly payout and penalty effects beside accepted honors.
 - [x] Build financial transparency and team balances.
 - [x] Build team, history, and franchise record pages.
 - [x] Build league activity page.

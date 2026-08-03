@@ -66,6 +66,12 @@ Side bets appear below those timelines as undated source cards. Each card shows
 the two structured teams, exact description, and stake while explicitly
 avoiding an inferred winner, settlement, or date.
 
+The weekly results surface pairs each accepted matchup's stored win/loss/tie
+labels with exact scores. Its high-score and low-score cards display the
+already-derived financial obligation and direction beside the honor, so a
+member can see who earned money and who owes a penalty without navigating to a
+second screen. Incomplete and tied weeks keep an explicit pending state.
+
 ## Commissioner message composer
 
 The composer is optimized for copying into the league's existing group-text

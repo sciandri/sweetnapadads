@@ -54,6 +54,58 @@ export default async function globalSetup(config: FullConfig) {
     throw new Error("Could not prepare the local browser-test league fixture.");
   }
 
+  const fixtureMatchupId = "e2000000-0000-4000-8000-000000000003";
+  const fixtureResultIds = [
+    "e2000000-0000-4000-8000-000000000004",
+    "e2000000-0000-4000-8000-000000000005",
+  ];
+  const { error: matchupError } = await admin.from("matchups").upsert({
+    id: fixtureMatchupId,
+    league_id: "d0000000-0000-4000-8000-000000000002",
+    season_id: "d0000000-0000-4000-8000-000000000004",
+    week: 1,
+    phase: "regular_season",
+    source_type: "espn",
+    source_key: "browser-test:espn:week-1:matchup-1",
+  });
+  const { error: resultsError } = await admin.from("weekly_results").upsert([
+    {
+      id: fixtureResultIds[0],
+      league_id: "d0000000-0000-4000-8000-000000000002",
+      season_id: "d0000000-0000-4000-8000-000000000004",
+      matchup_id: fixtureMatchupId,
+      season_team_id: "d0000000-0000-4000-8000-000000000008",
+      opponent_season_team_id: fixtureSeasonTeamId,
+      score: 128.42,
+      result: "win",
+      source_type: "espn",
+      source_key: "browser-test:espn:week-1:result-development",
+    },
+    {
+      id: fixtureResultIds[1],
+      league_id: "d0000000-0000-4000-8000-000000000002",
+      season_id: "d0000000-0000-4000-8000-000000000004",
+      matchup_id: fixtureMatchupId,
+      season_team_id: fixtureSeasonTeamId,
+      opponent_season_team_id: "d0000000-0000-4000-8000-000000000008",
+      score: 91.18,
+      result: "loss",
+      source_type: "espn",
+      source_key: "browser-test:espn:week-1:result-opponent",
+    },
+  ]);
+  if (matchupError || resultsError) {
+    throw new Error("Could not prepare accepted weekly results for browser tests.");
+  }
+
+  const { error: awardError } = await admin.rpc("derive_weekly_award", {
+    target_season_id: "d0000000-0000-4000-8000-000000000004",
+    target_week: 1,
+  });
+  if (awardError) {
+    throw new Error(`Could not derive the browser-test weekly award: ${awardError.message}`);
+  }
+
   const { data, error } = await admin.auth.admin.generateLink({
     type: "magiclink",
     email: COMMISSIONER_EMAIL,
