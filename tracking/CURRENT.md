@@ -2,10 +2,11 @@
 
 - Last updated: 2026-08-02
 - Session: 0008
-- Session status: active
+- Session status: completed
 - Branch: `main`
 - Phase: Phase 5 — Operations
-- Checkpoint: update-and-track release in progress; local gates pass
+- Checkpoint: production release complete; 2025 history and all spreadsheet
+  activity imported
 
 ## Current outcome
 
@@ -92,14 +93,12 @@ seed, rejects unavailable preseason order, requires exact season-team mappings
 of any configured size, minimizes member-readable source evidence, hashes the
 raw response, and submits one atomic ingestion call. Redacted fixtures include
 an explicit twelve-team season contract.
-Source checkpoint `7624f5d` is published to GitHub `main`. Hosted Supabase is
-synchronized through all sixteen migrations ending at `20260731180000`; the
-post-apply dry-run is empty. The four new migrations added the reviewed ESPN
-competition, award derivation, mapping administration, and audited financial
-rule schema/functions without importing the 2025 historical dataset. Vercel
-production deployment `dpl_9UgX2X1eWDmSkBoJCBrTjtE2C7YM` is Ready and aliased
-to the custom domain. It includes the member finance, team-history, and league
-activity surfaces completed in session 0007.
+Source checkpoint `64bf20a` is published to GitHub `main`. Hosted Supabase is
+synchronized through all twenty-one migrations ending at `20260802183000`;
+the post-apply dry-run is empty. The canonical 2025 dataset is committed and
+reconciled in production, and the spreadsheet's two side bets are normalized
+as immutable member activity. Vercel production deployment
+`dpl_5ZmJ2YT327evXjcxfsrLzxx9VtiV` is Ready and aliased to the custom domain.
 The protected `POST /api/sync/espn` Route Handler now authorizes an active
 commissioner session or constant-time checked automation bearer secret,
 validates JSON and idempotency input, resolves every active season mapping
@@ -358,13 +357,13 @@ pgTAP verifies the exact privilege matrix.
 
 ## Next actions
 
-1. Complete the active “update and track” release: publish the side-bet
-   extension, deploy production, and record exact hosted verification.
-2. Rotate the Resend SMTP credential before inviting another real member.
-3. Configure the server-only OpenAI key locally and in Vercel, then run one
+1. Rotate the Resend SMTP credential before inviting another real member.
+2. Configure the server-only OpenAI key locally and in Vercel, then run one
    reviewed live three-draft smoke test.
-4. Configure `SYNC_SECRET`, ESPN secrets, `SITE_URL`, and `SEASON_ID` in their
+3. Configure `SYNC_SECRET`, ESPN secrets, `SITE_URL`, and `SEASON_ID` in their
    documented Vercel/GitHub scopes before scheduled sync can execute.
+4. Replace the neutral 2026 setup data with the real ten- or twelve-team roster,
+   complete ESPN mappings, and commissioner-approved payout and penalty rules.
 
 ## Decisions in force
 
@@ -388,9 +387,8 @@ pgTAP verifies the exact privilege matrix.
   see `docs/MIGRATION_2025.md`.
 - The hosted `sweetnapadads` project exists at
   `https://cleyfpzxckjtmsoesgby.supabase.co`. Codex MCP and CLI access are
-  authenticated and the CLI is linked. All sixteen migration versions through
-  `20260731180000` match hosted history; three locally reviewed migrations are
-  pending this authorized release.
+  authenticated and the CLI is linked. All twenty-one migration versions
+  through `20260802183000` match hosted history, and the dry-run is empty.
 - Vercel production has the public Supabase values, canonical `SITE_URL`, and
   a server-only Supabase service-role value. Preview and development
   environments remain intentionally unconfigured to avoid silently sharing
@@ -406,7 +404,7 @@ pgTAP verifies the exact privilege matrix.
   or local Studio.
 - The repository is linked locally to Vercel project
   `prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w` in the `sciandri` scope. Production
-  deployment `dpl_9UgX2X1eWDmSkBoJCBrTjtE2C7YM` is Ready.
+  deployment `dpl_5ZmJ2YT327evXjcxfsrLzxx9VtiV` is Ready.
 - ESPN private-league credentials are configured only in git-ignored local
   environment state and validated for both the 2025 and 2026 ten-team league.
   They and `SYNC_SECRET` are not configured in Vercel and must never be
@@ -432,11 +430,17 @@ pgTAP verifies the exact privilege matrix.
 - `npm run build`: passing
 - Invite-only Auth browser smoke test: passing through local email, callback,
   verified claims, membership RLS, and dashboard
-- Hosted migration history: all sixteen versions through `20260731180000` match
+- Hosted migration history: all twenty-one versions through `20260802183000`
+  match
 - Hosted Auth production config: up to date
-- GitHub `main`: source checkpoint `169fc50` synchronized before this release
-- Supabase production dry-run: three reviewed migrations pending
-- Vercel production `dpl_9UgX2X1eWDmSkBoJCBrTjtE2C7YM`: Ready
+- GitHub `main`: source checkpoint `64bf20a` synchronized
+- Supabase production dry-run: no pending migrations, seeds, or roles
+- Production 2025 import: 533 raw rows, 80 matchups, 160 results, 14 awards,
+  49 obligations, 43 payments, 43 allocations, one external cash event, and
+  390 provenance links; `$240` cash and `$40` net team balance reconcile
+- Spreadsheet side-bet activity: two `$20` records committed with exact source
+  descriptions and references
+- Vercel production `dpl_5ZmJ2YT327evXjcxfsrLzxx9VtiV`: Ready
 - `https://sweetnapadads.com`: HTTP 200 after redirect to
   `https://www.sweetnapadads.com/`
 - `https://sweetnapadads.com/login`: HTTP 200 with the invitation-only login
@@ -496,9 +500,10 @@ pgTAP verifies the exact privilege matrix.
 
 ## Latest commit intent
 
-`feat: complete commissioner operations and release candidate`
+`docs: close session 0008 production release`
 
 ## Pickup instruction
 
-Continue the active “update and track” release from the first unfinished step;
-do not invite another member until the Resend credential has been rotated.
+Start from clean, synchronized `main`. Do not invite another member until the
+Resend credential has been rotated. Then choose OpenAI activation or real 2026
+roster, ESPN mapping, and season-rule configuration as the next workstream.

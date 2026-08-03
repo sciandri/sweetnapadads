@@ -1,10 +1,10 @@
 # Session 0008 — Completion release candidate
 
 - Date: 2026-08-02
-- Status: active
+- Status: completed
 - Branch: `main`
 - Starting commit: `169fc50`
-- Ending source commit: pending
+- Ending source commit: `64bf20a`
 
 ## Goal
 
@@ -84,15 +84,34 @@ item and must not overwrite imported or ESPN source facts.
   intentional desktop skip for a mobile-only overflow assertion
 - Canonical import: first local run committed and reconciled; second full run
   and the internal retry both returned `already_committed`
+- GitHub `main`: source checkpoint `64bf20a` published and synchronized
+- Hosted Supabase: all twenty-one migrations through `20260802183000` applied;
+  post-apply dry-run reports no migration, seed, or role changes
+- Production 2025 import: 533 source rows, 80 matchups, 160 results, 14 awards,
+  49 obligations, 43 payments, 43 allocations, one external cash event, and
+  390 provenance links; reconciliation is `$240` cash and `$40` net team
+  balance
+- Spreadsheet activity: both `$20` side bets are committed with exact parties,
+  descriptions, and `Bets!A2:D2` / `Bets!A3:D3` source references
+- Vercel production `dpl_5ZmJ2YT327evXjcxfsrLzxx9VtiV`: Ready and aliased to
+  `https://www.sweetnapadads.com`
+- Production smoke: home, login, and `/api/health` return HTTP 200; signed-out
+  activity and ESPN controls preserve their exact safe login return paths
 
 ## Risks or blockers
 
-- The active “update and track” release still must publish the side-bet
-  extension, deploy, and record final evidence. The Resend credential
-  must be rotated before another invitation because it appeared in an
-  operator-only verification transcript.
+- Rotate the Resend credential before another invitation because it appeared
+  in an operator-only verification transcript.
+- Live AI drafting remains intentionally disabled until `OPENAI_API_KEY` is
+  configured server-side and a provider smoke test passes.
+- Production ESPN synchronization remains intentionally disabled until ESPN
+  credentials, `SYNC_SECRET`, reviewed 2026 mappings, and workflow values are
+  configured in their documented scopes.
+- The neutral 2026 setup season still needs its real ten- or twelve-team roster
+  and commissioner-approved season rules before league play begins.
 
 ## Exact handoff
 
-Configure the external release gates, then use “update and track” to publish,
-migrate, deploy, verify, and close the session.
+Start the next session from clean, synchronized `main`. Rotate the Resend key
+before inviting anyone else, then configure and smoke-test OpenAI or complete
+the real 2026 roster, mappings, and season rules.

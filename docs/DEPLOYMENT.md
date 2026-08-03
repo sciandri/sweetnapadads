@@ -13,10 +13,12 @@
   (`prj_qNC8JhIZiZfvqlLPU66PYtlrwn7w`)
 - Supabase: `sweetnapadads` (`cleyfpzxckjtmsoesgby`, `us-west-2`)
 
-The repository is linked locally to both projects. Source checkpoint `7624f5d`
+The repository is linked locally to both projects. Source checkpoint `64bf20a`
 is deployed to Vercel production as
-`dpl_9UgX2X1eWDmSkBoJCBrTjtE2C7YM`. All sixteen versioned migrations through
-`20260731180000` are applied to hosted Supabase.
+`dpl_5ZmJ2YT327evXjcxfsrLzxx9VtiV`. All twenty-one versioned migrations through
+`20260802183000` are applied to hosted Supabase. The canonical 2025 workbook is
+committed in production, including both side-bet rows as immutable member
+activity.
 
 ## Environments
 
