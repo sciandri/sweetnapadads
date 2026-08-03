@@ -50,6 +50,12 @@ item and must not overwrite imported or ESPN source facts.
 - [x] Close inherited anonymous execution on the historical-import and
       commissioner-message security-definer RPCs, including a conditional
       revoke for Supabase's hosted-only RLS event trigger.
+- [x] Stage all 533 workbook rows, receive explicit final approval, commit the
+      production 2025 preview, verify its exact retry, counts, reconciliation,
+      and 390 provenance links.
+- [x] Close the raw-only side-bet gap with an immutable RLS model and member
+      Activity UI that preserves both `$20` records without inventing outcomes,
+      settlement, or dates.
 
 ## Decisions
 
@@ -65,10 +71,10 @@ item and must not overwrite imported or ESPN source facts.
 
 - `npm run lint`: passing
 - `npm run typecheck`: passing
-- `npm test`: 125 tests passing across 30 files
+- `npm test`: 126 tests passing across 30 files
 - `npm run db:reset`: passing
 - `npm run db:lint`: passing with no warnings
-- `npm run db:test`: 394 database tests passing across 20 files
+- `npm run db:test`: 405 database tests passing across 21 files
 - `npm run build`: passing with the API and commissioner page as dynamic routes
 - `npm run tracking:check`: passing with eight session logs
 - Local production-build smoke: `/login` returns HTTP 200 and the unauthenticated
@@ -81,8 +87,8 @@ item and must not overwrite imported or ESPN source facts.
 
 ## Risks or blockers
 
-- The active “update and track” release still must push, migrate, commit the
-  hosted 2025 import, deploy, and record final evidence. The Resend credential
+- The active “update and track” release still must publish the side-bet
+  extension, deploy, and record final evidence. The Resend credential
   must be rotated before another invitation because it appeared in an
   operator-only verification transcript.
 

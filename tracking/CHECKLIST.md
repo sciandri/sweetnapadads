@@ -40,7 +40,8 @@ sequencing live in `docs/IMPLEMENTATION_PLAN.md`.
 - [x] Build 2025 staging import and mapping.
 - [x] Resolve workbook discrepancies with commissioner decisions.
 - [x] Rehearse the complete canonical 2025 import locally and idempotently.
-- [ ] Commit a reconciled 2025 historical import.
+- [x] Commit a reconciled 2025 historical import.
+- [x] Normalize all spreadsheet activity, including both undated side bets.
 
 ## Phase 3 — Competition
 

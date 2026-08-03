@@ -76,15 +76,16 @@ the model would see, edit final copy, and copy it into the league's existing
 group-text thread. There is intentionally no SMS delivery or phone-number
 storage. Live OpenAI generation is visibly disabled until a server-only API key
 is configured and its Route Handler is reviewed.
-The canonical 2025 workbook is now preserved as 533 row-level source records
+The canonical 2025 workbook is now preserved in production as 533 row-level source records
 with cached values, formulas, and per-row hashes. A local-only operational
 runner stages the 2025 season, ten teams, eighteen financial label mappings,
 and all seven approved issues, then exercises the real commissioner approval
 and domain commit boundaries. It produced and reconciled 80 matchups, 160
 results, 14 awards, 49 obligations, 43 payments, 43 allocations, and one
 external cash event. Both the RPC retry and a second full runner invocation
-returned `already_committed` without duplicates. Production history was not
-modified.
+returned `already_committed` without duplicates. The explicitly approved
+hosted commit now matches those counts and reconciliation totals and preserves
+390 domain provenance links.
 The server-only ESPN adapter now validates the observed 2025 and 2026 response
 shape, preserves ESPN's completed-season final rank or active-season playoff
 seed, rejects unavailable preseason order, requires exact season-team mappings
@@ -191,6 +192,10 @@ and audited adjustments through the active member's RLS client. It deliberately
 keeps competition ordered by scoring week and finance ordered by event date,
 with distinct labels and honest empty states. Seeded finance-only data and the
 populated 2025 rehearsal both passed desktop and 390px browser review.
+The spreadsheet's two `$20` side bets are also normalized as immutable,
+RLS-protected activity with exact parties, description, source row, and import
+batch. They remain separate from finance and do not invent outcomes,
+settlement, or dates.
 Commissioners can now fill a complete week that ESPN did not supply at
 `/dashboard/admin/results`. The responsive form derives its pairs from every
 active season team, accepts scores to the hundredth and a required reason, and
@@ -348,12 +353,13 @@ pgTAP verifies the exact privilege matrix.
 - [x] Implement the live AI generation boundary and three-option composer UI.
 - [x] Remove inherited anonymous execution from the historical-import and
       commissioner-message security-definer boundaries.
+- [x] Commit and reconcile the canonical 2025 history in hosted Supabase.
+- [x] Normalize both spreadsheet side bets as visible immutable activity.
 
 ## Next actions
 
-1. Complete the active “update and track” release: push the source checkpoint,
-   apply the three reviewed migrations, commit reconciled 2025 history, deploy
-   production, and record exact hosted verification.
+1. Complete the active “update and track” release: publish the side-bet
+   extension, deploy production, and record exact hosted verification.
 2. Rotate the Resend SMTP credential before inviting another real member.
 3. Configure the server-only OpenAI key locally and in Vercel, then run one
    reviewed live three-draft smoke test.
@@ -378,9 +384,8 @@ pgTAP verifies the exact privilege matrix.
 ## Known risks and blockers
 
 - The 2025 workbook discrepancies are resolved in the approved decision queue.
-  The exact preview has now been staged, committed, reconciled, and retried
-  locally. Production history remains intentionally absent pending a separate
-  explicit decision; see `docs/MIGRATION_2025.md`.
+  The exact preview is committed and reconciled both locally and in production;
+  see `docs/MIGRATION_2025.md`.
 - The hosted `sweetnapadads` project exists at
   `https://cleyfpzxckjtmsoesgby.supabase.co`. Codex MCP and CLI access are
   authenticated and the CLI is linked. All sixteen migration versions through
@@ -417,10 +422,10 @@ pgTAP verifies the exact privilege matrix.
 - `npm audit`: clean
 - `npm run lint`: passing
 - `npm run typecheck`: passing
-- `npm test`: 125 tests passing across 30 files
+- `npm test`: 126 tests passing across 30 files
 - `npm run db:reset`: passing
 - `npm run db:lint`: passing with no warnings
-- `npm run db:test`: 394 database tests passing across 20 files
+- `npm run db:test`: 405 database tests passing across 21 files
 - `npm run import:2025:rehearse`: passing twice; second run idempotent
 - ESPN credential check: authenticated HTTP 200 for 2025 and 2026; league ID
   and ten-team response verified without logging credential values

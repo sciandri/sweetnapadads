@@ -131,6 +131,11 @@ date-ordered immutable financial event types. Authenticated browser checks
 cover the seeded financial-only state, populated 2025 competition and finance
 streams, desktop presentation, and the stacked 390px layout.
 
+Side-bet coverage verifies integer-cent stakes, distinct season-team parties,
+member visibility, outsider isolation, commissioner-only insertion, immutable
+update/delete rejection, exact source descriptions, and UI mapping without an
+invented outcome or date.
+
 ESPN matchup fixtures and live redacted shape inspection cover completed games,
 ties, undecided and future exclusion, score rounding, reciprocal opponents,
 dynamic playoff boundaries, mapping failures, and duplicate identifiers. The

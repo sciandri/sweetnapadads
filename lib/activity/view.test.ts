@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { buildCompetitionActivity, buildFinancialActivity } from "./view";
+import { buildCompetitionActivity, buildFinancialActivity, buildSideBetActivity } from "./view";
 
 const teams = [{ id: "a", name: "Alpha" }, { id: "b", name: "Bravo" }];
 
@@ -49,5 +49,29 @@ describe("league activity view", () => {
 
     expect(entries.map((entry) => entry.kind)).toEqual(["adjustment", "payment", "obligation"]);
     expect(entries[1]).toMatchObject({ team_name: "Alpha", direction: "Paid by team" });
+  });
+
+  it("keeps side bets separate without inventing an outcome or date", () => {
+    const entries = buildSideBetActivity([
+      {
+        id: "bet",
+        party_one_season_team_id: "a",
+        party_two_season_team_id: "b",
+        description: "Alpha finishes better than Bravo",
+        amount_cents: 2000,
+        source_type: "import",
+        source_key: "import:2025:side-bet:2",
+      },
+    ], teams);
+
+    expect(entries).toEqual([{
+      id: "bet",
+      party_one_name: "Alpha",
+      party_two_name: "Bravo",
+      description: "Alpha finishes better than Bravo",
+      amount_cents: 2000,
+      source: "import",
+      source_key: "import:2025:side-bet:2",
+    }]);
   });
 });

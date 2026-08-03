@@ -62,6 +62,10 @@ financial events are labeled and ordered by date. Matchups, stored honors,
 obligations, payments, and audited adjustments keep distinct visual labels,
 with explicit empty states for either stream.
 
+Side bets appear below those timelines as undated source cards. Each card shows
+the two structured teams, exact description, and stake while explicitly
+avoiding an inferred winner, settlement, or date.
+
 ## Commissioner message composer
 
 The composer is optimized for copying into the league's existing group-text

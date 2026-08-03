@@ -157,5 +157,13 @@ event. The result reconciled to a `$40` net team balance and `$240` realized
 league cash balance. A second full runner invocation without a reset returned
 `already_committed` and created no duplicates.
 
-This rehearsal does not authorize or write production league history. Hosted
-staging remains a separate, explicit release decision.
+The commissioner explicitly approved the hosted production commit on
+2026-08-02 after reviewing those counts and reconciliation totals. Production
+preserves all 533 rows, the approved mappings and issues, the exact committed
+preview, 390 domain provenance links, and the expected domain counts above.
+
+The two `Bets` rows were preserved in the original raw evidence and alias
+review but were not domain records in the original commit preview. The release
+therefore adds a separate immutable `side_bets` model and normalizes both `$20`
+records with their two structured parties, exact descriptions, source rows,
+and import-batch link. No outcome, settlement, or event date is invented.

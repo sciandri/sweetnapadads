@@ -6,12 +6,14 @@ import { BrandLogo } from "@/components/brand-logo";
 import {
   buildCompetitionActivity,
   buildFinancialActivity,
+  buildSideBetActivity,
   type ActivityAdjustment,
   type ActivityAward,
   type ActivityMatchup,
   type ActivityObligation,
   type ActivityPayment,
   type ActivityResult,
+  type ActivitySideBet,
 } from "@/lib/activity/view";
 import { formatCurrency } from "@/lib/format/currency";
 import { createClient } from "@/lib/supabase/server";
@@ -81,6 +83,7 @@ export default async function ActivityPage({ searchParams }: ActivityPageProps) 
     obligationsResult,
     paymentsResult,
     adjustmentsResult,
+    sideBetsResult,
   ] = await Promise.all([
     supabase.from("season_teams").select("id, name").eq("season_id", season.id),
     supabase.from("accepted_matchups").select("id, week, phase, source_type").eq("season_id", season.id),
@@ -89,6 +92,7 @@ export default async function ActivityPage({ searchParams }: ActivityPageProps) 
     supabase.from("financial_obligations").select("id, season_team_id, direction, amount_cents, description, occurred_on").eq("season_id", season.id),
     supabase.from("payments").select("id, season_team_id, direction, amount_cents, paid_on, note").eq("season_id", season.id),
     supabase.from("financial_adjustments").select("id, season_team_id, direction, amount_cents, reason, occurred_on").eq("season_id", season.id),
+    supabase.from("side_bets").select("id, party_one_season_team_id, party_two_season_team_id, description, amount_cents, source_type, source_key").eq("season_id", season.id),
   ]);
 
   const teams = teamsResult.data ?? [];
@@ -102,6 +106,13 @@ export default async function ActivityPage({ searchParams }: ActivityPageProps) 
     })) as ActivityAward[],
     teams,
   ).slice(0, 30);
+  const sideBets = buildSideBetActivity(
+    (sideBetsResult.data ?? []).map((item) => ({
+      ...item,
+      amount_cents: Number(item.amount_cents),
+    })) as ActivitySideBet[],
+    teams,
+  );
   const finances = buildFinancialActivity(
     (obligationsResult.data ?? []).map((item) => ({ ...item, amount_cents: Number(item.amount_cents) })) as ActivityObligation[],
     (paymentsResult.data ?? []).map((item) => ({ ...item, amount_cents: Number(item.amount_cents) })) as ActivityPayment[],
@@ -205,6 +216,33 @@ export default async function ActivityPage({ searchParams }: ActivityPageProps) 
               )}
             </section>
           </div>
+
+          <section aria-labelledby="side-bet-activity-heading" className="mt-10 border-t border-forest/20 pt-8">
+            <div className="border-l-2 border-wine pl-4">
+              <p className="font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-wine">Undated source records</p>
+              <h2 className="mt-2 font-display text-4xl sm:text-5xl" id="side-bet-activity-heading">Side bets</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-muted">Recorded exactly as supplied. These are league activity, not dues, payouts, or settlement evidence, and no outcome is inferred.</p>
+            </div>
+            {sideBets.length ? (
+              <ol className="mt-5 grid gap-4 lg:grid-cols-2">
+                {sideBets.map((entry) => (
+                  <li className="border border-forest/20 bg-surface/70 p-5" key={entry.id}>
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <p className="font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-wine">{entry.party_one_name} · {entry.party_two_name}</p>
+                      <data className="font-display text-3xl" value={entry.amount_cents}>{formatCurrency(entry.amount_cents)}</data>
+                    </div>
+                    <h3 className="mt-3 font-display text-2xl leading-tight">{entry.description}</h3>
+                    <p className="mt-3 font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-ink-muted">Source: {entry.source}</p>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <div className="mt-5 border border-dashed border-forest/30 px-5 py-8">
+                <p className="font-display text-2xl">No side bets recorded.</p>
+                <p className="mt-2 text-sm leading-6 text-ink-muted">Imported or commissioner-recorded side-bet evidence will appear here without changing the league ledger.</p>
+              </div>
+            )}
+          </section>
         </section>
       </div>
     </main>

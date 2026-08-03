@@ -151,6 +151,11 @@ event dates. The application does not synthesize a shared timestamp or merge
 those meanings into one ambiguous event type. Both streams are bounded to the
 thirty most recent display entries for the selected season.
 
+Undated side bets are a third activity stream. They retain two structured
+season-team parties, the exact source description, an integer-cent stake, and
+import provenance. They do not create or imply obligations, payments,
+settlement, winners, or dates.
+
 Approved historical previews cross a single PostgreSQL transaction boundary.
 The database resolves season-team identifiers, validates reciprocal results,
 creates competition and financial rows, records per-row provenance, reruns

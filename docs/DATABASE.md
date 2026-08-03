@@ -69,8 +69,11 @@ cash events, so league expenses never distort a team's balance.
 - `espn_standing_entries`
 - `sync_issues`
 
-Detailed SQL and RLS policies will be introduced through numbered migrations
-in Phase 1.
+`side_bets` preserves immutable season-scoped party, description, integer-cent
+stake, source, and import-batch evidence. A side bet is league activity, not a
+financial obligation or payment; settlement requires its own later audited
+financial event. Members read side bets through league RLS, commissioners may
+insert them, and no authenticated role can update or delete the evidence.
 
 ## Migration workflow
 

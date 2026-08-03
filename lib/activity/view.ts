@@ -71,6 +71,26 @@ export type FinancialActivityEntry = {
   amount_cents: number;
 };
 
+export type ActivitySideBet = {
+  id: string;
+  party_one_season_team_id: string;
+  party_two_season_team_id: string;
+  description: string;
+  amount_cents: number;
+  source_type: string;
+  source_key: string;
+};
+
+export type SideBetActivityEntry = {
+  id: string;
+  party_one_name: string;
+  party_two_name: string;
+  description: string;
+  amount_cents: number;
+  source: string;
+  source_key: string;
+};
+
 function teamName(id: string, teams: Map<string, string>) {
   return teams.get(id) ?? "League team";
 }
@@ -177,4 +197,22 @@ export function buildFinancialActivity(
     || left.kind.localeCompare(right.kind)
     || left.id.localeCompare(right.id),
   );
+}
+
+export function buildSideBetActivity(
+  sideBets: ActivitySideBet[],
+  teams: ActivityTeam[],
+): SideBetActivityEntry[] {
+  const names = new Map(teams.map((team) => [team.id, team.name]));
+  return sideBets
+    .map((item) => ({
+      id: item.id,
+      party_one_name: teamName(item.party_one_season_team_id, names),
+      party_two_name: teamName(item.party_two_season_team_id, names),
+      description: item.description,
+      amount_cents: item.amount_cents,
+      source: item.source_type,
+      source_key: item.source_key,
+    }))
+    .sort((left, right) => left.source_key.localeCompare(right.source_key));
 }
